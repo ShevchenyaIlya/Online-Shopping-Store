@@ -1,0 +1,87 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img style="height: 600px;" class="d-block w-100" src="~/images/ecommerce-platform.jpg" alt="First slide">
+        </div>
+        <div class="carousel-item">
+            <img style="height: 600px;" class="d-block w-100" src="~/images/Blog-Online-Store-2020-1200x600.png" alt="Second slide">
+        </div>
+        <div class="carousel-item">
+            <img style="height: 600px;" class="d-block w-100" src="~/images/store-1569252622.png" alt="Third slide">
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<div class="article-clean">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">
+                <div class="intro">
+                    <h1 class="text-center">Online shopping store</h1>
+                    <p class="text-center"><span class="by">by</span> <a href="#">Shevchenya ILya</a><span class="date">Sept 8th, 2020 </span></p><img class="img-fluid" src="~/images/kertas1-.jpg">
+                </div>
+                <div class="text">
+                    <p>
+                        It is the best online store in its field that delivers its products all over the world. A huge number of product categories, a huge selection of products and a variety of brands.
+                        Lowest prices and best customer reviews. We are worried about our reputation, so we perform our duties at the highest quality, and if some embarrassing situations arise, we find the best solution that will satisfy the buyer.
+                    </p>
+                    <figure>
+                        <img class="figure-img" src="~/images/19-best-online-shopping-store-cart-logo.gif">
+                        <figcaption>Logo</figcaption>
+                    </figure>
+                    <p>
+                        Fast processing of requests, correct assembly of goods, only high-quality goods and no defective goods, we guarantee this.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+
+@*<div class="article-list">
+    <div class="container">
+        <div class="intro">
+            <h2 class="text-center">Latest New Products</h2>
+            <p class="text-center">The latest novelties of completely different categories for every taste.</p>
+        </div>
+        <div class="row articles">
+            @for (int i = 0; i < 3; i++)
+            {
+                <div class="col-sm-6 col-md-4 item">
+                    @{
+                        var base64 = Convert.ToBase64String(Model.ElementAt(i).Image);
+                        var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                    }
+                    <a href="~/products/details/@Model.ElementAt(i).ProductId"><img style="height:270px; width:320px" src="@imgsrc"></a>
+                    <h3 class="name">@Model.ElementAt(i).ProductName</h3>
+                    <p class="description">@Model.ElementAt(i).Description</p><a class="action" href="~/products/details/@Model.ElementAt(i).ProductId"><i class="fa fa-arrow-circle-right"></i></a>
+                    <div class="product-item-badge">New</div>
+
+                </div>
+            }
+
+            <div class="col-sm-6 col-md-4 item">
+                    <a href="#"><img class="img-fluid" src="~/Images/building.jpg"></a>
+                    <h3 class="name">Article Title</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p><a class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+                <div class="col-sm-6 col-md-4 item">
+                    <a href="#"><img class="img-fluid" src="~/Images/loft.jpg"></a>
+                    <h3 class="name">Article Title</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p><a class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+        </div>
+    </div>
+</div>*@
