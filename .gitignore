@@ -1,0 +1,5 @@
+/ProductStore/bin/Debug
+/ProductStore/obj/Debug/
+/ProductStore/obj/ProductStore.csproj.EntityFrameworkCore.targets
+/ProductStore/obj/ProductStore.csproj.nuget.g.props
+/ProductStore/obj
