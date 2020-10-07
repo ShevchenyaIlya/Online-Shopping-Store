@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using ProductStore.Areas.Identity.Data;
+using ProductStore.Models;
+using ProductStore.Services;
 
 namespace ProductStore.Areas.Identity.Pages.Account
 {
@@ -18,9 +20,9 @@ namespace ProductStore.Areas.Identity.Pages.Account
     public class ForgotPasswordModel : PageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IEmailSender _emailSender;
+        private readonly IMailService _emailSender;
 
-        public ForgotPasswordModel(UserManager<ApplicationUser> userManager, IEmailSender emailSender)
+        public ForgotPasswordModel(UserManager<ApplicationUser> userManager, IMailService emailSender)
         {
             _userManager = userManager;
             _emailSender = emailSender;
@@ -57,10 +59,17 @@ namespace ProductStore.Areas.Identity.Pages.Account
                     values: new { area = "Identity", code },
                     protocol: Request.Scheme);
 
-                await _emailSender.SendEmailAsync(
-                    Input.Email,
-                    "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                WelcomeRequest request = new WelcomeRequest
+                {
+                    ToEmail = user.Email,
+                    UserName = user.UserName,
+                };
+                await _emailSender.SendVerifiedEmailAsync(request, HtmlEncoder.Default.Encode(callbackUrl), false);
+
+                //await _emailSender.SendEmailAsync(
+                //    Input.Email,
+                //    "Reset Password",
+                //    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }
