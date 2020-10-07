@@ -27,8 +27,13 @@ namespace ProductStore.Areas.Identity
                     options.Password.RequireUppercase = true;
                     options.Password.RequiredLength = 6;
                     options.Password.RequireNonAlphanumeric = true;
+                    options.User.RequireUniqueEmail = true;
                 })
-                    .AddEntityFrameworkStores<AuthDbContext>();
+                    .AddRoles<IdentityRole>()
+                    .AddEntityFrameworkStores<AuthDbContext>()
+                    .AddDefaultUI()
+                    .AddDefaultTokenProviders();
+
             });
         }
     }
