@@ -32,5 +32,9 @@ namespace ProductStore.Areas.Identity.Data
         [PersonalData]
         [Column(TypeName = "nvarchar(20)")]
         public string Number { get; set; }
+
+        public int UsernameChangeLimit { get; set; } = 10;
+
+        public byte[] ProfilePicture { get; set; }
     }
 }
