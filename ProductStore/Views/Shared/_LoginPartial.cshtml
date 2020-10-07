@@ -12,14 +12,19 @@
             <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)</a>
         </li>
         <li class="nav-item">
+            @{
+                var user = await UserManager.GetUserAsync(User);
+                var profilePhoto = user.ProfilePicture;
+            }
             <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
-                <img class="navbar-toggler-icon" src="~/images/1489254461807.jpg" style="
-                    vertical-align: central;
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 50%;
-                    margin-right: 10px;
-                    margin-left: 10px;" />
+                @if (profilePhoto != null)
+                {
+                    <img id="profilePicture" style=" vertical-align: central; width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; margin-left: 10px; object-fit: cover" src="data:image/*;base64,@(Convert.ToBase64String(profilePhoto))">
+                }
+                else
+                {
+                    <img id="profilePicture" style=" vertical-align: central; width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; margin-left: 10px; object-fit: cover" src="~/images/BasicUserPhoto.png">
+                }
             </a>
         </li>
         <li class="nav-item">
