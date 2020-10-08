@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -10,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using ProductStore.Areas.Identity.Data;
 using ProductStore.Data;
 using ProductStore.Services;
@@ -37,6 +39,16 @@ namespace ProductStore
             services.AddMvc()
                 .AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
+            var cultures = new List<CultureInfo> {
+                new CultureInfo("en"),
+                new CultureInfo("ru")
+            };
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en");
+                options.SupportedCultures = cultures;
+                options.SupportedUICultures = cultures;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +64,17 @@ namespace ProductStore
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            //var cultures = new List<CultureInfo> {
+            //    new CultureInfo("en"),
+            //    new CultureInfo("ru")
+            //};
+            //app.UseRequestLocalization(options =>
+            //{
+            //    options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en");
+            //    options.SupportedCultures = cultures;
+            //    options.SupportedUICultures = cultures;
+            //});
+            app.UseRequestLocalization(app.ApplicationServices.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
