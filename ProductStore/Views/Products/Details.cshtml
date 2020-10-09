@@ -2,108 +2,180 @@
 
 @{
     ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
 
 <h1>Details</h1>
 
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProductName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductDescription)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProductDescription)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Brand)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Brand)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PriceForOneKilogram)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PriceForOneKilogram)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Weight)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Weight)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Protein)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Protein)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Fat)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Fat)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Carbohydrates)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Carbohydrates)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EnergyValue)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EnergyValue)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.InStock)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.InStock)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImageUrl)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AddedDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AddedDate)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ProductId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+@if (ViewBag.StatusMessage != null)
+{
+    <partial name="../Shared/_StatusMessage" model="ViewBag.StatusMessage" />
+}
+<div class="register-photo">
+    <div class="form-container">
+        <div class="form-horizontal">
+            <div style="background-color: white">
+                <h4 style="margin-left:10px">Product</h4>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.ProductName)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.ProductName)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.ProductDescription)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.ProductDescription)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Brand)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Brand)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.PriceForOneKilogram)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.PriceForOneKilogram)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Price)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Price)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Weight)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Weight)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Protein)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Protein)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Fat)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Fat)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Carbohydrates)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Carbohydrates)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.EnergyValue)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.EnergyValue)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.IsDeleted)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.IsDeleted)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.InStock)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.InStock)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Quantity)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Quantity)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.ImageUrl)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.ImageUrl)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.ProductPicture)
+                    </dt>
+                    <dd class="col-sm-8">
+                        <img id="profilePicture" style="width:150px;height:150px; object-fit:cover" src="data:image/*;base64,@(Convert.ToBase64String(Model.ProductPicture))">
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.AddedDate)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.AddedDate)
+                    </dd>
+                    <dt class="col-sm-4">
+                        Country
+                    </dt>
+                    <dd class="col-sm-8">
+                        <dl class="row">
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.CreatedPlace.CountryName)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.CreatedPlace.CountryName)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.CreatedPlace.CountryCode)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.CreatedPlace.CountryCode)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.CreatedPlace.CountryPicture)
+                            </dt>
+                            <dd class="col-sm-8">
+                                <img id="profilePicture" style="width: 80px; height: 60px; object-fit: cover" src="data:image/*;base64,@(Convert.ToBase64String(Model.CreatedPlace.CountryPicture))">
+                            </dd>
+                        </dl>
+                    </dd>
+                    <dt class="col-sm-4">
+                        Category
+                    </dt>
+                    <dd class="col-sm-8">
+                        <dl class="row">
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Category.CategoryName)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Category.CategoryName)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Category.CategoryDescription)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Category.CategoryDescription)
+                            </dd>
+                            <dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Category.AddedDate)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Category.AddedDate)
+                            </dd>
+                            @*<dt class="col-sm-4">
+                                @Html.DisplayNameFor(model => model.Category.CategoryPicture)
+                            </dt>
+                            <dd class="col-sm-8">
+                                <img id="profilePicture" style="width:200px;height:150px; object-fit:cover" src="data:image/*;base64,@(Convert.ToBase64String(Model.Category.CategoryPicture))">
+                            </dd>*@
+                        </dl>
+                    </dd>
+                </dl>
+            </div>
+            <div>
+                <a asp-action="Edit" asp-route-id="@Model.ProductId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">Edit</a>
+                <a asp-action="Index" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">Back to List</a>
+            </div>
+        </div>
+    </div>
 </div>
