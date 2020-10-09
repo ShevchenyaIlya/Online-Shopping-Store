@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 using ProductStore.Data;
 using ProductStore.Models;
 
 namespace ProductStore.Controllers
 {
+    [Authorize(Roles = "SuperAdmin, Admin")]
     public class MarksController : Controller
     {
         private readonly AuthDbContext _context;

@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProductStore.Data;
+using Microsoft.AspNetCore.Authorization;
 using ProductStore.Models;
 
 namespace ProductStore.Controllers
 {
+    [Authorize(Roles = "SuperAdmin, Admin")]
     public class RatingsController : Controller
     {
         private readonly AuthDbContext _context;

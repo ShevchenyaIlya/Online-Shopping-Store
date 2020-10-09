@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,9 +13,13 @@ using ProductStore.Models;
 
 namespace ProductStore.Controllers
 {
+    [Authorize(Roles = "SuperAdmin, Admin")]
     public class CategoriesController : Controller
     {
         private readonly AuthDbContext _context;
+
+        [TempData]
+        public string StatusMessage { get; set; }
 
         public CategoriesController(AuthDbContext context)
         {
@@ -22,6 +29,7 @@ namespace ProductStore.Controllers
         // GET: Categories
         public async Task<IActionResult> Index()
         {
+            ViewBag.StatusMessage = StatusMessage;
             return View(await _context.Category.ToListAsync());
         }
 
@@ -40,12 +48,14 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
+            ViewBag.StatusMessage = StatusMessage;
             return View(category);
         }
 
         // GET: Categories/Create
         public IActionResult Create()
         {
+            ViewBag.StatusMessage = StatusMessage;
             return View();
         }
 
@@ -58,10 +68,27 @@ namespace ProductStore.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (Request.Form.Files.Count > 0)
+                {
+                    IFormFile file = Request.Form.Files.FirstOrDefault();
+                    using (var dataStream = new MemoryStream())
+                    {
+                        await file.CopyToAsync(dataStream);
+                        category.CategoryPicture = dataStream.ToArray();
+                    }
+                    category.ImageUrl = file.FileName;
+                }
+                else
+                {
+                    StatusMessage = "Error. Image doesn't choosen.";
+                    return RedirectToAction();
+                }
                 _context.Add(category);
                 await _context.SaveChangesAsync();
+                StatusMessage = "Category has been created";
                 return RedirectToAction(nameof(Index));
             }
+            StatusMessage = "Form is invalid";
             return View(category);
         }
 
@@ -78,6 +105,7 @@ namespace ProductStore.Controllers
             {
                 return NotFound();
             }
+            ViewBag.StatusMessage = StatusMessage;
             return View(category);
         }
 
@@ -95,6 +123,22 @@ namespace ProductStore.Controllers
 
             if (ModelState.IsValid)
             {
+                if (Request.Form.Files.Count > 0)
+                {
+                    IFormFile file = Request.Form.Files.FirstOrDefault();
+                    using (var dataStream = new MemoryStream())
+                    {
+                        await file.CopyToAsync(dataStream);
+                        category.CategoryPicture = dataStream.ToArray();
+                    }
+                    category.ImageUrl = file.FileName;
+                }
+                else
+                {
+                    StatusMessage = "Error. Image doesn't choosen.";
+                    return RedirectToAction();
+                }
+
                 try
                 {
                     _context.Update(category);
@@ -111,8 +155,10 @@ namespace ProductStore.Controllers
                         throw;
                     }
                 }
+                StatusMessage = "Category has been updated";
                 return RedirectToAction(nameof(Index));
             }
+            StatusMessage = "Form is invalid";
             return View(category);
         }
 
@@ -131,6 +177,7 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
+            ViewBag.StatusMessage = StatusMessage;
             return View(category);
         }
 
@@ -142,6 +189,7 @@ namespace ProductStore.Controllers
             var category = await _context.Category.FindAsync(id);
             _context.Category.Remove(category);
             await _context.SaveChangesAsync();
+            StatusMessage = "Category has been deleted";
             return RedirectToAction(nameof(Index));
         }
 
