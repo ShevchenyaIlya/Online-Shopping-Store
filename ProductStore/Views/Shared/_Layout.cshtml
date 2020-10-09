@@ -23,8 +23,8 @@
     <link rel="stylesheet" href="~/css/Registration-Form-with-Photo.css">
     <link rel="stylesheet" href="~/css/Data-Table.css" />
     <link rel="stylesheet" href="~/css/Cards.css" />
-    <link rel="stylesheet" href="~/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="~/fonts/font-awesome.css">
+    @*<link rel="stylesheet" href="~/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="~/fonts/font-awesome.css">*@
     <link rel="stylesheet" href="~/css/canito-detalle-producto.css">
     <link rel="stylesheet" href="~/css/Article-List.css">
     <link rel="stylesheet" href="~/css/Login-Form-Dark.css">
@@ -55,18 +55,24 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Categories</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Categories</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("SuperAdmin")))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main">
             @RenderBody()
         </main>
     </div>
