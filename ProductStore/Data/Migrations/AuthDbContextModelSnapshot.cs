@@ -258,6 +258,9 @@ namespace ProductStore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("CategoryPicture")
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
@@ -319,6 +322,9 @@ namespace ProductStore.Migrations
                     b.Property<string>("CountryName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("CountryPicture")
+                        .HasColumnType("varbinary(max)");
+
                     b.HasKey("CountryId");
 
                     b.ToTable("Country");
@@ -334,9 +340,6 @@ namespace ProductStore.Migrations
                     b.Property<long?>("ProductId")
                         .HasColumnType("bigint");
 
-                    b.Property<int?>("RatingId")
-                        .HasColumnType("int");
-
                     b.Property<double>("TotalMark")
                         .HasColumnType("float");
 
@@ -346,8 +349,6 @@ namespace ProductStore.Migrations
                     b.HasKey("MarkId");
 
                     b.HasIndex("ProductId");
-
-                    b.HasIndex("RatingId");
 
                     b.HasIndex("UserId");
 
@@ -438,9 +439,6 @@ namespace ProductStore.Migrations
                     b.Property<double>("PriceForOneKilogram")
                         .HasColumnType("float");
 
-                    b.Property<long?>("ProductBasketBasketId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("ProductDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -448,6 +446,9 @@ namespace ProductStore.Migrations
                     b.Property<string>("ProductName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("ProductPicture")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<float>("Protein")
                         .HasColumnType("real");
@@ -464,8 +465,6 @@ namespace ProductStore.Migrations
 
                     b.HasIndex("CreatedPlaceCountryId");
 
-                    b.HasIndex("ProductBasketBasketId");
-
                     b.ToTable("Products");
                 });
 
@@ -479,9 +478,14 @@ namespace ProductStore.Migrations
                     b.Property<string>("CustomerId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<long?>("ProductsProductId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("BasketId");
 
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("ProductsProductId");
 
                     b.ToTable("ProductBasket");
                 });
@@ -496,9 +500,14 @@ namespace ProductStore.Migrations
                     b.Property<long?>("ProductId")
                         .HasColumnType("bigint");
 
+                    b.Property<int?>("UserMarksMarkId")
+                        .HasColumnType("int");
+
                     b.HasKey("RatingId");
 
                     b.HasIndex("ProductId");
+
+                    b.HasIndex("UserMarksMarkId");
 
                     b.ToTable("Rating");
                 });
@@ -604,10 +613,6 @@ namespace ProductStore.Migrations
                         .WithMany()
                         .HasForeignKey("ProductId");
 
-                    b.HasOne("ProductStore.Models.Rating", null)
-                        .WithMany("UserMarks")
-                        .HasForeignKey("RatingId");
-
                     b.HasOne("ProductStore.Areas.Identity.Data.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
@@ -623,16 +628,12 @@ namespace ProductStore.Migrations
             modelBuilder.Entity("ProductStore.Models.Product", b =>
                 {
                     b.HasOne("ProductStore.Models.Category", "Category")
-                        .WithMany("Products")
+                        .WithMany()
                         .HasForeignKey("CategoryId");
 
                     b.HasOne("ProductStore.Models.Country", "CreatedPlace")
                         .WithMany()
                         .HasForeignKey("CreatedPlaceCountryId");
-
-                    b.HasOne("ProductStore.Models.ProductBasket", null)
-                        .WithMany("Products")
-                        .HasForeignKey("ProductBasketBasketId");
                 });
 
             modelBuilder.Entity("ProductStore.Models.ProductBasket", b =>
@@ -640,6 +641,10 @@ namespace ProductStore.Migrations
                     b.HasOne("ProductStore.Areas.Identity.Data.ApplicationUser", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId");
+
+                    b.HasOne("ProductStore.Models.Product", "Products")
+                        .WithMany()
+                        .HasForeignKey("ProductsProductId");
                 });
 
             modelBuilder.Entity("ProductStore.Models.Rating", b =>
@@ -647,6 +652,10 @@ namespace ProductStore.Migrations
                     b.HasOne("ProductStore.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId");
+
+                    b.HasOne("ProductStore.Models.Mark", "UserMarks")
+                        .WithMany()
+                        .HasForeignKey("UserMarksMarkId");
                 });
 
             modelBuilder.Entity("ProductStore.Models.Sale", b =>
