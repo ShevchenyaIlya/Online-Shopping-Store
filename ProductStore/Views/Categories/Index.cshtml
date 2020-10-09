@@ -2,13 +2,17 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
 
 <h1>Index</h1>
 
+@if (ViewBag.StatusMessage != null)
+{
+    <partial name="../Shared/_StatusMessage" model="ViewBag.StatusMessage" />
+}
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-secondary btn-sm">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -23,38 +27,33 @@
                 @Html.DisplayNameFor(model => model.IsDeleted)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ImageUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AddedDate)
+                @Html.DisplayNameFor(model => model.CategoryPicture)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsDeleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AddedDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CategoryId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsDeleted)
+                </td>
+                <td>
+                    <img id="profilePicture" style="width:45px;height:30px; object-fit:cover" src="data:image/*;base64,@(Convert.ToBase64String(item.CategoryPicture))">
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CategoryId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.CategoryId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.CategoryId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
