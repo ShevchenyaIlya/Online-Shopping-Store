@@ -28,7 +28,7 @@ namespace ProductStore.Models
         public string Brand { get; set; }
 
         [Display(Name = "Country")]
-        public Country CreatedPlace  { get; set; }
+        public virtual Country CreatedPlace  { get; set; }
 
         [Display(Name = "Price for one killogram")]
         public double PriceForOneKilogram { get; set; }
@@ -65,10 +65,13 @@ namespace ProductStore.Models
         public string ImageUrl { get; set; }
 
         [Display(Name = "Category")]
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
 
         [Display(Name = "Added date")]
         [DataType(DataType.DateTime)]
         public DateTime AddedDate { get; set; }
+
+        [Display(Name = "Picture")]
+        public byte[] ProductPicture { get; set; }
     }
 }

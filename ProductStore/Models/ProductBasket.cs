@@ -17,6 +17,6 @@ namespace ProductStore.Models
         public ApplicationUser Customer { get; set; }
 
         [Display(Name = "Products")]
-        public List<Product> Products { get; set; }
+        public Product Products { get; set; }
     }
 }

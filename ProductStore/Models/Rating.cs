@@ -15,6 +15,6 @@ namespace ProductStore.Models
         public Product Product { get; set; }
 
         [Display(Name = "User marks")]
-        public List<Mark> UserMarks { get; set; }
+        public Mark UserMarks { get; set; }
     }
 }

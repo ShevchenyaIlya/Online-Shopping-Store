@@ -22,5 +22,8 @@ namespace ProductStore.Models
         [DataType(DataType.Text)]
         [Display(Name = "Country code")]
         public string CountryCode { get; set; }
+
+        [Display(Name = "Country image")]
+        public byte[] CountryPicture { get; set; }
     }
 }
