@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ProductStore.Models.Product>
+
+@{
+    ViewBag.Title = "CategoryItems";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<form class="form-inline">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown button
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+    </div>
+    <div style="position: center">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </div>
+</form>*@
+
+
+<hr />
+<div class="card-columns">
+    @if (ViewBag.categoryProducts.Count == 0)
+    {
+        <h3>Category is Empty</h3>
+    }
+    else
+    {
+        foreach (var product in ViewBag.categoryProducts)
+        {
+        <div class="card">
+            @{
+                var base64 = Convert.ToBase64String(product.Image);
+                var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+            }
+            <div class="card-img" style="background-image: url(@imgsrc);">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@product.ProductName</h5>
+                <h6 class="card-text">@product.ProductDescription</h6>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">
+                    <a href="#" class="btn btn-secondary" role="button" aria-pressed="true">More Info</a>
+                </small>
+            </div>
+        </div>
+        }
+    }
+</div>
+
