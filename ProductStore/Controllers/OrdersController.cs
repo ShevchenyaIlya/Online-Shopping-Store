@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using ProductStore.Data;
 using ProductStore.Models;
+using ProductStore.Areas.Identity.Data;
 
 namespace ProductStore.Controllers
 {
@@ -15,6 +16,9 @@ namespace ProductStore.Controllers
     public class OrdersController : Controller
     {
         private readonly AuthDbContext _context;
+
+        [TempData]
+        public string StatusMessage { get; set; }
 
         public OrdersController(AuthDbContext context)
         {
@@ -24,7 +28,8 @@ namespace ProductStore.Controllers
         // GET: Orders
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Order.ToListAsync());
+            ViewBag.StatusMessage = StatusMessage;
+            return View(await _context.Order.Include(m => m.Customer).ToListAsync());
         }
 
         // GET: Orders/Details/5
@@ -35,19 +40,28 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
-            var order = await _context.Order
+            var order = await _context.Order.Include(n => n.Customer)
                 .FirstOrDefaultAsync(m => m.OrderId == id);
             if (order == null)
             {
                 return NotFound();
             }
 
+            ViewBag.StatusMessage = StatusMessage;
             return View(order);
         }
 
         // GET: Orders/Create
         public IActionResult Create()
         {
+            List<SelectListItem> customers = new List<SelectListItem>();
+            foreach (var customer in _context.Users)
+            {
+                customers.Add(new SelectListItem() { Value = customer.UserName, Text = customer.UserName });
+            }
+            ViewBag.Customer = customers;
+            ViewBag.StatusMessage = StatusMessage;
+
             return View();
         }
 
@@ -56,14 +70,35 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrderId,Addres,City,State,Country,ZipCode,AmountPaid,PaymentType,FormedDate")] Order order)
+        public async Task<IActionResult> Create([Bind("OrderId,Addres,City,State,Country,ZipCode,AmountPaid,PaymentType,FormedDate")] Order order, string customer)
         {
+            List<SelectListItem> customers = new List<SelectListItem>();
+            foreach (var value in _context.Users)
+            {
+                customers.Add(new SelectListItem() { Value = value.UserName, Text = value.UserName });
+            }
+            ViewBag.CreatedPlace = customers;
+
+            ApplicationUser temporalUser = _context.Users.Where(value => value.UserName == customer).First();
+
+            if (temporalUser != null)
+            {
+                order.Customer = temporalUser;
+            }
+            else
+            {
+                StatusMessage = "Not all properties choosen";
+                return RedirectToAction();
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(order);
                 await _context.SaveChangesAsync();
+                StatusMessage = "Order has been added";
                 return RedirectToAction(nameof(Index));
             }
+            StatusMessage = "Error. Invalid form.";
             return View(order);
         }
 
@@ -75,11 +110,20 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
+            List<SelectListItem> customers = new List<SelectListItem>();
+            foreach (var customer in _context.Users)
+            {
+                customers.Add(new SelectListItem() { Value = customer.UserName, Text = customer.UserName });
+            }
+            ViewBag.Customer = customers;
+
             var order = await _context.Order.FindAsync(id);
             if (order == null)
             {
                 return NotFound();
             }
+
+            ViewBag.StatusMessage = StatusMessage;
             return View(order);
         }
 
@@ -88,11 +132,29 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("OrderId,Addres,City,State,Country,ZipCode,AmountPaid,PaymentType,FormedDate")] Order order)
+        public async Task<IActionResult> Edit(long id, [Bind("OrderId,Addres,City,State,Country,ZipCode,AmountPaid,PaymentType,FormedDate")] Order order, string customer)
         {
             if (id != order.OrderId)
             {
                 return NotFound();
+            }
+
+            List<SelectListItem> customers = new List<SelectListItem>();
+            foreach (var value in _context.Users)
+            {
+                customers.Add(new SelectListItem() { Value = value.UserName, Text = value.UserName });
+            }
+            ViewBag.Customer = customers;
+
+            ApplicationUser temporalUser = _context.Users.Where(value => value.UserName == customer).First();
+            if (temporalUser != null)
+            {
+                order.Customer = temporalUser;
+            }
+            else
+            {
+                StatusMessage = "Not all properties choosen";
+                return RedirectToAction();
             }
 
             if (ModelState.IsValid)
@@ -113,8 +175,10 @@ namespace ProductStore.Controllers
                         throw;
                     }
                 }
+                StatusMessage = "Order has been updated";
                 return RedirectToAction(nameof(Index));
             }
+            StatusMessage = "Error. Invalid form.";
             return View(order);
         }
 
@@ -126,13 +190,14 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
-            var order = await _context.Order
+            var order = await _context.Order.Include(n => n.Customer)
                 .FirstOrDefaultAsync(m => m.OrderId == id);
             if (order == null)
             {
                 return NotFound();
             }
 
+            ViewBag.StatusMessage = StatusMessage;
             return View(order);
         }
 
@@ -144,6 +209,7 @@ namespace ProductStore.Controllers
             var order = await _context.Order.FindAsync(id);
             _context.Order.Remove(order);
             await _context.SaveChangesAsync();
+            StatusMessage = "Order deleted successfully!";
             return RedirectToAction(nameof(Index));
         }
 
