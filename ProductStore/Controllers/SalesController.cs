@@ -16,6 +16,9 @@ namespace ProductStore.Controllers
     {
         private readonly AuthDbContext _context;
 
+        [TempData]
+        public string StatusMessage { get; set; }
+
         public SalesController(AuthDbContext context)
         {
             _context = context;
@@ -24,7 +27,8 @@ namespace ProductStore.Controllers
         // GET: Sales
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Sale.ToListAsync());
+            ViewBag.StatusMessage = StatusMessage;
+            return View(await _context.Sale.Include(n => n.Product).ToListAsync());
         }
 
         // GET: Sales/Details/5
@@ -35,19 +39,28 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
-            var sale = await _context.Sale
+            var sale = await _context.Sale.Include(n => n.Product)
                 .FirstOrDefaultAsync(m => m.SaleId == id);
             if (sale == null)
             {
                 return NotFound();
             }
 
+            ViewBag.StatusMessage = StatusMessage;
             return View(sale);
         }
 
         // GET: Sales/Create
         public IActionResult Create()
         {
+            ViewBag.StatusMessage = StatusMessage;
+            List<SelectListItem> products = new List<SelectListItem>();
+            foreach (var productValue in _context.Products)
+            {
+                products.Add(new SelectListItem() { Value = productValue.ProductName, Text = productValue.ProductName });
+            }
+            ViewBag.Products = products; 
+            ViewBag.StatusMessage = StatusMessage;
             return View();
         }
 
@@ -56,14 +69,40 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SaleId,SaleValue,AddedDate,FromDate,ToDate")] Sale sale)
+        public async Task<IActionResult> Create([Bind("SaleId,SaleValue,AddedDate,FromDate,ToDate")] Sale sale, string product)
         {
+            List<SelectListItem> products = new List<SelectListItem>();
+            foreach (var productValue in _context.Products)
+            {
+                products.Add(new SelectListItem() { Value = productValue.ProductName, Text = productValue.ProductName });
+            }
+            ViewBag.Products = products;
+
+            if (sale.SaleValue > 1 || sale.SaleValue < 0)
+            {
+                StatusMessage = "Error. Invalid range for sale value.";
+                return RedirectToAction();
+            }
+
+            Product findProduct = _context.Products.Where(value => value.ProductName == product).First();
+            if (findProduct != null)
+            {
+                sale.Product = findProduct;
+            }
+            else
+            {
+                StatusMessage = "Not all properties choosen";
+                return RedirectToAction();
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(sale);
                 await _context.SaveChangesAsync();
+                StatusMessage = "Sale has been added";
                 return RedirectToAction(nameof(Index));
             }
+            StatusMessage = "Error. Invalid form.";
             return View(sale);
         }
 
@@ -75,11 +114,20 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
+            List<SelectListItem> products = new List<SelectListItem>();
+            foreach (var productValue in _context.Products)
+            {
+                products.Add(new SelectListItem() { Value = productValue.ProductName, Text = productValue.ProductName });
+            }
+            ViewBag.Products = products;
+
             var sale = await _context.Sale.FindAsync(id);
             if (sale == null)
             {
                 return NotFound();
             }
+
+            ViewBag.StatusMessage = StatusMessage;
             return View(sale);
         }
 
@@ -88,11 +136,35 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SaleId,SaleValue,AddedDate,FromDate,ToDate")] Sale sale)
+        public async Task<IActionResult> Edit(int id, [Bind("SaleId,SaleValue,AddedDate,FromDate,ToDate")] Sale sale, string product)
         {
             if (id != sale.SaleId)
             {
                 return NotFound();
+            }
+
+            List<SelectListItem> products = new List<SelectListItem>();
+            foreach (var productValue in _context.Products)
+            {
+                products.Add(new SelectListItem() { Value = productValue.ProductName, Text = productValue.ProductName });
+            }
+            ViewBag.Products = products;
+
+            if (sale.SaleValue > 1 || sale.SaleValue < 0)
+            {
+                StatusMessage = "Error. Invalid range for sale value.";
+                return RedirectToAction();
+            }
+
+            Product findProduct = _context.Products.Where(value => value.ProductName == product).First();
+            if (findProduct != null)
+            {
+                sale.Product = findProduct;
+            }
+            else
+            {
+                StatusMessage = "Not all properties choosen";
+                return RedirectToAction();
             }
 
             if (ModelState.IsValid)
@@ -113,8 +185,10 @@ namespace ProductStore.Controllers
                         throw;
                     }
                 }
+                StatusMessage = "Sale has been updated";
                 return RedirectToAction(nameof(Index));
             }
+            StatusMessage = "Error. Invalid form.";
             return View(sale);
         }
 
@@ -126,13 +200,14 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
-            var sale = await _context.Sale
+            var sale = await _context.Sale.Include(m => m.Product)
                 .FirstOrDefaultAsync(m => m.SaleId == id);
             if (sale == null)
             {
                 return NotFound();
             }
 
+            ViewBag.StatusMessage = StatusMessage;
             return View(sale);
         }
 
@@ -144,6 +219,7 @@ namespace ProductStore.Controllers
             var sale = await _context.Sale.FindAsync(id);
             _context.Sale.Remove(sale);
             await _context.SaveChangesAsync();
+            StatusMessage = "Sale deleted successfully!";
             return RedirectToAction(nameof(Index));
         }
 
