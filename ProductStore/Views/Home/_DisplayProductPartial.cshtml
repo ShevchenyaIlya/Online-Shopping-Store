@@ -1,0 +1,24 @@
+﻿@model ProductStore.Models.Product
+
+
+<div class="card">
+    @{
+        var base64 = Convert.ToBase64String(Model.ProductPicture);
+        var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+    }
+    <div class="card-img" style="background-image: url(@imgsrc);">
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">@Model.ProductName</h5>
+        <h6 class="card-text">@Model.ProductDescription</h6>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <small class="text-muted">
+                <a href="/Home/ProductCard/@Model.ProductId" class="btn btn-secondary" role="button" aria-pressed="true">More Info</a>
+            </small>
+            <a href="#"><img src="~/images/basket.png" style="width:45px; height: 38px; background-color: cadetblue; border-radius: 5%; align-self: end; margin-left: 15px" /></a>
+            <h4 style="align-self:end; background-color: indianred; height: 40px; margin-left:20px; text-align:center; width: 45%; border-radius: 5%">@Model.Price руб.</h4>
+        </div>
+    </div>
+</div>

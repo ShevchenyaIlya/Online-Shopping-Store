@@ -1,0 +1,19 @@
+﻿@model ProductStore.Models.Category
+
+<div class="card">
+    @{
+        var base64 = Convert.ToBase64String(Model.CategoryPicture);
+        var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+    }
+    <div class="card-img" style="background-image: url(@imgsrc);">
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">@Model.CategoryName</h5>
+        <h6 class="card-text">@Model.CategoryDescription</h6>
+    </div>
+    <div class="card-footer">
+        <small class="text-muted">
+            <a href="/Home/CategoryCard/@Model.CategoryId" class="btn btn-secondary" role="button" aria-pressed="true">More Info</a>
+        </small>
+    </div>
+</div>
