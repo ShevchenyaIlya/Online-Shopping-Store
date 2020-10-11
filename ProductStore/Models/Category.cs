@@ -27,6 +27,7 @@ namespace ProductStore.Models
         [DataType(DataType.ImageUrl)]
         public string ImageUrl { get; set; }
 
+        [Display(Name = "Picture")]
         public byte[] CategoryPicture { get; set; }
 
         [Display(Name = "Added date")]

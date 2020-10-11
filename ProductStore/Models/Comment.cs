@@ -30,6 +30,7 @@ namespace ProductStore.Models
         [Display(Name = "Product")]
         public Product CommentProduct { get; set; }
 
+        [Required]
         [Display(Name = "Post date")]
         [DataType(DataType.DateTime)]
         public DateTime PostDate { get; set; }
