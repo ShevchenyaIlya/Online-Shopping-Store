@@ -1,0 +1,239 @@
+﻿@model ProductStore.Areas.Identity.Data.ApplicationUser
+
+@{
+    var comments = (List<Comment>)ViewBag.UserComments;
+    var marks = (List<Mark>)ViewBag.UserMarks;
+    var orders = (List<Order>)ViewBag.UserOrders;
+}
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div class="register-photo">
+    <div class="form-container">
+        <div class="form-horizontal">
+            <div style="background-color: white">
+                <div>
+                    <h4 style="text-align: center">User</h4>
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.ProfilePicture)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @if (Model.ProfilePicture != null)
+                            {
+                                <img id="profilePicture" style=" vertical-align: central; width: 200px; height: 200px; border-radius: 50%; margin-right: 10px; margin-left: 10px; object-fit: cover" src="data:image/*;base64,@(Convert.ToBase64String(Model.ProfilePicture))">
+                            }
+                            else
+                            {
+                                <img id="profilePicture" style=" vertical-align: central; width: 200px; height: 200px; border-radius: 50%; margin-right: 10px; margin-left: 10px; object-fit: cover" src="~/images/BasicUserPhoto.png">
+                            }
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Id)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Id)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.FirstName)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.FirstName)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.LastName)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.LastName)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.UserName)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.UserName)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.Email)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Email)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.PhoneNumber)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.PhoneNumber)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.AccessFailedCount)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.AccessFailedCount)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.City)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.City)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.EmailConfirmed)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.EmailConfirmed)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.PhoneNumberConfirmed)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.UsernameChangeLimit)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.UsernameChangeLimit)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.ImageUrl)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.ImageUrl)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.LockoutEnabled)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.LockoutEnabled)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.LockoutEnd)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.LockoutEnd)
+                        </dd>
+                        <dt class="col-sm-4">
+                            @Html.DisplayNameFor(model => model.UsernameChangeLimit)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.UsernameChangeLimit)
+                        </dd>
+                    </dl>
+                </div>
+                <hr />
+                <h4 style="text-align: center">Comments</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                Title
+                            </th>
+                            <th>
+                                Body
+                            </th>
+                            <th>
+                                Product name
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in @comments)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CommentTitle)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CommentBody)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CommentProduct.ProductName)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <h4 style="text-align: center">Marks</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                Mark id
+                            </th>
+                            <th>
+                                Total mark
+                            </th>
+                            <th>
+                                Product name
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in marks)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MarkId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalMark)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Product.ProductName)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <h4 style="text-align: center">Orders</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                Addres
+                            </th>
+                            <th>
+                                City
+                            </th>
+                            <th>
+                                Zip code
+                            </th>
+                            <th>
+                                Payment type
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in orders)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Addres)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.City)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ZipCode)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PaymentType)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div>
+                    @*<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">Edit</a>*@
+                    <a asp-action="Index" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
