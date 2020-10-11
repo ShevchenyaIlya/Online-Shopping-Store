@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ProductStore.Models.Product>
+
+@{
+    ViewBag.Title = "FindProductView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("FindProduct", "Home", FormMethod.Get))
+{
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text">
+            <i class="fa fa-search"></i>
+        </span>
+    </div>
+    @Html.TextBox("searching")
+    <div style="padding-left: 5px"></div>
+    <div class="input-group-append">
+        <input class="btn btn-light" type="submit" value="Search" />
+    </div>
+</div>
+    
+}
+<hr/>
+<div class="card-columns">
+    @foreach (var product in Model)
+    {
+    <div class="card">
+        @{
+            var base64 = Convert.ToBase64String(product.ProductPicture);
+            var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+        }
+        <div class="card-img" style="background-image: url(@imgsrc);">
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">@product.ProductName</h5>
+            <h6 class="card-text">@product.ProductDescription</h6>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">
+                <a href="#" class="btn btn-secondary" role="button" aria-pressed="true">More Info</a>
+            </small>
+            <a href="#"><img src="~/images/basket.png" style="width:45px; height: 38px; background-color: cadetblue; border-radius: 5%; align-self: end; margin-left: 15px" /></a>
+            <h4 style="align-self:end; background-color: indianred; height: 40px; margin-left:20px; text-align:center; width: 45%; border-radius: 5%">@product.Price руб.</h4>
+        </div>
+    </div>
+    }
+</div>
