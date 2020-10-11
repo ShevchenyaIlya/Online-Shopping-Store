@@ -48,6 +48,7 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
+            ViewBag.StatusMessage = StatusMessage;
             return View(product);
         }
 
@@ -116,7 +117,8 @@ namespace ProductStore.Controllers
                 }
                 else
                 {
-                    return RedirectToAction(nameof(Index));
+                    StatusMessage = "Not all properties choosen";
+                    return RedirectToAction();
                 }
                 if (Request.Form.Files.Count > 0)
                 {
@@ -211,7 +213,8 @@ namespace ProductStore.Controllers
                 }
                 else
                 {
-                    return RedirectToAction(nameof(Index));
+                    StatusMessage = "Not all properties choosen";
+                    return RedirectToAction();
                 }
 
                 if (Request.Form.Files.Count > 0)
