@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using ProductStore.Areas.Identity.Data;
 using ProductStore.Data;
 using ProductStore.Models;
 
@@ -16,6 +17,9 @@ namespace ProductStore.Controllers
     {
         private readonly AuthDbContext _context;
 
+        [TempData]
+        public string StatusMessage { get; set; }
+
         public CommentsController(AuthDbContext context)
         {
             _context = context;
@@ -24,7 +28,8 @@ namespace ProductStore.Controllers
         // GET: Comments
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Comment.ToListAsync());
+            ViewBag.StatusMessage = StatusMessage;
+            return View(await _context.Comment.Include(n => n.CommentProduct).Include(n => n.CommentUser).ToListAsync());
         }
 
         // GET: Comments/Details/5
@@ -35,19 +40,34 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
-            var comment = await _context.Comment
+            var comment = await _context.Comment.Include(m => m.CommentProduct).Include(m => m.CommentUser)
                 .FirstOrDefaultAsync(m => m.CommentId == id);
             if (comment == null)
             {
                 return NotFound();
             }
 
+            ViewBag.StatusMessage = StatusMessage;
             return View(comment);
         }
 
         // GET: Comments/Create
         public IActionResult Create()
         {
+            List<SelectListItem> users = new List<SelectListItem>();
+            foreach (var user in _context.Users)
+            {
+                users.Add(new SelectListItem() { Value = user.UserName, Text = user.UserName });
+            }
+            ViewBag.Users = users;
+
+            List<SelectListItem> products = new List<SelectListItem>();
+            foreach (var product in _context.Products)
+            {
+                products.Add(new SelectListItem() { Value = product.ProductName, Text = product.ProductName });
+            }
+            ViewBag.Products = products;
+
             return View();
         }
 
@@ -56,14 +76,44 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CommentId,CommentTitle,CommentBody,PostDate")] Comment comment)
+        public async Task<IActionResult> Create([Bind("CommentId,CommentTitle,CommentBody,PostDate")] Comment comment, string commentUser, string commentProduct)
         {
-            if (ModelState.IsValid)
+            List<SelectListItem> users = new List<SelectListItem>();
+            foreach (var userValue in _context.Users)
+            {
+                users.Add(new SelectListItem() { Value = userValue.UserName, Text = userValue.UserName });
+            }
+            ViewBag.Users = users;
+
+            List<SelectListItem> products = new List<SelectListItem>();
+            foreach (var productValue in _context.Products)
+            {
+                products.Add(new SelectListItem() { Value = productValue.ProductName, Text = productValue.ProductName });
+            }
+            ViewBag.Products = products;
+
+            ApplicationUser findUser = _context.Users.Where(value => value.UserName == commentUser).First();
+            Product findProduct = _context.Products.Where(value => value.ProductName == commentProduct).First();
+
+            if (findUser != null && findProduct != null)
+            {
+                comment.CommentUser = findUser;
+                comment.CommentProduct = findProduct;
+            }
+            else
+            {
+                StatusMessage = "Not all properties choosen";
+                return RedirectToAction(nameof(Index));
+            }
+
+            if (ModelState.ErrorCount == 2)
             {
                 _context.Add(comment);
                 await _context.SaveChangesAsync();
+                StatusMessage = "Product has been added";
                 return RedirectToAction(nameof(Index));
             }
+            StatusMessage = "Error. Invalid form.";
             return View(comment);
         }
 
@@ -74,6 +124,20 @@ namespace ProductStore.Controllers
             {
                 return NotFound();
             }
+
+            List<SelectListItem> users = new List<SelectListItem>();
+            foreach (var userValue in _context.Users)
+            {
+                users.Add(new SelectListItem() { Value = userValue.UserName, Text = userValue.UserName });
+            }
+            ViewBag.Users = users;
+
+            List<SelectListItem> products = new List<SelectListItem>();
+            foreach (var productValue in _context.Products)
+            {
+                products.Add(new SelectListItem() { Value = productValue.ProductName, Text = productValue.ProductName });
+            }
+            ViewBag.Products = products;
 
             var comment = await _context.Comment.FindAsync(id);
             if (comment == null)
@@ -88,14 +152,42 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("CommentId,CommentTitle,CommentBody,PostDate")] Comment comment)
+        public async Task<IActionResult> Edit(long id, [Bind("CommentId,CommentTitle,CommentBody,PostDate")] Comment comment, string commentUser, string commentProduct)
         {
             if (id != comment.CommentId)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            List<SelectListItem> users = new List<SelectListItem>();
+            foreach (var userValue in _context.Users)
+            {
+                users.Add(new SelectListItem() { Value = userValue.UserName, Text = userValue.UserName });
+            }
+            ViewBag.Users = users;
+
+            List<SelectListItem> products = new List<SelectListItem>();
+            foreach (var productValue in _context.Products)
+            {
+                products.Add(new SelectListItem() { Value = productValue.ProductName, Text = productValue.ProductName });
+            }
+            ViewBag.Products = products;
+
+            ApplicationUser findUser = _context.Users.Where(value => value.UserName == commentUser).First();
+            Product findProduct = _context.Products.Where(value => value.ProductName == commentProduct).First();
+
+            if (findUser != null && findProduct != null)
+            {
+                comment.CommentUser = findUser;
+                comment.CommentProduct = findProduct;
+            }
+            else
+            {
+                StatusMessage = "Not all properties choosen";
+                return RedirectToAction(nameof(Index));
+            }
+
+            if (ModelState.ErrorCount == 2)
             {
                 try
                 {
@@ -113,8 +205,10 @@ namespace ProductStore.Controllers
                         throw;
                     }
                 }
+                StatusMessage = "Product has been updated";
                 return RedirectToAction(nameof(Index));
             }
+            StatusMessage = "Error. Invalid form.";
             return View(comment);
         }
 
@@ -126,13 +220,14 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
-            var comment = await _context.Comment
+            var comment = await _context.Comment.Include(m => m.CommentProduct).Include(m => m.CommentUser)
                 .FirstOrDefaultAsync(m => m.CommentId == id);
             if (comment == null)
             {
                 return NotFound();
             }
 
+            ViewBag.StatusMessage = StatusMessage;
             return View(comment);
         }
 
@@ -143,6 +238,7 @@ namespace ProductStore.Controllers
         {
             var comment = await _context.Comment.FindAsync(id);
             _context.Comment.Remove(comment);
+            StatusMessage = "Product deleted successfully!";
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
