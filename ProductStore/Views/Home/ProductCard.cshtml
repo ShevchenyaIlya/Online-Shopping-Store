@@ -1,0 +1,116 @@
+﻿@model ProductStore.Models.Product
+@{
+    ViewBag.Title = "ProductCard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var base64 = Convert.ToBase64String(Model.ProductPicture);
+    var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="row">
+                <div class="col-md-12"><img class="img-thumbnail img-fluid center-block" src=@imgsrc></div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <h1>@Model.ProductName</h1>
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="#"><img src="~/images/basket.png" style="width:55px; height: 45px; background-color: cadetblue; border-radius: 5%" /></a>
+                </div>
+                <div class="col-md-9" style="align-content:center">
+                    <div class="gift__rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star fa-star-half-o"></i>
+                        <span class="gift__rating-number">(35)</span>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <p>
+                <br>
+                <br>
+                <strong>Category name:</strong>
+                @Model.Category.CategoryName
+
+                <br>
+                <br />
+                <strong>Brand:</strong>
+                @Html.DisplayFor(model => model.Brand)
+
+                <br>
+                <br />
+                <strong>Description:</strong>
+                @Html.DisplayFor(model => model.ProductDescription)
+
+                <br>
+                <br />
+                <strong>Is in stock:</strong>
+                @Html.DisplayFor(model => model.InStock)
+
+                <br>
+                <br />
+                <strong>Price:</strong>
+                @Html.DisplayFor(model => model.Price)
+
+                <br>
+                <br />
+                <strong>Weight:</strong>
+                @Html.DisplayFor(model => model.Weight)
+                <table class="table table-striped" style="border-collapse: collapse; border-spacing: 0; width: 100%; border: 1px solid">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong style="width: auto; text-align: right; white-space: nowrap;">Protein:</strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Protein)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong style="width: auto; text-align: right; white-space: nowrap;">Fat:</strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Fat)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong style="width: auto; text-align: right; white-space: nowrap;">Carbohydrates:</strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Carbohydrates)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong style="width: auto; text-align: right; white-space: nowrap;">EnergyValue:</strong>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.EnergyValue)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <br />
+                <strong>Quantity:</strong>
+                @Html.DisplayFor(model => model.Quantity)
+            </p>
+        </div>
+    </div>
+</div>
+@*<div style="background-color:white; height: 10px"></div>
+<p>
+    <a href="~/Products/Edit/@Model.ProductId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">Edit</a>
+    <a href="~/Home/Products" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">Back to List</a>
+    <a href="~/Categories/Details/@Model.CategoryId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">View category</a>
+</p>
+<div style="background-color:white; height: 10px"></div>*@
