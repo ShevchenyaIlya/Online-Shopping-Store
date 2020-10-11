@@ -16,6 +16,9 @@ namespace ProductStore.Controllers
     {
         private readonly AuthDbContext _context;
 
+        [TempData]
+        public string StatusMessage { get; set; }
+
         public RatingsController(AuthDbContext context)
         {
             _context = context;
@@ -24,7 +27,8 @@ namespace ProductStore.Controllers
         // GET: Ratings
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Rating.ToListAsync());
+            ViewBag.StatusMessage = StatusMessage;
+            return View(await _context.Rating.Include(m => m.Product).Include(m => m.UserMarks).Include(m => m.UserMarks.User).Include(m => m.UserMarks.Product).ToListAsync());
         }
 
         // GET: Ratings/Details/5
@@ -35,19 +39,35 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
-            var rating = await _context.Rating
+            var rating = await _context.Rating.Include(m => m.Product).Include(m => m.Product).Include(m => m.UserMarks).Include(m => m.UserMarks.User).Include(m => m.UserMarks.Product)
                 .FirstOrDefaultAsync(m => m.RatingId == id);
             if (rating == null)
             {
                 return NotFound();
             }
 
+            ViewBag.StatusMessage = StatusMessage;
             return View(rating);
         }
 
         // GET: Ratings/Create
         public IActionResult Create()
         {
+            List<SelectListItem> mark = new List<SelectListItem>();
+            foreach (var markValue in _context.Mark)
+            {
+                mark.Add(new SelectListItem() { Value = markValue.TotalMark.ToString(), Text = markValue.TotalMark.ToString() });
+            }
+            ViewBag.Mark = mark;
+
+            List<SelectListItem> product = new List<SelectListItem>();
+            foreach (var productValue in _context.Products)
+            {
+                product.Add(new SelectListItem() { Value = productValue.ProductName, Text = productValue.ProductName });
+            }
+            ViewBag.Product = product;
+
+            ViewBag.StatusMessage = StatusMessage;
             return View();
         }
 
@@ -56,14 +76,44 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RatingId")] Rating rating)
+        public async Task<IActionResult> Create([Bind("RatingId")] Rating rating, string product, float userMarks)
         {
+            List<SelectListItem> loadMark = new List<SelectListItem>();
+            foreach (var markValue in _context.Mark)
+            {
+                loadMark.Add(new SelectListItem() { Value = markValue.TotalMark.ToString(), Text = markValue.TotalMark.ToString() });
+            }
+            ViewBag.Mark = loadMark;
+
+            List<SelectListItem> loadProduct = new List<SelectListItem>();
+            foreach (var productValue in _context.Products)
+            {
+                loadProduct.Add(new SelectListItem() { Value = productValue.ProductName, Text = productValue.ProductName });
+            }
+            ViewBag.Product = loadProduct;
+
+            Mark findUser = _context.Mark.Where(value => value.TotalMark == userMarks).First();
+            Product findProduct = _context.Products.Where(value => value.ProductName == product).First();
+
+            if (findUser != null && findProduct != null)
+            {
+                rating.UserMarks = findUser;
+                rating.Product = findProduct;
+            }
+            else
+            {
+                StatusMessage = "Not all properties choosen";
+                return RedirectToAction();
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(rating);
                 await _context.SaveChangesAsync();
+                StatusMessage = "Rating has been added";
                 return RedirectToAction(nameof(Index));
             }
+            StatusMessage = "Error. Invalid form.";
             return View(rating);
         }
 
@@ -75,11 +125,26 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
+            List<SelectListItem> mark = new List<SelectListItem>();
+            foreach (var markValue in _context.Mark)
+            {
+                mark.Add(new SelectListItem() { Value = markValue.TotalMark.ToString(), Text = markValue.TotalMark.ToString() });
+            }
+            ViewBag.Mark = mark;
+
+            List<SelectListItem> product = new List<SelectListItem>();
+            foreach (var productValue in _context.Products)
+            {
+                product.Add(new SelectListItem() { Value = productValue.ProductName, Text = productValue.ProductName });
+            }
+            ViewBag.Product = product;
+
             var rating = await _context.Rating.FindAsync(id);
             if (rating == null)
             {
                 return NotFound();
             }
+            ViewBag.StatusMessage = StatusMessage;
             return View(rating);
         }
 
@@ -88,11 +153,38 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RatingId")] Rating rating)
+        public async Task<IActionResult> Edit(int id, [Bind("RatingId")] Rating rating, string product, float userMarks)
         {
+            List<SelectListItem> loadMark = new List<SelectListItem>();
+            foreach (var markValue in _context.Mark)
+            {
+                loadMark.Add(new SelectListItem() { Value = markValue.TotalMark.ToString(), Text = markValue.TotalMark.ToString() });
+            }
+            ViewBag.Mark = loadMark;
+
+            List<SelectListItem> loadProduct = new List<SelectListItem>();
+            foreach (var productValue in _context.Products)
+            {
+                loadProduct.Add(new SelectListItem() { Value = productValue.ProductName, Text = productValue.ProductName });
+            }
+            ViewBag.Product = loadProduct;
+
             if (id != rating.RatingId)
             {
                 return NotFound();
+            }
+            Mark findUser = _context.Mark.Where(value => value.TotalMark == userMarks).First();
+            Product findProduct = _context.Products.Where(value => value.ProductName == product).First();
+
+            if (findUser != null && findProduct != null)
+            {
+                rating.UserMarks = findUser;
+                rating.Product = findProduct;
+            }
+            else
+            {
+                StatusMessage = "Not all properties choosen";
+                return RedirectToAction();
             }
 
             if (ModelState.IsValid)
@@ -113,8 +205,10 @@ namespace ProductStore.Controllers
                         throw;
                     }
                 }
+                StatusMessage = "Rating has been updated";
                 return RedirectToAction(nameof(Index));
             }
+            StatusMessage = "Error. Invalid form.";
             return View(rating);
         }
 
@@ -133,6 +227,7 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
+            ViewBag.StatusMessage = StatusMessage;
             return View(rating);
         }
 
@@ -144,6 +239,7 @@ namespace ProductStore.Controllers
             var rating = await _context.Rating.FindAsync(id);
             _context.Rating.Remove(rating);
             await _context.SaveChangesAsync();
+            StatusMessage = "Raiting deleted successfully!";
             return RedirectToAction(nameof(Index));
         }
 
