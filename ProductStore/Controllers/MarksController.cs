@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using ProductStore.Data;
 using ProductStore.Models;
+using ProductStore.Areas.Identity.Data;
 
 namespace ProductStore.Controllers
 {
@@ -15,6 +16,9 @@ namespace ProductStore.Controllers
     public class MarksController : Controller
     {
         private readonly AuthDbContext _context;
+
+        [TempData]
+        public string StatusMessage { get; set; }
 
         public MarksController(AuthDbContext context)
         {
@@ -24,7 +28,8 @@ namespace ProductStore.Controllers
         // GET: Marks
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Mark.ToListAsync());
+            ViewBag.StatusMessage = StatusMessage;
+            return View(await _context.Mark.Include(n => n.Product).Include(n => n.User).ToListAsync());
         }
 
         // GET: Marks/Details/5
@@ -35,19 +40,35 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
-            var mark = await _context.Mark
+            var mark = await _context.Mark.Include(n => n.Product).Include(n => n.User)
                 .FirstOrDefaultAsync(m => m.MarkId == id);
             if (mark == null)
             {
                 return NotFound();
             }
 
+            ViewBag.StatusMessage = StatusMessage;
             return View(mark);
         }
 
         // GET: Marks/Create
         public IActionResult Create()
         {
+            List<SelectListItem> users = new List<SelectListItem>();
+            foreach (var user in _context.Users)
+            {
+                users.Add(new SelectListItem() { Value = user.UserName, Text = user.UserName });
+            }
+            ViewBag.Users = users;
+
+            List<SelectListItem> products = new List<SelectListItem>();
+            foreach (var product in _context.Products)
+            {
+                products.Add(new SelectListItem() { Value = product.ProductName, Text = product.ProductName });
+            }
+            ViewBag.Products = products;
+
+            ViewBag.StatusMessage = StatusMessage;
             return View();
         }
 
@@ -56,14 +77,50 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MarkId,TotalMark")] Mark mark)
+        public async Task<IActionResult> Create([Bind("MarkId,TotalMark")] Mark mark, string product, string user)
         {
+
+            List<SelectListItem> users = new List<SelectListItem>();
+            foreach (var userValue in _context.Users)
+            {
+                users.Add(new SelectListItem() { Value = userValue.UserName, Text = userValue.UserName });
+            }
+            ViewBag.Users = users;
+
+            List<SelectListItem> products = new List<SelectListItem>();
+            foreach (var productValue in _context.Products)
+            {
+                products.Add(new SelectListItem() { Value = productValue.ProductName, Text = productValue.ProductName });
+            }
+            ViewBag.Products = products;
+
+            if (mark.TotalMark > 5 || mark.TotalMark < 0)
+            {
+                StatusMessage = "Error. Invalid range for total mark.";
+                return RedirectToAction();
+            }
+            ApplicationUser findUser = _context.Users.Where(value => value.UserName == user).First();
+            Product findProduct = _context.Products.Where(value => value.ProductName == product).First();
+
+            if (findUser != null && findProduct != null)
+            {
+                mark.User = findUser;
+                mark.Product = findProduct;
+            }
+            else
+            {
+                StatusMessage = "Not all properties choosen";
+                return RedirectToAction();
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(mark);
                 await _context.SaveChangesAsync();
+                StatusMessage = "Mark has been added";
                 return RedirectToAction(nameof(Index));
             }
+            StatusMessage = "Error. Invalid form.";
             return View(mark);
         }
 
@@ -75,11 +132,26 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
+            List<SelectListItem> users = new List<SelectListItem>();
+            foreach (var userValue in _context.Users)
+            {
+                users.Add(new SelectListItem() { Value = userValue.UserName, Text = userValue.UserName });
+            }
+            ViewBag.Users = users;
+
+            List<SelectListItem> products = new List<SelectListItem>();
+            foreach (var productValue in _context.Products)
+            {
+                products.Add(new SelectListItem() { Value = productValue.ProductName, Text = productValue.ProductName });
+            }
+            ViewBag.Products = products;
+
             var mark = await _context.Mark.FindAsync(id);
             if (mark == null)
             {
                 return NotFound();
             }
+            ViewBag.StatusMessage = StatusMessage;
             return View(mark);
         }
 
@@ -88,11 +160,45 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MarkId,TotalMark")] Mark mark)
+        public async Task<IActionResult> Edit(int id, [Bind("MarkId,TotalMark")] Mark mark, string product, string user)
         {
             if (id != mark.MarkId)
             {
                 return NotFound();
+            }
+
+            List<SelectListItem> users = new List<SelectListItem>();
+            foreach (var userValue in _context.Users)
+            {
+                users.Add(new SelectListItem() { Value = userValue.UserName, Text = userValue.UserName });
+            }
+            ViewBag.Users = users;
+
+            List<SelectListItem> products = new List<SelectListItem>();
+            foreach (var productValue in _context.Products)
+            {
+                products.Add(new SelectListItem() { Value = productValue.ProductName, Text = productValue.ProductName });
+            }
+            ViewBag.Products = products;
+
+            if (mark.TotalMark > 5 || mark.TotalMark < 0)
+            {
+                StatusMessage = "Error. Invalid range for total mark.";
+                return RedirectToAction();
+            }
+
+            ApplicationUser findUser = _context.Users.Where(value => value.UserName == user).First();
+            Product findProduct = _context.Products.Where(value => value.ProductName == product).First();
+
+            if (findUser != null && findProduct != null)
+            {
+                mark.User = findUser;
+                mark.Product = findProduct;
+            }
+            else
+            {
+                StatusMessage = "Not all properties choosen";
+                return RedirectToAction();
             }
 
             if (ModelState.IsValid)
@@ -113,8 +219,10 @@ namespace ProductStore.Controllers
                         throw;
                     }
                 }
+                StatusMessage = "Mark has been updated";
                 return RedirectToAction(nameof(Index));
             }
+            StatusMessage = "Error. Invalid form.";
             return View(mark);
         }
 
@@ -126,13 +234,14 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
-            var mark = await _context.Mark
+            var mark = await _context.Mark.Include(m => m.User).Include(m => m.Product)
                 .FirstOrDefaultAsync(m => m.MarkId == id);
             if (mark == null)
             {
                 return NotFound();
             }
 
+            ViewBag.StatusMessage = StatusMessage;
             return View(mark);
         }
 
@@ -143,6 +252,7 @@ namespace ProductStore.Controllers
         {
             var mark = await _context.Mark.FindAsync(id);
             _context.Mark.Remove(mark);
+            StatusMessage = "Mark deleted successfully!";
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
