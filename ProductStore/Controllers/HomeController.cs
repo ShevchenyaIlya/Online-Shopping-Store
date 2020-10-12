@@ -128,6 +128,7 @@ namespace ProductStore.Controllers
             var products = from product in _context.Products
                            select product;
 
+            ViewBag.Categories = _context.Category.ToList();
             if (!String.IsNullOrEmpty(searching))
             {
                 products = products.Where(product => product.ProductName.Contains(searching));

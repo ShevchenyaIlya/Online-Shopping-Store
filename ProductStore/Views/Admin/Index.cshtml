@@ -7,3 +7,7 @@
 
 <h1>Hello, @User.Identity.Name</h1>
 <p>This is admin page template</p>
+
+@await Component.InvokeAsync("User")
+@await Component.InvokeAsync("Product")
+@await Component.InvokeAsync("Category")
