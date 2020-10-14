@@ -13,6 +13,7 @@ using ProductStore.Models;
 namespace ProductStore.Controllers
 {
     [Authorize(Roles = "SuperAdmin, Admin")]
+    [Route("Admin/Comments")]
     public class CommentsController : Controller
     {
         private readonly AuthDbContext _context;
@@ -26,6 +27,8 @@ namespace ProductStore.Controllers
         }
 
         // GET: Comments
+        [Route("Index")]
+        [Route("")]
         public async Task<IActionResult> Index()
         {
             ViewBag.StatusMessage = StatusMessage;
@@ -33,6 +36,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Comments/Details/5
+        [Route("Details/{id:long?}")]
         public async Task<IActionResult> Details(long? id)
         {
             if (id == null)
@@ -52,6 +56,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Comments/Create
+        [Route("Create")]
         public IActionResult Create()
         {
             List<SelectListItem> users = new List<SelectListItem>();
@@ -76,6 +81,7 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Create")]
         public async Task<IActionResult> Create([Bind("CommentId,CommentTitle,CommentBody,PostDate")] Comment comment, string commentUser, string commentProduct)
         {
             List<SelectListItem> users = new List<SelectListItem>();
@@ -118,6 +124,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Comments/Edit/5
+        [Route("Edit/{id:long?}")]
         public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
@@ -152,6 +159,7 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Edit/{id:long?}")]
         public async Task<IActionResult> Edit(long id, [Bind("CommentId,CommentTitle,CommentBody,PostDate")] Comment comment, string commentUser, string commentProduct)
         {
             if (id != comment.CommentId)
@@ -213,6 +221,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Comments/Delete/5
+        [Route("Delete/{id:long?}")]
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
@@ -234,6 +243,7 @@ namespace ProductStore.Controllers
         // POST: Comments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Route("Delete/{id:long}")]
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
             var comment = await _context.Comment.FindAsync(id);
