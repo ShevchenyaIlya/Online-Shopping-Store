@@ -32,8 +32,8 @@ namespace ProductStore.Data
             };
             if (userManager.Users.All(u => u.Id != defaultUser.Id))
             {
+                await userManager.CreateAsync(defaultUser, "123Pa$$word.");
                 var user = await userManager.FindByEmailAsync(defaultUser.Email);
-                //await userManager.CreateAsync(defaultUser, "123Pa$$word.");
                 await userManager.AddToRoleAsync(user, Enums.Roles.Basic.ToString());
                 await userManager.AddToRoleAsync(user, Enums.Roles.Moderator.ToString());
                 await userManager.AddToRoleAsync(user, Enums.Roles.Admin.ToString());
