@@ -5,10 +5,10 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+@*<div class="text-center">
     <h1 class="display-4">@localizer["Welcome"]</h1>
     <p>@localizer["LearnMore"]</p>
-</div>
+</div>*@
 
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
@@ -57,39 +57,39 @@
     </div>
 </div>
 <hr />
-
-<div class="article-list">
+@if (Model.Count() != 0)
+{
+    int count;
+    if (Model.Count() < 4) 
+    {
+        count = Model.Count();
+    }
+    else
+    {
+        count = 4;
+    }
+    <div class="article-list">
         <div class="container">
             <div class="intro">
                 <h2 class="text-center">Latest New Products</h2>
                 <p class="text-center">The latest novelties of completely different categories for every taste.</p>
             </div>
             <div class="row articles">
-                @for (int i = 0; i < 4; i++)
+                @for (int i = 0; i < count; i++)
                 {
                     <div class="col-sm-6 col-md-3 item">
                         @{
                             var base64 = Convert.ToBase64String(Model.ElementAt(i).ProductPicture);
                             var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
                         }
-                        <a href="~/products/details/@Model.ElementAt(i).ProductId"><img style="height:150px; width:200px" src="@imgsrc"></a>
+                        <a href="~/Home/ProductCard/@Model.ElementAt(i).ProductId"><img style="height:150px; width:200px" src="@imgsrc"></a>
                         <h3 class="name">@Model.ElementAt(i).ProductName</h3>
                         <p class="description">@Model.ElementAt(i).ProductDescription</p><a class="action" href="~/Home/ProductCard/@Model.ElementAt(i).ProductId"><i class="fa fa-arrow-circle-right"></i></a>
                         <div class="product-item-badge">New</div>
 
                     </div>
                 }
-
-                @*<div class="col-sm-6 col-md-4 item">
-                        <a href="#"><img class="img-fluid" src="~/Images/building.jpg"></a>
-                        <h3 class="name">Article Title</h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p><a class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                    <div class="col-sm-6 col-md-4 item">
-                        <a href="#"><img class="img-fluid" src="~/Images/loft.jpg"></a>
-                        <h3 class="name">Article Title</h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p><a class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a>
-                    </div>*@
             </div>
         </div>
     </div>
+}
