@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ProductStore.Controllers
 {
-    [Authorize(Roles = "SuperAdmin, Admin")]
+    [AllowAnonymous]
     public class CultureController : Controller
     {
         [HttpPost]

@@ -54,6 +54,7 @@ namespace ProductStore.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public async Task<ActionResult> ProductCard(int? id)
         {
             if (id == null)
@@ -71,6 +72,7 @@ namespace ProductStore.Controllers
             return View(product);
         }
 
+        [AllowAnonymous]
         public async Task<ActionResult> CategoryCard(int? id)
         {
             if (id == null)

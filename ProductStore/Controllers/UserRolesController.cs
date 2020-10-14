@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using ProductStore.Areas.Identity.Data;
 using ProductStore.Models;
 
@@ -94,6 +95,8 @@ namespace ProductStore.Controllers
                 ModelState.AddModelError("", "Cannot add selected roles to user");
                 return View(model);
             }
+            var signInManager = HttpContext.RequestServices.GetRequiredService<SignInManager<ApplicationUser>>();
+
             return RedirectToAction("Index");
         }
     }
