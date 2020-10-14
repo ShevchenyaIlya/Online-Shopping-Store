@@ -33,7 +33,7 @@ namespace ProductStore.Areas.Identity
                     .AddEntityFrameworkStores<AuthDbContext>()
                     .AddDefaultUI()
                     .AddDefaultTokenProviders();
-
+                
             });
         }
     }
