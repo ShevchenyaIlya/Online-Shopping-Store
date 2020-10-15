@@ -12,6 +12,8 @@ using ProductStore.Models;
 namespace ProductStore.Controllers
 {
     [Authorize(Roles = "SuperAdmin, Admin")]
+    [Route("Admin/Ratings")]
+    [Route("Admin/Rating")]
     public class RatingsController : Controller
     {
         private readonly AuthDbContext _context;
@@ -25,6 +27,8 @@ namespace ProductStore.Controllers
         }
 
         // GET: Ratings
+        [Route("Index")]
+        [Route("")]
         public async Task<IActionResult> Index()
         {
             ViewBag.StatusMessage = StatusMessage;
@@ -32,6 +36,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Ratings/Details/5
+        [Route("Details/{id:int:min(1)?}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -51,6 +56,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Ratings/Create
+        [Route("Create")]
         public IActionResult Create()
         {
             List<SelectListItem> mark = new List<SelectListItem>();
@@ -76,6 +82,7 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Create")]
         public async Task<IActionResult> Create([Bind("RatingId")] Rating rating, string product, float userMarks)
         {
             List<SelectListItem> loadMark = new List<SelectListItem>();
@@ -118,6 +125,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Ratings/Edit/5
+        [Route("Edit/{id:int:min(1)?}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -153,6 +161,7 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Edit/{id:int:min(1)}")]
         public async Task<IActionResult> Edit(int id, [Bind("RatingId")] Rating rating, string product, float userMarks)
         {
             List<SelectListItem> loadMark = new List<SelectListItem>();
@@ -213,6 +222,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Ratings/Delete/5
+        [Route("Delete/{id:int:min(1)?}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -234,6 +244,7 @@ namespace ProductStore.Controllers
         // POST: Ratings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Route("Delete/{id:int:min(1)}")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var rating = await _context.Rating.FindAsync(id);
