@@ -13,6 +13,8 @@ using ProductStore.Models;
 namespace ProductStore.Controllers
 {
     [Authorize(Roles = "SuperAdmin")]
+    [Route("Admin/UserRoles")]
+    [Route("Admin/UserRole")]
     public class UserRolesController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -23,6 +25,8 @@ namespace ProductStore.Controllers
             _userManager = userManager;
         }
 
+        [Route("Index")]
+        [Route("")]
         public async Task<IActionResult> Index()
         {
             var users = await _userManager.Users.ToListAsync();
@@ -44,6 +48,8 @@ namespace ProductStore.Controllers
         {
             return new List<string>(await _userManager.GetRolesAsync(user));
         }
+
+        [Route("Manage/{userId:maxlength(50)}")]
         public async Task<IActionResult> Manage(string userId)
         {
             ViewBag.userId = userId;
@@ -75,6 +81,7 @@ namespace ProductStore.Controllers
             return View(model);
         }
         [HttpPost]
+        [Route("Manage/{userId:maxlength(50)}")]
         public async Task<IActionResult> Manage(List<ManageUserRolesViewModel> model, string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
