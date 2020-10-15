@@ -12,6 +12,8 @@ using ProductStore.Models;
 namespace ProductStore.Controllers
 {
     [Authorize(Roles = "SuperAdmin, Admin")]
+    [Route("Admin/Sales")]
+    [Route("Admin/Sale")]
     public class SalesController : Controller
     {
         private readonly AuthDbContext _context;
@@ -25,6 +27,8 @@ namespace ProductStore.Controllers
         }
 
         // GET: Sales
+        [Route("Index")]
+        [Route("")]
         public async Task<IActionResult> Index()
         {
             ViewBag.StatusMessage = StatusMessage;
@@ -32,6 +36,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Sales/Details/5
+        [Route("Details/{id:int?}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -51,6 +56,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Sales/Create
+        [Route("Create")]
         public IActionResult Create()
         {
             ViewBag.StatusMessage = StatusMessage;
@@ -69,6 +75,7 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Create")]
         public async Task<IActionResult> Create([Bind("SaleId,SaleValue,AddedDate,FromDate,ToDate")] Sale sale, string product)
         {
             List<SelectListItem> products = new List<SelectListItem>();
@@ -107,6 +114,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Sales/Edit/5
+        [Route("Edit/{id:int?}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -136,6 +144,7 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Edit/{id:int}")]
         public async Task<IActionResult> Edit(int id, [Bind("SaleId,SaleValue,AddedDate,FromDate,ToDate")] Sale sale, string product)
         {
             if (id != sale.SaleId)
@@ -193,6 +202,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Sales/Delete/5
+        [Route("Delete/{id:int?}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -214,6 +224,7 @@ namespace ProductStore.Controllers
         // POST: Sales/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Route("Delete/{id:int}")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var sale = await _context.Sale.FindAsync(id);
