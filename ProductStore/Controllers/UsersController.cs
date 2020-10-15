@@ -11,6 +11,8 @@ using ProductStore.Models;
 namespace ProductStore.Controllers
 {
     [Authorize(Roles = "SuperAdmin, Admin")]
+    [Route("Admin/Users")]
+    [Route("Admin/User")]
     public class UsersController : Controller
     {
         private readonly AuthDbContext _context;
@@ -23,6 +25,8 @@ namespace ProductStore.Controllers
             _context = context;
         }
 
+        [Route("Index")]
+        [Route("")]
         public async Task<IActionResult> Index()
         {
             ViewBag.StatusMessage = StatusMessage;
@@ -30,6 +34,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Categories/Details/5
+        [Route("Details/{id:length(10, 40)}")]
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -79,6 +84,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Categories/Delete/5
+        [Route("Delete/{id:length(10, 40)}")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -100,6 +106,7 @@ namespace ProductStore.Controllers
         // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Route("Delete/{id:length(10, 40)}")]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var user = await _context.Users.FindAsync(id);
