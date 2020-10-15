@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 namespace ProductStore.Controllers
 {
     [Authorize(Roles = "SuperAdmin")]
+    [Route("Admin/RoleManager")]
     public class RoleManagerController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -17,12 +18,17 @@ namespace ProductStore.Controllers
         {
             _roleManager = roleManager;
         }
+
+        [Route("Index")]
+        [Route("")]
         public async Task<IActionResult> Index()
         {
             var roles = await _roleManager.Roles.ToListAsync();
             return View(roles);
         }
+
         [HttpPost]
+        [Route("AddRole")]
         public async Task<IActionResult> AddRole(string roleName)
         {
             if (roleName != null)
