@@ -12,6 +12,8 @@ using ProductStore.Models;
 
 namespace ProductStore.Controllers
 {
+    [Route("Home")]
+    [Route("")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -24,6 +26,8 @@ namespace ProductStore.Controllers
         }
 
         [AllowAnonymous]
+        [Route("Index")]
+        [Route("")]
         public async Task<IActionResult> Index()
         {
             // Logging levels
@@ -41,6 +45,7 @@ namespace ProductStore.Controllers
         }
 
         [Authorize(Roles = "Admin")]
+        [Route("Image")]
         public ActionResult Image()
         {
             ViewBag.image = _context.Products.ToList()[0].ProductPicture;
@@ -48,6 +53,7 @@ namespace ProductStore.Controllers
         }
 
         [Authorize]
+        [Route("About")]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -55,6 +61,7 @@ namespace ProductStore.Controllers
         }
 
         [AllowAnonymous]
+        [Route("ProductCard/{id:int?}")]
         public async Task<ActionResult> ProductCard(int? id)
         {
             if (id == null)
@@ -73,6 +80,7 @@ namespace ProductStore.Controllers
         }
 
         [AllowAnonymous]
+        [Route("CategoryCard/{id:int?}")]
         public async Task<ActionResult> CategoryCard(int? id)
         {
             if (id == null)
@@ -94,12 +102,15 @@ namespace ProductStore.Controllers
         }
 
         [AllowAnonymous]
+        [Route("Products")]
         public ActionResult Products()
         {
             var products = _context.Products.ToList<Product>();
             return View(products);
         }
         [AllowAnonymous]
+        [Route("Categories")]
+        [Route("Category")]
         public ActionResult Category()
         {
             var categories = _context.Category.ToList<Category>();
@@ -107,6 +118,7 @@ namespace ProductStore.Controllers
         }
 
         [AllowAnonymous]
+        [Route("CategoryItems/{id:int?}")]
         public ActionResult CategoryItems(int? id)
         {
             var products = _context.Products.ToList<Product>();
@@ -124,7 +136,9 @@ namespace ProductStore.Controllers
             return View(products);
         }
 
+
         [AllowAnonymous]
+        [Route("FindProduct")]
         public ActionResult FindProduct(string searching)
         {
             var products = from product in _context.Products
@@ -140,12 +154,14 @@ namespace ProductStore.Controllers
         }
 
         [Authorize]
+        [Route("Privacy")]
         public IActionResult Privacy()
         {
             return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [Route("Error")]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
