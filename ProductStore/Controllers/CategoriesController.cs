@@ -37,7 +37,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Categories/Details/5
-        [Route("Details/{id:int?}")]
+        [Route("Details/{id:custom?}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -99,7 +99,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Categories/Edit/5
-        [Route("Edit/{id:int?}")]
+        [Route("Edit/{id:custom?}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -121,7 +121,7 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("Edit/{id:int?}")]
+        [Route("Edit/{id:custom}")]
         public async Task<IActionResult> Edit(int id, [Bind("CategoryId,CategoryName,CategoryDescription,IsDeleted,ImageUrl,AddedDate")] Category category)
         {
             if (id != category.CategoryId)
@@ -171,7 +171,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Categories/Delete/5
-        [Route("Delete/{id:int?}")]
+        [Route("Delete/{id:custom?}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -193,7 +193,7 @@ namespace ProductStore.Controllers
         // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Route("Delete/{id:int}")]
+        [Route("Delete/{id:custom}")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var category = await _context.Category.FindAsync(id);
