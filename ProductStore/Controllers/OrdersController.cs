@@ -13,6 +13,8 @@ using ProductStore.Areas.Identity.Data;
 namespace ProductStore.Controllers
 {
     [Authorize(Roles = "SuperAdmin, Admin")]
+    [Route("Admin/Orders")]
+    [Route("Admin/Order")]
     public class OrdersController : Controller
     {
         private readonly AuthDbContext _context;
@@ -26,6 +28,8 @@ namespace ProductStore.Controllers
         }
 
         // GET: Orders
+        [Route("Index")]
+        [Route("")]
         public async Task<IActionResult> Index()
         {
             ViewBag.StatusMessage = StatusMessage;
@@ -33,6 +37,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Orders/Details/5
+        [Route("Details/{id:long:min(1)?}")]
         public async Task<IActionResult> Details(long? id)
         {
             if (id == null)
@@ -52,6 +57,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Orders/Create
+        [Route("Create")]
         public IActionResult Create()
         {
             List<SelectListItem> customers = new List<SelectListItem>();
@@ -70,6 +76,7 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Create")]
         public async Task<IActionResult> Create([Bind("OrderId,Addres,City,State,Country,ZipCode,AmountPaid,PaymentType,FormedDate")] Order order, string customer)
         {
             List<SelectListItem> customers = new List<SelectListItem>();
@@ -103,6 +110,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Orders/Edit/5
+        [Route("Edit/{id:long:min(1)?}")]
         public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
@@ -132,6 +140,7 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Edit/{id:long:min(1)}")]
         public async Task<IActionResult> Edit(long id, [Bind("OrderId,Addres,City,State,Country,ZipCode,AmountPaid,PaymentType,FormedDate")] Order order, string customer)
         {
             if (id != order.OrderId)
@@ -183,6 +192,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Orders/Delete/5
+        [Route("Delete/{id:long:min(1)?}")]
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
@@ -204,6 +214,7 @@ namespace ProductStore.Controllers
         // POST: Orders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Route("Delete/{id:long:min(1)}")]
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
             var order = await _context.Order.FindAsync(id);
