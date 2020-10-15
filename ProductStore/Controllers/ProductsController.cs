@@ -14,6 +14,8 @@ using System.IO;
 namespace ProductStore.Controllers
 {
     [Authorize(Roles = "SuperAdmin, Admin")]
+    [Route("Admin/Products")]
+    [Route("Admin/Product")]
     public class ProductsController : Controller
     {
         private readonly AuthDbContext _context;
@@ -27,6 +29,8 @@ namespace ProductStore.Controllers
         }
 
         // GET: Products
+        [Route("Index")]
+        [Route("")]
         public async Task<IActionResult> Index()
         {
             ViewBag.StatusMessage = StatusMessage;
@@ -34,6 +38,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Products/Details/5
+        [Route("Details/{id:long:min(1)?}")]
         public async Task<IActionResult> Details(long? id)
         {
             if (id == null)
@@ -53,6 +58,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Products/Create
+        [Route("Create")]
         public IActionResult Create()
         {
             List<SelectListItem> categories = new List<SelectListItem>();
@@ -78,6 +84,7 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Create")]
         public async Task<IActionResult> Create([Bind("ProductId,ProductName,ProductDescription,Brand,PriceForOneKilogram,Price,Weight,Protein,Fat,Carbohydrates,EnergyValue,IsDeleted,InStock,Quantity,ImageUrl,AddedDate,CreatedPlace,Category")] Product product, string createdPlace, string category)
         {
             List<SelectListItem> categories = new List<SelectListItem>();
@@ -145,6 +152,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Products/Edit/5
+        [Route("Edit/{id:long:min(1)?}")]
         public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
@@ -181,6 +189,7 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Edit/{id:long:min(1)}")]
         public async Task<IActionResult> Edit(long id, [Bind("ProductId,ProductName,ProductDescription,Brand,PriceForOneKilogram,Price,Weight,Protein,Fat,Carbohydrates,EnergyValue,IsDeleted,InStock,Quantity,ImageUrl,AddedDate")] Product product, string createdPlace, string category)
         {
             if (id != product.ProductId)
@@ -257,6 +266,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Products/Delete/5
+        [Route("Delete/{id:long:min(1)?}")]
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
@@ -277,6 +287,7 @@ namespace ProductStore.Controllers
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Route("Delete/{id:long:min(1)}")]
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
             var product = await _context.Products.FindAsync(id);
