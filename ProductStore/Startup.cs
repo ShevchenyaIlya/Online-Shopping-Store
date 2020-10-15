@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -9,12 +10,15 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using ProductStore.Areas.Identity.Data;
+using ProductStore.Constrain;
 using ProductStore.Data;
 using ProductStore.Services;
 using ProductStore.Settings;
@@ -60,6 +64,10 @@ namespace ProductStore
                 options.ClientId = "553009948571-0l5t8gccvr5iikapo3bct1o48qp0lo5a.apps.googleusercontent.com";
                 options.ClientSecret = "5vuXG10RU5GOzqcMcskwm0bV";
             });
+            services.Configure<RouteOptions>(options => 
+            {
+                options.ConstraintMap.Add("custom", typeof(CustomConstraint));
+            });
             //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             //        .AddCookie(options =>
             //        {
@@ -67,8 +75,11 @@ namespace ProductStore
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+            var path = Directory.GetCurrentDirectory();
+            loggerFactory.AddFile($"{path}/Logs/mylog-All.txt", minimumLevel: LogLevel.Trace);
+            loggerFactory.AddFile($"{path}/Logs/mylog-Error.txt", minimumLevel: LogLevel.Error);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
