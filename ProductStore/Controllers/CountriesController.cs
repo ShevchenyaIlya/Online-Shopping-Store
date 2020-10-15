@@ -14,6 +14,8 @@ using System.IO;
 namespace ProductStore.Controllers
 {
     [Authorize(Roles = "SuperAdmin, Admin")]
+    [Route("Admin/Countries")]
+    [Route("Admin/Country")]
     public class CountriesController : Controller
     {
         private readonly AuthDbContext _context;
@@ -27,6 +29,8 @@ namespace ProductStore.Controllers
         }
 
         // GET: Countries
+        [Route("Index")]
+        [Route("")]
         public async Task<IActionResult> Index()
         {
             ViewBag.StatusMessage = StatusMessage;
@@ -34,6 +38,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Countries/Details/5
+        [Route("Details/{id:int:min(1)?}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -53,6 +58,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Countries/Create
+        [Route("Create")]
         public IActionResult Create()
         {
             ViewBag.StatusMessage = StatusMessage;
@@ -64,6 +70,7 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Create")]
         public async Task<IActionResult> Create(Country country)
         {
             if (ModelState.IsValid)
@@ -93,6 +100,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Countries/Edit/5
+        [Route("Edit/{id:int:min(1)?}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -115,6 +123,7 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Edit/{id:int:min(1)}")]
         public async Task<IActionResult> Edit(int id, [Bind("CountryId,CountryName,CountryAbbreviation,CountryCode")] Country country)
         {
             if (id != country.CountryId)
@@ -163,6 +172,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Countries/Delete/5
+        [Route("Delete/{id:int:min(1)?}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -184,6 +194,7 @@ namespace ProductStore.Controllers
         // POST: Countries/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Route("Delete/{id:int:min(1)}")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var country = await _context.Country.FindAsync(id);
