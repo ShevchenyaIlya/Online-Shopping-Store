@@ -13,6 +13,8 @@ using ProductStore.Areas.Identity.Data;
 namespace ProductStore.Controllers
 {
     [Authorize(Roles = "SuperAdmin, Admin")]
+    [Route("Admin/Marks")]
+    [Route("Admin/Mark")]
     public class MarksController : Controller
     {
         private readonly AuthDbContext _context;
@@ -26,6 +28,8 @@ namespace ProductStore.Controllers
         }
 
         // GET: Marks
+        [Route("Index")]
+        [Route("")]
         public async Task<IActionResult> Index()
         {
             ViewBag.StatusMessage = StatusMessage;
@@ -33,6 +37,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Marks/Details/5
+        [Route("Details/{id:int:min(1)?}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -52,6 +57,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Marks/Create
+        [Route("Create")]
         public IActionResult Create()
         {
             List<SelectListItem> users = new List<SelectListItem>();
@@ -77,6 +83,7 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Create")]
         public async Task<IActionResult> Create([Bind("MarkId,TotalMark")] Mark mark, string product, string user)
         {
 
@@ -125,6 +132,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Marks/Edit/5
+        [Route("Edit/{id:int:min(1)?}")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -160,6 +168,7 @@ namespace ProductStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Edit/{id:int:min(1)}")]
         public async Task<IActionResult> Edit(int id, [Bind("MarkId,TotalMark")] Mark mark, string product, string user)
         {
             if (id != mark.MarkId)
@@ -227,6 +236,7 @@ namespace ProductStore.Controllers
         }
 
         // GET: Marks/Delete/5
+        [Route("Delete/{id:int:min(1)?}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -248,6 +258,7 @@ namespace ProductStore.Controllers
         // POST: Marks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Route("Delete/{id:int:min(1)}")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var mark = await _context.Mark.FindAsync(id);
