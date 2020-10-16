@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ProductStore</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Community-ChatComments.css">
     <link rel="stylesheet" href="~/css/site.css" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet">
@@ -31,6 +32,7 @@
     <link rel="stylesheet" href="~/css/styles.css">
     <link rel="stylesheet" href="~/css/Profile-Edit-Form.css">
     <link rel="stylesheet" href="~/css/gift-product-long.css">
+    <link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
@@ -58,7 +60,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Category">Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Sales">Sales</a>
                         </li>
                         @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("SuperAdmin")))
                         {
@@ -95,7 +97,7 @@
                     <div class="col-sm-6 col-md-3 item">
                         <h3>Services</h3>
                         <ul>
-                            <li><a href="#">Development</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
                         </ul>
                     </div>
                     <div class="col-sm-6 col-md-3 item">
@@ -124,8 +126,8 @@
                     </div>
                 </div>
                 @*<div class="container">
-                    &copy; 2020 - Shevchenya Development - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                </div>*@
+                        &copy; 2020 - Shevchenya Development - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    </div>*@
                 <p class="copyright">&copy; 2020 - Shevchenya Development - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></p>
             </div>
         </footer>
@@ -141,6 +143,10 @@
     <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
     <script src="~/js/jquery.min.js"></script>
     <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
