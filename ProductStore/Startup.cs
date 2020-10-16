@@ -79,7 +79,7 @@ namespace ProductStore
         {
             var path = Directory.GetCurrentDirectory();
             loggerFactory.AddFile($"{path}/Logs/mylog-All.txt", minimumLevel: LogLevel.Trace);
-            loggerFactory.AddFile($"{path}/Logs/mylog-Error.txt", minimumLevel: LogLevel.Error);
+            loggerFactory.AddFile($"{path}/Logs/mylog-Error.txt", minimumLevel: LogLevel.Information);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -90,18 +90,9 @@ namespace ProductStore
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            //var cultures = new List<CultureInfo> {
-            //    new CultureInfo("en"),
-            //    new CultureInfo("ru")
-            //};
-            //app.UseRequestLocalization(options =>
-            //{
-            //    options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en");
-            //    options.SupportedCultures = cultures;
-            //    options.SupportedUICultures = cultures;
-            //});
             app.UseRequestLocalization(app.ApplicationServices.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
             app.UseHttpsRedirection();
+            //app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseRouting();
 
