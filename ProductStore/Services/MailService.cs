@@ -54,7 +54,7 @@ namespace ProductStore.Services
 
         public async Task SendWelcomeEmailAsync(WelcomeRequest request)
         {
-            string FilePath = Directory.GetCurrentDirectory() + "\\Templates\\WelcomeTemplate.html";
+            string FilePath = Directory.GetCurrentDirectory() + "\\wwwroot\\Templates\\WelcomeTemplate.html";
             StreamReader str = new StreamReader(FilePath);
             string MailText = str.ReadToEnd();
             str.Close();
@@ -79,11 +79,11 @@ namespace ProductStore.Services
             string FilePath;
             if (flag)
             {
-                FilePath = Directory.GetCurrentDirectory() + "\\Templates\\VerifiedTemplate.html";
+                FilePath = Directory.GetCurrentDirectory() + "\\wwwroot\\Templates\\VerifiedTemplate.html";
             }
             else
             {
-                FilePath = Directory.GetCurrentDirectory() + "\\Templates\\ForgotPasswordTemplate.html";
+                FilePath = Directory.GetCurrentDirectory() + "\\wwwroot\\Templates\\ForgotPasswordTemplate.html";
             }
             StreamReader str = new StreamReader(FilePath);
             string MailText = str.ReadToEnd();
