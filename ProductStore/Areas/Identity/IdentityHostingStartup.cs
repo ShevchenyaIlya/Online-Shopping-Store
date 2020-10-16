@@ -7,6 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ProductStore.Areas.Identity.Data;
 using ProductStore.Data;
+using ProductStore.Repositories;
+using ProductStore.Services;
 
 [assembly: HostingStartup(typeof(ProductStore.Areas.Identity.IdentityHostingStartup))]
 namespace ProductStore.Areas.Identity
@@ -19,6 +21,12 @@ namespace ProductStore.Areas.Identity
                 services.AddDbContext<AuthDbContext>(options =>
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("AuthDbContextConnection")));
+
+                #region Repositories
+                services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
+                services.AddTransient<ICustomerRepositoryAsync, CommentRepositoryAsync>();
+                services.AddTransient<IUnitOfWork, UnitOfWork>();
+                #endregion
 
                 services.AddDefaultIdentity<ApplicationUser>(options => {
                     options.SignIn.RequireConfirmedAccount = false;
