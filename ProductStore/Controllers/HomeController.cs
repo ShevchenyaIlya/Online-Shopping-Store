@@ -4,11 +4,13 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ProductStore.Data;
 using ProductStore.Models;
+using ProductStore.VIewModels;
 
 namespace ProductStore.Controllers
 {
@@ -46,23 +48,44 @@ namespace ProductStore.Controllers
 
         [Authorize(Roles = "Admin")]
         [Route("Image")]
-        public ActionResult Image()
+        public async Task<IActionResult> Image()
         {
-            ViewBag.image = _context.Products.ToList()[0].ProductPicture;
+            var value = await _context.Products.ToListAsync();
+            ViewBag.image = value[0].ProductPicture;
             return View(_context.Products.ToList());
         }
 
         [Authorize]
         [Route("About")]
-        public ActionResult About()
+        public async Task<IActionResult> About()
         {
             ViewBag.Message = "Your application description page.";
             return View();
         }
 
+        [HttpPost]
+        public async Task<ActionResult> Comment(CommentViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                //Mapping code - alternatively try AutoMapper
+                var dataComment = new Comment();
+                dataComment.CommentTitle = viewModel.Title;
+                dataComment.CommentBody = viewModel.Body;
+                dataComment.PostDate = DateTime.Now;
+                dataComment.CommentUser = _context.Users.FirstOrDefault(m => m.UserName == User.Identity.Name);
+                // Create comment and save changes
+                _context.Add(dataComment);
+                await _context.SaveChangesAsync();
+                
+            }
+
+            return RedirectToAction(nameof(ProductCard));
+        }
+
         [AllowAnonymous]
         [Route("ProductCard/{id:int?}")]
-        public async Task<ActionResult> ProductCard(int? id)
+        public async Task<ActionResult> ProductCard(int? id, string text, string text1)
         {
             if (id == null)
             {
@@ -71,6 +94,21 @@ namespace ProductStore.Controllers
 
             var product = await _context.Products.Include(n => n.Category)
                 .FirstOrDefaultAsync(m => m.ProductId == id);
+
+            var sales = await _context.Sale.Include(m => m.Product).ToListAsync();
+            Sale productSale = null;
+            foreach(var sale in sales)
+            {
+                if (sale.Product == product)
+                {
+                    productSale = sale;
+                    break;
+                }
+            }
+            ViewBag.Sale = productSale;
+
+            var comments = await _context.Comment.Include(m => m.CommentUser).Include(n => n.CommentProduct).Where(mbox => mbox.CommentProduct.ProductId == product.ProductId).ToListAsync();
+            ViewBag.Comments = comments;
             if (product == null)
             {
                 return NotFound();
@@ -103,25 +141,34 @@ namespace ProductStore.Controllers
 
         [AllowAnonymous]
         [Route("Products")]
-        public ActionResult Products()
+        public async Task<IActionResult> Products()
         {
-            var products = _context.Products.ToList<Product>();
+            var products = await _context.Products.ToListAsync<Product>();
             return View(products);
         }
+
+        [AllowAnonymous]
+        [Route("Sales")]
+        public async Task<IActionResult> Sales()
+        {
+            var sales = await _context.Sale.Include(m => m.Product).ToListAsync<Sale>();
+            return View(sales);
+        }
+
         [AllowAnonymous]
         [Route("Categories")]
         [Route("Category")]
-        public ActionResult Category()
+        public async Task<IActionResult> Category()
         {
-            var categories = _context.Category.ToList<Category>();
+            var categories = await _context.Category.ToListAsync<Category>();
             return View(categories);
         }
 
         [AllowAnonymous]
         [Route("CategoryItems/{id:int?}")]
-        public ActionResult CategoryItems(int? id)
+        public async Task<IActionResult> CategoryItems(int? id)
         {
-            var products = _context.Products.ToList<Product>();
+            var products = await _context.Products.ToListAsync<Product>();
             List<Product> categoryProducts = new List<Product>();
             foreach (var product in products)
             {
@@ -139,12 +186,12 @@ namespace ProductStore.Controllers
 
         [AllowAnonymous]
         [Route("FindProduct")]
-        public ActionResult FindProduct(string searching)
+        public async Task<IActionResult> FindProduct(string searching)
         {
             var products = from product in _context.Products
                            select product;
 
-            ViewBag.Categories = _context.Category.ToList();
+            ViewBag.Categories = await _context.Category.ToListAsync();
             if (!String.IsNullOrEmpty(searching))
             {
                 products = products.Where(product => product.ProductName.Contains(searching));
