@@ -26,4 +26,10 @@
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\Templates\ForgotPasswordTemplate.html" />
+    <None Include="wwwroot\Templates\VerifiedTemplate.html" />
+    <None Include="wwwroot\Templates\WelcomeTemplate.html" />
+  </ItemGroup>
+
 </Project>
