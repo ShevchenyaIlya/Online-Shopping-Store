@@ -63,29 +63,50 @@ namespace ProductStore.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<ActionResult> Comment(CommentViewModel viewModel)
+        [BindProperty]
+        public List<Comment> Comments { get; set; }
+        
+        [Route("OnGetAllCommentAsync")]
+        public async Task<IActionResult> OnGetAllCommentAsync(string productName)
         {
-            if (ModelState.IsValid)
+            Comments = _context.Comment.OrderByDescending(c => c.PostDate)
+                .Include(m => m.CommentUser).Include(n => n.CommentProduct)
+                .Where(m => m.CommentProduct.ProductName == productName).OrderByDescending(m => m.PostDate).ToList();
+
+            return PartialView("_DisplayComments", Comments);
+        }
+
+        [HttpPost]
+        [Route("Comment")]
+        public async Task<ActionResult> Comment(string commentTitle, string commentBody, string productName)
+        {
+            if (productName == null)
             {
-                //Mapping code - alternatively try AutoMapper
-                var dataComment = new Comment();
-                dataComment.CommentTitle = viewModel.Title;
-                dataComment.CommentBody = viewModel.Body;
-                dataComment.PostDate = DateTime.Now;
-                dataComment.CommentUser = _context.Users.FirstOrDefault(m => m.UserName == User.Identity.Name);
-                // Create comment and save changes
-                _context.Add(dataComment);
-                await _context.SaveChangesAsync();
-                
+                return RedirectToAction(nameof(Products));
             }
 
-            return RedirectToAction(nameof(ProductCard));
+            if (commentTitle == null || commentBody == null)
+            {
+                var product = await _context.Products.FirstOrDefaultAsync(mbox => mbox.ProductName == productName);
+                return RedirectToAction(nameof(ProductCard), new { id = product.ProductId });
+            }
+
+            var dataComment = new Comment();
+            dataComment.CommentTitle = commentTitle;
+            dataComment.CommentBody = commentBody;
+            dataComment.PostDate = DateTime.Now;
+            dataComment.CommentUser = await _context.Users.FirstOrDefaultAsync(m => m.UserName == User.Identity.Name);
+            dataComment.CommentProduct = await _context.Products.FirstOrDefaultAsync(mbox => mbox.ProductName == productName);
+
+            _context.Add(dataComment);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(ProductCard), new { id = dataComment.CommentProduct.ProductId });
         }
 
         [AllowAnonymous]
-        [Route("ProductCard/{id:int?}")]
-        public async Task<ActionResult> ProductCard(int? id, string text, string text1)
+        [Route("ProductCard/{id:long?}")]
+        public async Task<ActionResult> ProductCard(long? id)
         {
             if (id == null)
             {
@@ -107,7 +128,8 @@ namespace ProductStore.Controllers
             }
             ViewBag.Sale = productSale;
 
-            var comments = await _context.Comment.Include(m => m.CommentUser).Include(n => n.CommentProduct).Where(mbox => mbox.CommentProduct.ProductId == product.ProductId).ToListAsync();
+            var comments = await _context.Comment.Include(m => m.CommentUser).Include(n => n.CommentProduct)
+                .Where(mbox => mbox.CommentProduct.ProductId == product.ProductId).OrderByDescending(m => m.PostDate).Take(5).ToListAsync();
             ViewBag.Comments = comments;
             if (product == null)
             {
