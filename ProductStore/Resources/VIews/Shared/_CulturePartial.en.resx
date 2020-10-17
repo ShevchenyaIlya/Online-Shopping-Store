@@ -120,6 +120,9 @@
   <data name="en" xml:space="preserve">
     <value>English</value>
   </data>
+  <data name="ImageUrl" xml:space="preserve">
+    <value>C:\Users\Il\source\repos\ProductStore\ProductStore\wwwroot\images\Britan-Flag.jpg</value>
+  </data>
   <data name="ru" xml:space="preserve">
     <value>Russian</value>
   </data>

@@ -120,6 +120,9 @@
   <data name="LearnMore" xml:space="preserve">
     <value>Привет &lt;a href="https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-configuration?view=aspnetcore-3.1"&gt;&lt;/a&gt;</value>
   </data>
+  <data name="Products" xml:space="preserve">
+    <value>Продукты</value>
+  </data>
   <data name="Welcome" xml:space="preserve">
     <value>Добро пожаловать</value>
   </data>
