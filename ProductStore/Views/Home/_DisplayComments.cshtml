@@ -1,0 +1,38 @@
+﻿@model List<Comment>
+
+<ul class="list-group">
+    @foreach (Comment comment in Model)
+    {
+
+        <li class="list-group-item" style="margin-bottom:6px;">
+            <div class="media">
+                <div></div>
+                <div class="media-body">
+                    <div class="media" style="overflow:visible;">
+                        <div>
+                            @if (comment.CommentUser.ProfilePicture != null)
+                            {
+                                <img class="mr-3" style="width: 40px; height:40px;" src="data:image/*;base64,@(Convert.ToBase64String(comment.CommentUser.ProfilePicture))">
+                            }
+                            else
+                            {
+                                <img id="profilePicture" style=" vertical-align: central; width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; margin-left: 10px; object-fit: cover" src="~/images/BasicUserPhoto.png">
+                            }
+                        </div>
+                        <div class="media-body" style="overflow:visible;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p>
+                                        <a href="#">@comment.CommentUser.UserName:</a> @comment.CommentTitle <br>
+                                        @comment.CommentBody <br />
+                                        <small class="text-muted">@comment.PostDate</small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    }
+</ul>
