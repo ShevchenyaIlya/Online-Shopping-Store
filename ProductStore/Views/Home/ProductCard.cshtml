@@ -114,11 +114,12 @@
                                     <div class="media-body" style="overflow:visible;">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <p >
+                                                <p>
                                                     <a href="#">@user.UserName:</a>
                                                 </p>
-                                                <input class="form-control" style="width:100%" type="text" />
-                                                <input  style="width:100%" class="form-control" for type="text" />
+                                                <input id="commentTitle" name="commentTitle" class="form-control" style="width:100%" type="text" />
+                                                <textarea id="commentBody" name="commentBody" style="width:100%" class="form-control" for type="text"></textarea>
+                                                <input name="productName" class="form-control" style="width:100%" value="@Model.ProductName" type="text" hidden />
                                                 <button class="btn btn-light" type="submit">Add Comment</button>
                                             </div>
                                         </div>
@@ -129,48 +130,106 @@
                     </li>
                 </ul>
             </form>
+            <div id="commentlist">
+                <partial name="_DisplayComments" model=comments />
+            </div>
             <a href="javascript:void(0)" id="clicklink">Load more</a>
-            <ul class="list-group">
-                @foreach (Comment comment in comments)
-                {
-
-                    <li class="list-group-item" style="margin-bottom:6px;">
-                        <div class="media">
-                            <div></div>
-                            <div class="media-body">
-                                <div class="media" style="overflow:visible;">
-                                    <div>
-                                        @if (comment.CommentUser.ProfilePicture != null)
-                                        {
-                                            <img class="mr-3" style="width: 40px; height:40px;" src="data:image/*;base64,@(Convert.ToBase64String(comment.CommentUser.ProfilePicture))">
-                                        }
-                                        else
-                                        {
-                                            <img id="profilePicture" style=" vertical-align: central; width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; margin-left: 10px; object-fit: cover" src="~/images/BasicUserPhoto.png">
-                                        }
-                                    </div>
-                                    <div class="media-body" style="overflow:visible;">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <p>
-                                                    <a href="#">@comment.CommentUser.UserName:</a> @comment.CommentTitle <br>
-                                                    @comment.CommentBody <br />
-                                                    <small class="text-muted">@comment.PostDate</small>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                }
-            </ul>
         </div>
     </div>
 </div>
 
 
+@section Scripts
+{
+    <script>
+        $("#clicklink").click(function () {
+            var prod = '@Model.ProductName';
+            $.ajax({
+                type: "get",
+                url: "/Home/OnGetAllCommentAsync",
+                success: function (response) {
+                    $("#commentlist").html(response);
+                },
+                data: { productName: prod}
+            });
+        });
+
+    </script>
+}
+@*<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#insert").click(function () {
+                val1 = "5";
+                val2 = "2";
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Add")",
+                    data: { number1: val1, number2: val2 },
+                    dataType: "text",
+                    success: function (msg) {
+                        console.log(msg);
+                    },
+                    error: function (req, status, error) {
+                        console.log(msg);
+                    }
+                });
+            }
+        });
+    </script>*@
+
+@*@section scripts{
+    <script>
+        function GetPatient() {
+            var PID = document.getElementById("#PID");
+            var val1 = document.getElementById("#commentTitle").val();
+            var val2 = document.getElementById("#commentBody").val();
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Add")";
+                data: { number1: val1, number2: val2 },
+                success: function (data) {
+
+                }
+                });
+            }
+
+        PID.onclick = () => {
+            GetPatient();
+        }
+
+    </script>
+    }*@
+@*<script type="text/javascript">
+        $(document).ready(function () {
+            $("#insert").click(function () {
+                val1 = document.getElementById("commentTitle").value;
+                val2 = document.getElementById("commentBody").value;
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Add")",
+                    data: { number1: val1, number2: val2 },
+                    dataType: "text",
+                    success: function (msg) {
+                        console.log(msg);
+                    },
+                    error: function (req, status, error) {
+                        console.log(msg);
+                    }
+                });
+            }
+        });
+    </script>*@
+@*<script type="text/javascript">
+        var btn = document.getElementById("customButton");
+        btn.addEventListener("click", function () {
+            var ourRequest = new XMLHttpRequest();
+            ourRequest.open("POST", "/Home/Comment")
+        })
+
+    </script>*@
 @*<div style="background-color:white; height: 10px"></div>
     <p>
         <a href="~/Products/Edit/@Model.ProductId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">Edit</a>
