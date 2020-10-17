@@ -3,8 +3,22 @@
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
+@{ 
+    var imageUrl = localizer["ImageUrl"].Value;
+}
 <ul class="navbar-nav">
+    <li>
+        @if (localizer["en"].Value == "English")
+        {
+            <img style="margin-top:8px; align-self :center; width: 30px; height: 30px; border-radius: 25%;" src="~/images/Britan-Flag.jpg">
+        }
+        else if (localizer["en"].Value == "Английский")
+        {
+            <img style="margin-top: 8px; align-self: center; width: 30px; height: 30px; border-radius: 25%;" src="~/images/russian-flag-russian-flag-russia-flag-of-russia.jpg">
+        }
+    </li>
     <li class="nav-item dropdown">
         @await Html.PartialAsync("_CulturePartial")
     </li>
@@ -32,17 +46,17 @@
         </li>
         <li class="nav-item">
             <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button id="logout" type="submit" class="btn btn-light action-button">Logout</button>
-            </form>
+                <button id="logout" type="submit" class="btn btn-light action-button">@localizer["Logout"]</button>
+</form>
         </li>
     }
     else
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">@localizer["Register"]</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-        </li>
+            <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">@localizer["Login"]</a>
+</li>
     }
 </ul>
