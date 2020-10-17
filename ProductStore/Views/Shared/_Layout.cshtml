@@ -1,11 +1,13 @@
-﻿<!DOCTYPE html>
+﻿
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ProductStore</title>
+    <title>@localizer["AppName"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/Community-ChatComments.css">
     <link rel="stylesheet" href="~/css/site.css" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet">
@@ -32,6 +34,7 @@
     <link rel="stylesheet" href="~/css/styles.css">
     <link rel="stylesheet" href="~/css/Profile-Edit-Form.css">
     <link rel="stylesheet" href="~/css/gift-product-long.css">
+    <link rel="stylesheet" href="~/css/Community-ChatComments.css">
     <link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
@@ -45,33 +48,34 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Online Shopping Store</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@localizer["AppName"]</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    
                     <partial name="_LoginPartial.cshtml" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Products">Products</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Products">@localizer["Products"]</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Category">Categories</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Category">@localizer["Categories"]</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Sales">Sales</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Sales">@localizer["Sales"]</a>
                         </li>
                         @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("SuperAdmin")))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">@localizer["Admin"]</a>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">@localizer["About"]</a>
                             </li>
                         }
                     </ul>
@@ -97,18 +101,18 @@
                     <div class="col-sm-6 col-md-3 item">
                         <h3>Services</h3>
                         <ul>
-                            <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Privacy">@localizer["Privacy"]</a></li>
                         </ul>
                     </div>
                     <div class="col-sm-6 col-md-3 item">
-                        <h3>About</h3>
+                        <h3>@localizer["About"]</h3>
                         <ul>
-                            <li><a href="~/Home/Contact">Company</a></li>
+                            <li><a href="~/Home/Contact">@localizer["Company"]</a></li>
                         </ul>
                     </div>
                     <div class="col-md-6 item text">
-                        <h3>Online Shopping Store</h3>
-                        <p>This site created by Ilya Shevchenya. ASP.NET Core project.</p>
+                        <h3>@localizer["AppName"]</h3>
+                        <p>@localizer["Footer-text"]</p>
                     </div>
                     <div class="col item social">
                         <a href="https://www.facebook.com/shevchenya.i">
@@ -132,8 +136,12 @@
             </div>
         </footer>
     </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    @*<script src="~/js/jquery-3.4.1.min.js"></script>*@
+    @*<script src="~/js/jquery.validate.unobtrusive.min.js"></script>*@
     <script src="~/js/bs-init.js"></script>
-    <script src="~/js/jquery.min.js"></script>
+    @*<script src="~/js/jquery.min.js"></script>*@
     <script src="~/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="~/js/smoothproducts.min.js"></script>
@@ -141,8 +149,6 @@
     <script src="~/js/Profile-Edit-Form.js"></script>
     <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-    <script src="~/js/jquery.min.js"></script>
-    <script src="~/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
     <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
