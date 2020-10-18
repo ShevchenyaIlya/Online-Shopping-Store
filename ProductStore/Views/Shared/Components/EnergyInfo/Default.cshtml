@@ -1,41 +1,42 @@
 ﻿@model Product
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
 <table class="table table-bordered">
     <thead class="thead-light">
         <tr>
-            <th>Type</th>
-            <th>Value</th>
+            <th>@localizer["Type"]</th>
+            <th>@localizer["Value"]</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>
-                <strong style="width: auto; text-align: right; white-space: nowrap;">Protein:</strong>
-            </td>
+                <strong style="width: auto; text-align: right; white-space: nowrap;">@localizer["Protein"]:</strong>
+</td>
             <td>
                 @Html.DisplayFor(model => model.Protein)
             </td>
         </tr>
         <tr>
             <td>
-                <strong style="width: auto; text-align: right; white-space: nowrap;">Fat:</strong>
-            </td>
+                <strong style="width: auto; text-align: right; white-space: nowrap;">@localizer["Fat"]:</strong>
+</td>
             <td>
                 @Html.DisplayFor(model => model.Fat)
             </td>
         </tr>
         <tr>
             <td>
-                <strong style="width: auto; text-align: right; white-space: nowrap;">Carbohydrates:</strong>
-            </td>
+                <strong style="width: auto; text-align: right; white-space: nowrap;">@localizer["Carbohydrates"]:</strong>
+</td>
             <td>
                 @Html.DisplayFor(model => model.Carbohydrates)
             </td>
         </tr>
         <tr>
             <td>
-                <strong style="width: auto; text-align: right; white-space: nowrap;">EnergyValue:</strong>
-            </td>
+                <strong style="width: auto; text-align: right; white-space: nowrap;">@localizer["EnergyValue"]:</strong>
+</td>
             <td>
                 @Html.DisplayFor(model => model.EnergyValue)
             </td>

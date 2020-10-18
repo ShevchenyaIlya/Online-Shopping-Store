@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<ProductStore.Models.Product>
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
 
 <div class="alert alert-info" style="width:100%">
-    Products
+    @localizer["Products"]
 </div>
 <table class="table table-bordered">
     <thead class="thead-light">
@@ -45,9 +46,9 @@
                     <img id="profilePicture" style="width:45px;height:45px; object-fit:cover" src="data:image/*;base64,@(Convert.ToBase64String(item.ProductPicture))">
                 </td>
                 <td>
-                    <a asp-controller="Products" asp-action="Edit" asp-route-id="@item.ProductId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">Edit</a>
-                    <a asp-controller="Products" asp-action="Details" asp-route-id="@item.ProductId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">Details</a>
-                    <a asp-controller="Products" asp-action="Delete" asp-route-id="@item.ProductId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">Delete</a>
+                    <a asp-controller="Products" asp-action="Edit" asp-route-id="@item.ProductId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">@localizer["Edit"]</a>
+                    <a asp-controller="Products" asp-action="Details" asp-route-id="@item.ProductId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">@localizer["Details"]</a>
+                    <a asp-controller="Products" asp-action="Delete" asp-route-id="@item.ProductId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">@localizer["Delete"]</a>
                 </td>
             </tr>
         }

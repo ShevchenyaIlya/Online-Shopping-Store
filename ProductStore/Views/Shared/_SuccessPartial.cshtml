@@ -1,3 +1,6 @@
-﻿<div class="alert alert-success">
-    <strong style="text-align:center">Object created successfully</strong>
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+
+<div class="alert alert-success">
+    <strong style="text-align:center">@localizer["Object created successfully"]</strong>
 </div>
