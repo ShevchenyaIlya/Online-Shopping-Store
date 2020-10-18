@@ -117,8 +117,48 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="by" xml:space="preserve">
+    <value>от</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>8 сентября,, 2020</value>
+  </data>
+  <data name="FastProcessing" xml:space="preserve">
+    <value>Быстрая обработка запросов, правильная сборка товара, только качественный товар и отсутствие брака, мы это гарантируем.</value>
+  </data>
+  <data name="FIO" xml:space="preserve">
+    <value>Шевченя Илья</value>
+  </data>
+  <data name="LatestNew" xml:space="preserve">
+    <value>Последние добавленные продукты</value>
+  </data>
   <data name="LearnMore" xml:space="preserve">
     <value>Привет &lt;a href="https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-configuration?view=aspnetcore-3.1"&gt;&lt;/a&gt;</value>
+  </data>
+  <data name="Logo" xml:space="preserve">
+    <value>Лого</value>
+  </data>
+  <data name="LongText" xml:space="preserve">
+    <value>Это лучший интернет-магазин в своей области, который поставляет свою продукцию по всему миру. Огромное количество товарных категорий, огромный выбор товаров и множество торговых марок.
+                         Самые низкие цены и лучшие отзывы покупателей. Мы заботимся о своей репутации, поэтому выполняем свои обязанности на высшем уровне, а в случае возникновения неловких ситуаций находим лучшее решение, которое удовлетворит покупателя.</value>
+  </data>
+  <data name="LongText1" xml:space="preserve">
+    <value>Быстрая обработка запросов, правильная сборка товара, только качественный товар и отсутствие брака, мы это гарантируем.</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Последние новинки совершенно разных категорий на любой вкус.</value>
+  </data>
+  <data name="NewWord" xml:space="preserve">
+    <value>Новий</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Следующий</value>
+  </data>
+  <data name="Online" xml:space="preserve">
+    <value>Онлайн магазин</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Предыдуший</value>
   </data>
   <data name="Products" xml:space="preserve">
     <value>Продукты</value>
