@@ -1,14 +1,13 @@
 ﻿@model IEnumerable<ProductStore.Models.Rating>
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
 
-<h1>Index</h1>
-
 <p>
-    <a asp-action="Create" class="btn btn-secondary btn-sm">Create New</a>
+    <a asp-action="Create" class="btn btn-secondary btn-sm">@localizer["Create New"]</a>
 </p>
 @if (ViewBag.StatusMessage != null)
 {
@@ -29,19 +28,19 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Product.ProductName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserMarks.TotalMark)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.RatingId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">Edit</a>
-                <a asp-action="Details" asp-route-id="@item.RatingId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">Details</a>
-                <a asp-action="Delete" asp-route-id="@item.RatingId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">Delete</a>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserMarks.TotalMark)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.RatingId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">@localizer["Edit"]</a>
+                    <a asp-action="Details" asp-route-id="@item.RatingId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">@localizer["Details"]</a>
+                    <a asp-action="Delete" asp-route-id="@item.RatingId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">@localizer["Delete"]</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>

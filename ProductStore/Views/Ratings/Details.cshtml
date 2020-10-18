@@ -1,22 +1,23 @@
 ﻿@model ProductStore.Models.Rating
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
 
-<h1>Details</h1>
+<h1>@localizer["Details"]</h1>
 
 <div class="register-photo">
     <div class="form-container">
         <div class="form-horizontal">
             <div style="background-color: white">
                 <div>
-                    <h4 style="text-align: center">Rating</h4>
+                    <h4 style="text-align: center">@localizer["Rating"]</h4>
                     <hr />
                     <dl class="row">
                         <dt class="col-sm-4">
-                            Mark
+                            @localizer["Mark"]
                         </dt>
                         <dd class="col-sm-8">
                             <dl class="row">
@@ -44,7 +45,7 @@
                             </dl>
                         </dd>
                         <dt class="col-sm-4">
-                            Product
+                            @localizer["Product"]
                         </dt>
                         <dd class="col-sm-8">
                             <dl class="row">
@@ -71,8 +72,8 @@
                     </dl>
                 </div>
                 <div>
-                    <a asp-action="Edit" asp-route-id="@Model.RatingId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">Edit</a>
-                    <a asp-action="Index" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">Back to List</a>
+                    <a asp-action="Edit" asp-route-id="@Model.RatingId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">@localizer["Edit"]</a>
+                    <a asp-action="Index" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">@localizer["Back to List"]</a>
                 </div>
             </div>
         </div>
