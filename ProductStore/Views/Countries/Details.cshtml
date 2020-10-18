@@ -1,4 +1,5 @@
 ﻿@model ProductStore.Models.Country
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
 @{
     ViewData["Title"] = "Details";
@@ -9,11 +10,12 @@
 {
     <partial name="../Shared/_StatusMessage" model="ViewBag.StatusMessage" />
 }
+<h1>@localizer["Details"]</h1>
 <div class="register-photo">
     <div class="form-container">
         <div class="form-horizontal">
             <div style="background-color: white">
-                <h4>Country</h4>
+                <h4>@localizer["Country"]</h4>
                 <hr />
                 <dl class="row">
                     <dt class="col-sm-4">
@@ -43,8 +45,8 @@
                 </dl>
             </div>
             <div>
-                <a asp-action="Edit" asp-route-id="@Model.CountryId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">Edit</a>
-                <a asp-action="Index" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">Back to List</a>
+                <a asp-action="Edit" asp-route-id="@Model.CountryId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">@localizer["Edit"]</a>
+                <a asp-action="Index" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">@localizer["Back to List"]</a>
             </div>
         </div>
     </div>
