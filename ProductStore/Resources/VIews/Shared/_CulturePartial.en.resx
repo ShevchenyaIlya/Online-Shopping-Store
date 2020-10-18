@@ -126,4 +126,7 @@
   <data name="ru" xml:space="preserve">
     <value>Russian</value>
   </data>
+  <data name="uk" xml:space="preserve">
+    <value>Ukrainian</value>
+  </data>
 </root>
