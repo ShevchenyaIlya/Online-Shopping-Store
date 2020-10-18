@@ -144,4 +144,7 @@
   <data name="Sales" xml:space="preserve">
     <value>Скидки</value>
   </data>
+  <data name="Services" xml:space="preserve">
+    <value>Службы</value>
+  </data>
 </root>
