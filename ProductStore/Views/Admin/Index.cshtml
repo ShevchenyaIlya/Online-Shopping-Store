@@ -1,12 +1,13 @@
-﻿
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
 
 
-<h1>Hello, @User.Identity.Name</h1>
-<p>This is admin page template</p>
+<h1>@localizer["Hello"], @User.Identity.Name</h1>
+<p>@localizer["Template"]</p>
 
 @await Component.InvokeAsync("User")
 @await Component.InvokeAsync("Product")
