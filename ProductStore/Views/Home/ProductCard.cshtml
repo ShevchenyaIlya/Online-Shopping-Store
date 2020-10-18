@@ -2,6 +2,7 @@
 
 @model ProductStore.Models.Product
 @inject UserManager<ProductStore.Areas.Identity.Data.ApplicationUser> UserManager
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
 @{
     ViewBag.Title = "ProductCard";
@@ -44,44 +45,44 @@
             <p>
                 <br>
                 <br>
-                <strong>Category name:</strong>
+                <strong>@localizer["CategoryName"]:</strong>
                 @Model.Category.CategoryName
 
                 <br>
                 <br />
-                <strong>Brand:</strong>
+                <strong>@localizer["Brand"]:</strong>
                 @Html.DisplayFor(model => model.Brand)
 
                 <br>
                 <br />
-                <strong>Description:</strong>
+                <strong>@localizer["Description"]:</strong>
                 @Html.DisplayFor(model => model.ProductDescription)
 
                 <br>
                 <br />
-                <strong>Is in stock:</strong>
+                <strong>@localizer["Stock"]:</strong>
                 @Html.DisplayFor(model => model.InStock)
 
                 <br>
                 <br />
-                <strong>Price:</strong>
+                <strong>@localizer["Price"]:</strong>
                 @Html.DisplayFor(model => model.Price)
 
                 @if (ViewBag.Sale != null)
                 {
                     <br />
-                    <strong>With sale:</strong>
+                    <strong>@localizer["Sale"]:</strong>
                     string price = Math.Round(ViewBag.Sale.SaleValue * Model.Price, 2).ToString();
                     @price
                 }
                 <br>
                 <br />
-                <strong>Weight:</strong>
+                <strong>@localizer["Weight"]:</strong>
                 @Html.DisplayFor(model => model.Weight)
                 @*@await Component.InvokeAsync("EnergyInfo", new { product = Model })*@
                 <vc:energy-info product="@Model"></vc:energy-info>
                 <br />
-                <strong>Quantity:</strong>
+                <strong>@localizer["Quantity"]:</strong>
                 @Html.DisplayFor(model => model.Quantity)
             </p>
         </div>
@@ -91,7 +92,7 @@
     }
     <div class="card">
         <div class="card-header">
-            <h3>Community Chat</h3>
+            <h3>@localizer["Comments"]</h3>
         </div>
         <div class="card-body" style="height:auto;">
             <form asp-action="Comment" method="post">

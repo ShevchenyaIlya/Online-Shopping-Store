@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<ProductStore.Models.Sale>
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
 @{
     ViewBag.Title = "Sales";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -21,7 +23,7 @@
             <div class="card-body">
                 <h5 class="card-title">@sale.Product.ProductName</h5>
                 <h6 class="card-text">@sale.Product.ProductDescription</h6>
-                <h6 class="card-text">Only to @sale.ToDate.ToString("dddd, dd MMMM yyyy")</h6>
+                <h6 class="card-text">@localizer["OnlyTo"] @sale.ToDate.ToString("dddd, dd MMMM yyyy")</h6>
             </div>
             <div class="card-footer">
                 <div class="row">

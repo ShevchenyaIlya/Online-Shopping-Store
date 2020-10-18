@@ -1,4 +1,5 @@
 ﻿@model ProductStore.Models.Category
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
 <div class="card">
     @{
@@ -13,7 +14,7 @@
     </div>
     <div class="card-footer">
         <small class="text-muted">
-            <a href="/Home/CategoryCard/@Model.CategoryId" class="btn btn-secondary" role="button" aria-pressed="true">More Info</a>
+            <a href="/Home/CategoryCard/@Model.CategoryId" class="btn btn-secondary" role="button" aria-pressed="true">@localizer["MoreInfo"]</a>
         </small>
     </div>
 </div>

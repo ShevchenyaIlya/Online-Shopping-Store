@@ -1,10 +1,11 @@
-﻿@{
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@{
     ViewBag.Title = "About";
 }
 
 
 <div data-bs-parallax-bg="true" style="height: 800px; background-image: url(../../Images/star-sky.jpg); background-position: center; background-size: cover;">
     <hr />
-    <h1 style="color: whitesmoke; position: center; text-align: center">Additional information about my site.</h1>
+    <h1 style="color: whitesmoke; position: center; text-align: center">@localizer["AdditionalInformation"]</h1>
 </div>
 

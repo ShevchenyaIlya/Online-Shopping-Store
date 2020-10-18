@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<ProductStore.Models.Product>
 
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 @{
     ViewBag.Title = "FindProductView";
     Layout = "~/Views/Shared/_Layout.cshtml";

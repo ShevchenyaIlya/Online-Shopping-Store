@@ -1,11 +1,12 @@
 ﻿@model IEnumerable<ProductStore.Models.Product>
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 @{
     ViewBag.Title = "Products";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <span>
-    <h2>Products</h2>
-    <a href="~/Home/FindProduct" class="btn btn-outline-secondary" role="button" aria-pressed="true" style="text-align:center">Find product</a>
+    <h2>@localizer["Products"]</h2>
+    <a href="~/Home/FindProduct" class="btn btn-outline-secondary" role="button" aria-pressed="true" style="text-align:center">@localizer["FindProduct"]</a>
 </span>
 <hr />
 <div class="card-columns">
