@@ -47,7 +47,8 @@ namespace ProductStore
                 .AddDataAnnotationsLocalization();
             var cultures = new List<CultureInfo> {
                 new CultureInfo("en"),
-                new CultureInfo("ru")
+                new CultureInfo("ru"),
+                new CultureInfo("uk")
             };
             services.Configure<RequestLocalizationOptions>(options =>
             {
