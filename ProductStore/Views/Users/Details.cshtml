@@ -1,4 +1,5 @@
 ﻿@model ProductStore.Areas.Identity.Data.ApplicationUser
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
 @{
     var comments = (List<Comment>)ViewBag.UserComments;
@@ -10,14 +11,13 @@
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
 
-<h1>Details</h1>
-
+<h1>@localizer["Details"]</h1>
 <div class="register-photo">
     <div class="form-container">
         <div class="form-horizontal">
             <div style="background-color: white">
                 <div>
-                    <h4 style="text-align: center">User</h4>
+                    <h4 style="text-align: center">@localizer["User"]</h4>
                     <hr />
                     <dl class="row">
                         <dt class="col-sm-4">
@@ -126,18 +126,18 @@
                     </dl>
                 </div>
                 <hr />
-                <h4 style="text-align: center">Comments</h4>
+                <h4 style="text-align: center">@localizer["Comments"]</h4>
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>
-                                Title
+                                @localizer["Title"]
                             </th>
                             <th>
-                                Body
+                                @localizer["Body"]
                             </th>
                             <th>
-                                Product name
+                                @localizer["Product name"]
                             </th>
                         </tr>
                     </thead>
@@ -158,18 +158,18 @@
                         }
                     </tbody>
                 </table>
-                <h4 style="text-align: center">Marks</h4>
+                <h4 style="text-align: center">@localizer["Marks"]</h4>
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>
-                                Mark id
+                                @localizer["Mark id"]
                             </th>
                             <th>
-                                Total mark
+                                @localizer["Total mark"]
                             </th>
                             <th>
-                                Product name
+                                @localizer["Product name"]
                             </th>
                         </tr>
                     </thead>
@@ -190,21 +190,21 @@
                         }
                     </tbody>
                 </table>
-                <h4 style="text-align: center">Orders</h4>
+                <h4 style="text-align: center">@localizer["Orders"]</h4>
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>
-                                Addres
+                                @localizer["Addres"]
                             </th>
                             <th>
-                                City
+                                @localizer["City"]
                             </th>
                             <th>
-                                Zip code
+                                @localizer["Zip code"]
                             </th>
                             <th>
-                                Payment type
+                                @localizer["Payment type"]
                             </th>
                         </tr>
                     </thead>
@@ -231,7 +231,7 @@
                 </table>
                 <div>
                     @*<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">Edit</a>*@
-                    <a asp-action="Index" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">Back to List</a>
+                    <a asp-action="Index" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">@localizer["Back to List"]</a>
                 </div>
             </div>
         </div>
