@@ -1,34 +1,36 @@
 ﻿@using ProductStore.Models
 @model List<ProductStore.Models.UserRolesViewModel>
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
-<h1>User Roles</h1>
+<h1>@localizer["User Roles"]</h1>
 <table class="table table-striped">
     <thead class="thead-light">
         <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Roles</th>
-            <th>Action</th>
+            <th>@localizer["First Name"]</th>
+            <th>@localizer["Last Name"]</th>
+            <th>@localizer["Email"]</th>
+            <th>@localizer["Roles"]</th>
+            <th>@localizer["Action"]</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var user in Model)
         {
-        <tr>
-            <td>@user.FirstName</td>
-            <td>@user.LastName</td>
-            <td>@user.UserName</td>
-            <td>@user.Email</td>
-            <td>@string.Join(" , ", user.Roles.ToList())</td>
-            <td>
-                <a class="btn btn-secondary btn-sm" asp-controller="UserRoles" asp-action="Manage" asp-route-userId="@user.UserId">Manage</a>
-            </td>
-        </tr>
+            <tr>
+                <td>@user.FirstName</td>
+                <td>@user.LastName</td>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+                <td>@string.Join(" , ", user.Roles.ToList())</td>
+                <td>
+                    <a class="btn btn-secondary btn-sm" asp-controller="UserRoles" asp-action="Manage" asp-route-userId="@user.UserId">@localizer["Manage"]</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
