@@ -1,13 +1,14 @@
 ﻿@model ProductStore.Models.Category
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
 
-<h1>Create</h1>
+<h1>@localizer["Create"]</h1>
 
-<h4>Category</h4>
+<h4>@localizer["Category"]</h4>
 <hr />
 @if (ViewBag.StatusMessage != null)
 {
@@ -51,13 +52,13 @@
                         <span asp-validation-for="AddedDate" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-secondary btn-lg btn-block" />
+                        <input type="submit" value="@localizer["Create"]" class="btn btn-secondary btn-lg btn-block" />
                     </div>
                 </form>
             </div>
 
             <div>
-                <a asp-action="Index" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">Back to List</a>
+                <a asp-action="Index" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">@localizer["Back to List"]</a>
             </div>
         </div>
     </div>
