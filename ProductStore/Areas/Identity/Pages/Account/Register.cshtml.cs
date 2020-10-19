@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +19,7 @@ using Microsoft.Extensions.Logging;
 using ProductStore.Areas.Identity.Data;
 using ProductStore.Models;
 using ProductStore.Services;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ProductStore.Areas.Identity.Pages.Account
 {
@@ -26,17 +30,20 @@ namespace ProductStore.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IMailService _emailSender;
+        private readonly ImageService _imageService;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IMailService emailSender)
+            IMailService emailSender,
+            ImageService imageService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _imageService = imageService;
         }
 
         [BindProperty]
@@ -102,7 +109,9 @@ namespace ProductStore.Areas.Identity.Pages.Account
                     UserName = Input.UserName,
                     Email = Input.Email,
                     FirstName = Input.FirstName,
-                    LastName = Input.LastName 
+                    LastName = Input.LastName,
+                    ProfilePicture = "/files/BasicUserPhoto.png",
+                    ImageUrl = "BasicUserPhoto.png"
                 };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);

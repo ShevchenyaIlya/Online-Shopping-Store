@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProductStore.Areas.Identity.Data;
+using ProductStore.Services;
 
 namespace ProductStore.Areas.Identity.Pages.Account.Manage
 {
@@ -16,13 +17,16 @@ namespace ProductStore.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly ImageService _imageService;
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager,
+            ImageService imageService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _imageService = imageService;
         }
 
         public string Username { get; set; }
@@ -48,7 +52,7 @@ namespace ProductStore.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
             [Display(Name = "Profile Picture")]
-            public byte[] ProfilePicture { get; set; }
+            public string ProfilePicture { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
@@ -114,11 +118,8 @@ namespace ProductStore.Areas.Identity.Pages.Account.Manage
             if (Request.Form.Files.Count > 0)
             {
                 IFormFile file = Request.Form.Files.FirstOrDefault();
-                using (var dataStream = new MemoryStream())
-                {
-                    await file.CopyToAsync(dataStream);
-                    user.ProfilePicture = dataStream.ToArray();
-                }
+                var path = await _imageService.SaveImageAsync(file);
+                user.ProfilePicture = path;
                 await _userManager.UpdateAsync(user);
             }
 
