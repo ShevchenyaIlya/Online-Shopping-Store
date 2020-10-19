@@ -25,10 +25,10 @@ namespace ProductStore.Models
         public bool IsDeleted { get; set; }
 
         [DataType(DataType.ImageUrl)]
-        public string ImageUrl { get; set; }
+        public string ImageName { get; set; }
 
         [Display(Name = "Picture")]
-        public byte[] CategoryPicture { get; set; }
+        public string CategoryPicture { get; set; }
 
         [Display(Name = "Added date")]
         [DataType(DataType.DateTime)]

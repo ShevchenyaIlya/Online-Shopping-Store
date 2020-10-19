@@ -24,6 +24,6 @@ namespace ProductStore.Models
         public string CountryCode { get; set; }
 
         [Display(Name = "Country image")]
-        public byte[] CountryPicture { get; set; }
+        public string CountryPicture { get; set; }
     }
 }

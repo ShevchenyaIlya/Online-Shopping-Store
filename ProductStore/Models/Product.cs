@@ -62,7 +62,7 @@ namespace ProductStore.Models
         public int Quantity { get; set; }
 
         [DataType(DataType.ImageUrl)]
-        public string ImageUrl { get; set; }
+        public string ImageName { get; set; }
 
         [Display(Name = "Category")]
         public virtual Category Category { get; set; }
@@ -72,6 +72,6 @@ namespace ProductStore.Models
         public DateTime AddedDate { get; set; }
 
         [Display(Name = "Picture")]
-        public byte[] ProductPicture { get; set; }
+        public string ProductPicture { get; set; }
     }
 }
