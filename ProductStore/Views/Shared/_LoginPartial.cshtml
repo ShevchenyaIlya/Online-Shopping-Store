@@ -26,6 +26,11 @@
     <li class="nav-item dropdown">
         @await Html.PartialAsync("_CulturePartial")
     </li>
+    <li style=" margin-top: 7px;">
+        <a href="#" >
+            <img src="~/images/basket.png" style="width:32px; height: 26px; background-color: transparent; border-radius: 5%; align-self: end; margin-left: 15px" />
+        </a>
+    </li>
     @if (SignInManager.IsSignedIn(User))
     {
 
@@ -40,7 +45,7 @@
             <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
                 @if (profilePhoto != null)
                 {
-                    <img id="profilePicture" style=" vertical-align: central; width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; margin-left: 10px; object-fit: cover" src="data:image/*;base64,@(Convert.ToBase64String(profilePhoto))">
+                    <img id="profilePicture" style=" vertical-align: central; width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; margin-left: 10px; object-fit: cover" src="@profilePhoto">
                 }
                 else
                 {
