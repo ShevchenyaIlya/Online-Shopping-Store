@@ -20,6 +20,7 @@ using Microsoft.Extensions.Options;
 using ProductStore.Areas.Identity.Data;
 using ProductStore.Constrain;
 using ProductStore.Data;
+using ProductStore.Hubs;
 using ProductStore.Services;
 using ProductStore.Settings;
 
@@ -39,6 +40,8 @@ namespace ProductStore
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddSignalR();
+            services.AddSingleton<ImageService>();
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
             services.AddTransient<Services.IMailService, Services.MailService>();
             services.AddLocalization(options => options.ResourcesPath = "Resources");
@@ -106,6 +109,7 @@ namespace ProductStore
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                endpoints.MapHub<CommentHub>("/commenthub");
             });
         }
     }
