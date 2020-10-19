@@ -3,10 +3,10 @@
 
 <div class="card">
     @{
-        var base64 = Convert.ToBase64String(Model.ProductPicture);
-        var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+//var base64 = Convert.ToBase64String(Model.ProductPicture);
+//var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
     }
-    <div class="card-img" style="background-image: url(@imgsrc);">
+    <div class="card-img" style="background-image: url(@Model.ProductPicture);">
     </div>
     <div class="card-body">
         <h5 class="card-title">@Model.ProductName</h5>

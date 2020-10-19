@@ -8,18 +8,18 @@
     ViewBag.Title = "ProductCard";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var user = await UserManager.GetUserAsync(User);
-
+    //var userImage = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(user.ProfilePicture));
 }
 @{
-    var base64 = Convert.ToBase64String(Model.ProductPicture);
-    var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+//var base64 = Convert.ToBase64String(Model.ProductPicture);
+//var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
 }
 
 <div class="container">
     <div class="row">
         <div class="col-md-7">
             <div class="row">
-                <div class="col-md-12"><img class="img-thumbnail img-fluid center-block" src=@imgsrc></div>
+                <div class="col-md-12"><img class="img-thumbnail img-fluid center-block" src="@Model.ProductPicture"></div>
             </div>
         </div>
         <div class="col-md-5">
@@ -95,7 +95,7 @@
             <h3>@localizer["Comments"]</h3>
         </div>
         <div class="card-body" style="height:auto;">
-            <form asp-action="Comment" method="post">
+            @*<form asp-action="Comment" method="post">*@
                 <ul class="list-group">
                     <li class="list-group-item" style="margin-bottom:6px;">
                         <div class="media">
@@ -103,9 +103,16 @@
                             <div class="media-body">
                                 <div class="media" style="overflow:visible;">
                                     <div>
-                                        @if (user.ProfilePicture != null)
+                                        @if (user != null)
                                         {
-                                            <img class="mr-3" style="width: 40px; height:40px;" src="data:image/*;base64,@(Convert.ToBase64String(user.ProfilePicture))">
+                                            if (user.ProfilePicture != null)
+                                            {
+                                                <img class="mr-3" style="width: 40px; height:40px;" src="@user.ProfilePicture">
+                                            }
+                                            else
+                                            {
+                                                <img id="profilePicture" style=" vertical-align: central; width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; margin-left: 10px; object-fit: cover" src="~/images/BasicUserPhoto.png">
+                                            }
                                         }
                                         else
                                         {
@@ -120,8 +127,11 @@
                                                 </p>
                                                 <input id="commentTitle" name="commentTitle" class="form-control" style="width:100%" type="text" />
                                                 <textarea id="commentBody" name="commentBody" style="width:100%" class="form-control" for type="text"></textarea>
-                                                <input name="productName" class="form-control" style="width:100%" value="@Model.ProductName" type="text" hidden />
-                                                <button class="btn btn-light" type="submit">Add Comment</button>
+                                                <input id="postDate" name="postDate" class="form-control" style="width:100%" value="@DateTime.Now.ToString()" type="text" hidden />
+                                                <input id="username" name="username" class="form-control" style="width:100%" value="@user.UserName" type="text" hidden />
+                                                <input id="image" name="image" class="form-control" style="width:100%" value="@user.ProfilePicture" type="text" hidden />
+                                                <input id="productName" name="productName" class="form-control" style="width:100%" value="@Model.ProductName" type="text" hidden />
+                                                <button id="sendButton1" class="btn btn-light" type="submit">Add Comment</button>
                                             </div>
                                         </div>
                                     </div>
@@ -130,7 +140,7 @@
                         </div>
                     </li>
                 </ul>
-            </form>
+            @*</form>*@
             <div id="commentlist">
                 <partial name="_DisplayComments" model=comments />
             </div>

@@ -45,7 +45,7 @@
                     @Html.DisplayFor(modelItem => item.CountryCode)
                 </td>
                 <td>
-                    <img id="profilePicture" style="width:45px;height:30px; object-fit:cover" src="data:image/*;base64,@(Convert.ToBase64String(item.CountryPicture))">
+                    <img id="profilePicture" style="width:45px;height:30px; object-fit:cover" src="@item.CountryPicture">
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.CountryId" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">@localizer["Edit"]</a>

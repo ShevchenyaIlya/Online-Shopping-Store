@@ -77,10 +77,10 @@
                 {
                     <div class="col-sm-6 col-md-3 item">
                         @{
-                            var base64 = Convert.ToBase64String(Model.ElementAt(i).ProductPicture);
-                            var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                            //var base64 = Convert.ToBase64String(Model.ElementAt(i).ProductPicture);
+                            //var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
                         }
-                        <a href="~/Home/ProductCard/@Model.ElementAt(i).ProductId"><img style="height:150px; width:200px" src="@imgsrc"></a>
+                        <a href="~/Home/ProductCard/@Model.ElementAt(i).ProductId"><img style="height:150px; width:200px" src="@Model.ElementAt(i).ProductPicture"></a>
                         <h3 class="name">@Model.ElementAt(i).ProductName</h3>
                         <p class="description">@Model.ElementAt(i).ProductDescription</p><a class="action" href="~/Home/ProductCard/@Model.ElementAt(i).ProductId"><i class="fa fa-arrow-circle-right"></i></a>
                         <div class="product-item-badge">@localizer["NewWord"]</div>

@@ -44,7 +44,7 @@
                                     @Html.DisplayNameFor(model => model.Product.ProductPicture)
                                 </dt>
                                 <dd class="col-sm-8">
-                                    <img id="profilePicture" style="width:80px;height:60px; object-fit:cover" src="data:image/*;base64,@(Convert.ToBase64String(Model.Product.ProductPicture))">
+                                    <img id="profilePicture" style="width:80px;height:60px; object-fit:cover" src="@Model.Product.ProductPicture">
                                 </dd>
                             </dl>
                         </dd>
