@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProductStore.Data;
 using ProductStore.Models;
+using ProductStore.Services;
 
 namespace ProductStore.Controllers
 {
@@ -18,13 +19,15 @@ namespace ProductStore.Controllers
     public class CategoriesController : Controller
     {
         private readonly AuthDbContext _context;
+        private readonly ImageService _imageService;
 
         [TempData]
         public string StatusMessage { get; set; }
 
-        public CategoriesController(AuthDbContext context)
+        public CategoriesController(AuthDbContext context, ImageService imageService)
         {
             _context = context;
+            _imageService = imageService;
         }
 
         // GET: Categories
@@ -77,12 +80,9 @@ namespace ProductStore.Controllers
                 if (Request.Form.Files.Count > 0)
                 {
                     IFormFile file = Request.Form.Files.FirstOrDefault();
-                    using (var dataStream = new MemoryStream())
-                    {
-                        await file.CopyToAsync(dataStream);
-                        category.CategoryPicture = dataStream.ToArray();
-                    }
-                    category.ImageUrl = file.FileName;
+                    var path = await _imageService.SaveImageAsync(file);
+                    category.CategoryPicture = path;
+                    category.ImageName = file.FileName;
                 }
                 else
                 {
@@ -134,12 +134,9 @@ namespace ProductStore.Controllers
                 if (Request.Form.Files.Count > 0)
                 {
                     IFormFile file = Request.Form.Files.FirstOrDefault();
-                    using (var dataStream = new MemoryStream())
-                    {
-                        await file.CopyToAsync(dataStream);
-                        category.CategoryPicture = dataStream.ToArray();
-                    }
-                    category.ImageUrl = file.FileName;
+                    var path = await _imageService.SaveImageAsync(file);
+                    category.CategoryPicture = path;
+                    category.ImageName = file.FileName;
                 }
                 else
                 {

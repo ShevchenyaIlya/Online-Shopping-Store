@@ -10,6 +10,7 @@ using ProductStore.Data;
 using ProductStore.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using ProductStore.Services;
 
 namespace ProductStore.Controllers
 {
@@ -19,13 +20,15 @@ namespace ProductStore.Controllers
     public class ProductsController : Controller
     {
         private readonly AuthDbContext _context;
+        private readonly ImageService _imageService;
 
         [TempData]
         public string StatusMessage { get; set; }
 
-        public ProductsController(AuthDbContext context)
+        public ProductsController(AuthDbContext context, ImageService imageService)
         {
             _context = context;
+            _imageService = imageService;
         }
 
         // GET: Products
@@ -130,12 +133,9 @@ namespace ProductStore.Controllers
                 if (Request.Form.Files.Count > 0)
                 {
                     IFormFile file = Request.Form.Files.FirstOrDefault();
-                    using (var dataStream = new MemoryStream())
-                    {
-                        await file.CopyToAsync(dataStream);
-                        product.ProductPicture = dataStream.ToArray();
-                    }
-                    product.ImageUrl = file.FileName;
+                    var imagePath = await _imageService.SaveImageAsync(file);
+                    product.ProductPicture = imagePath;
+                    product.ImageName = file.FileName;
                 }
                 else
                 {
@@ -229,12 +229,9 @@ namespace ProductStore.Controllers
                 if (Request.Form.Files.Count > 0)
                 {
                     IFormFile file = Request.Form.Files.FirstOrDefault();
-                    using (var dataStream = new MemoryStream())
-                    {
-                        await file.CopyToAsync(dataStream);
-                        product.ProductPicture = dataStream.ToArray();
-                    }
-                    product.ImageUrl = file.FileName;
+                    var imagePath = await _imageService.SaveImageAsync(file);
+                    product.ProductPicture = imagePath;
+                    product.ImageName = file.FileName;
                 }
                 else
                 {

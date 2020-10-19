@@ -10,6 +10,7 @@ using ProductStore.Data;
 using ProductStore.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using ProductStore.Services;
 
 namespace ProductStore.Controllers
 {
@@ -19,13 +20,15 @@ namespace ProductStore.Controllers
     public class CountriesController : Controller
     {
         private readonly AuthDbContext _context;
+        private readonly ImageService _imageService;
 
         [TempData]
         public string StatusMessage { get; set; }
 
-        public CountriesController(AuthDbContext context)
+        public CountriesController(AuthDbContext context, ImageService imageService)
         {
             _context = context;
+            _imageService = imageService;
         }
 
         // GET: Countries
@@ -78,11 +81,8 @@ namespace ProductStore.Controllers
                 if (Request.Form.Files.Count > 0)
                 {
                     IFormFile file = Request.Form.Files.FirstOrDefault();
-                    using (var dataStream = new MemoryStream())
-                    {
-                        await file.CopyToAsync(dataStream);
-                        country.CountryPicture = dataStream.ToArray();
-                    }
+                    var path = await _imageService.SaveImageAsync(file);
+                    country.CountryPicture = path;
                 }
                 else
                 {
@@ -136,11 +136,8 @@ namespace ProductStore.Controllers
                 if (Request.Form.Files.Count > 0)
                 {
                     IFormFile file = Request.Form.Files.FirstOrDefault();
-                    using (var dataStream = new MemoryStream())
-                    {
-                        await file.CopyToAsync(dataStream);
-                        country.CountryPicture = dataStream.ToArray();
-                    }
+                    var path = await _imageService.SaveImageAsync(file);
+                    country.CountryPicture = path;
                 }
                 else
                 {
