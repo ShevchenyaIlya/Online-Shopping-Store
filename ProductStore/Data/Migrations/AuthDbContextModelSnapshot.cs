@@ -211,8 +211,8 @@ namespace ProductStore.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<byte[]>("ProfilePicture")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("ProfilePicture")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -258,10 +258,10 @@ namespace ProductStore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("CategoryPicture")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("CategoryPicture")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
+                    b.Property<string>("ImageName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
@@ -322,8 +322,8 @@ namespace ProductStore.Migrations
                     b.Property<string>("CountryName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("CountryPicture")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("CountryPicture")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CountryId");
 
@@ -424,7 +424,7 @@ namespace ProductStore.Migrations
                     b.Property<float>("Fat")
                         .HasColumnType("real");
 
-                    b.Property<string>("ImageUrl")
+                    b.Property<string>("ImageName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("InStock")
@@ -447,8 +447,8 @@ namespace ProductStore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("ProductPicture")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("ProductPicture")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("Protein")
                         .HasColumnType("real");
