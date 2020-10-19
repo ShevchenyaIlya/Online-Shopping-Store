@@ -35,6 +35,6 @@ namespace ProductStore.Areas.Identity.Data
 
         public int UsernameChangeLimit { get; set; } = 10;
 
-        public byte[] ProfilePicture { get; set; }
+        public string ProfilePicture { get; set; }
     }
 }
