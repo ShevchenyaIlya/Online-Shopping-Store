@@ -2,10 +2,6 @@
 @inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
 <div class="card">
-    @{
-//var base64 = Convert.ToBase64String(Model.ProductPicture);
-//var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
-    }
     <div class="card-img" style="background-image: url(@Model.ProductPicture);">
     </div>
     <div class="card-body">
@@ -18,7 +14,8 @@
                 <a href="/Home/ProductCard/@Model.ProductId" class="btn btn-secondary" role="button" aria-pressed="true">@localizer["MoreInfo"]</a>
             </small>
             <h4 style="align-self:end; background-color: transparent; height: 40px; margin-left:20px; text-align:center; width: 38%; border-radius: 5%">@Model.Price руб.</h4>
-            <a href="#"><img src="~/images/basket.png" style="width:45px; height: 38px; background-color: transparent; border-radius: 5%; align-self: end; margin-left: 15px" /></a>
+            <a href="/Home/AddToProductBasketCookie/@Model.ProductName"><img src="~/images/basket.png" style="width:45px; height: 38px; background-color: transparent; border-radius: 5%; align-self: end; margin-left: 15px" /></a>
         </div>
     </div>
 </div>
+
