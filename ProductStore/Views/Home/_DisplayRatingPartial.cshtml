@@ -1,0 +1,28 @@
+﻿@model ProductStore.VIewModels.RatingViewModel
+
+@for (int i = 0; i < Model.FullStars; i++)
+{
+    string identif = "ratingValue" + (i + 1);
+    <a href="javascript:void(0)" id="@identif" class="fa fa-star" style="color: #FFD700"></a>
+}
+
+@if (Model.HalfStar)
+{
+    string identif = "ratingValue" + (Model.FullStars + 1);
+    <a href="javascript:void(0)" id="@identif" class="fa fa-star-half-o" style="color: #FFD700"></a>
+}
+
+@for (int i = 0; i < Model.EmptyStart; i++)
+{
+    string identif = "ratingValue" + (5 - Model.EmptyStart + i + 1);
+    <a href="javascript:void(0)" id="@identif" class="fa fa-star-o" style="color: #FFD700"></a>
+}
+
+@if (Model.MarkCount == 0)
+{
+    <span class="gift__rating-number">(Be the first)</span>
+}
+else
+{
+    <span class="gift__rating-number">(@Model.MarkCount)</span>
+}
