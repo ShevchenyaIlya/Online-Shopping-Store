@@ -31,6 +31,11 @@ namespace ProductStore.Areas.Identity.Pages.Account
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
+            if (Request.Cookies["ProductBasket1"] != null)
+            {
+                Response.Cookies.Delete("ProductBasket1");
+            }
+
             if (returnUrl != null)
             {
                 return LocalRedirect(returnUrl);
