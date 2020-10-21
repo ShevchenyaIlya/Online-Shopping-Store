@@ -1,0 +1,51 @@
+﻿@model List<Product>
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+<div class="card">
+    <div class="card-header">
+        <h3>@localizer["Products in basket"]</h3>
+    </div>
+    <div class="card-body" style="height:auto;">
+        @if (Model != null)
+        {
+            <ul id="userComments1" class="list-group">
+                @foreach (var value in Model)
+                {
+
+                    <li class="list-group-item" style="margin-bottom:6px;">
+                        <div class="media">
+                            <div></div>
+                            <div class="media-body">
+                                <div class="media" style="overflow:visible;">
+                                    <div>
+                                        <img class="mr-3" style="width: 120px; height:120px; margin-top: 5px" src="@value.ProductPicture">
+                                    </div>
+                                    <div class="media-body" style="overflow:visible;">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div><strong>@value.ProductName</strong></div>
+                                                <hr />
+                                                <div><b>@localizer["Description"]:</b> @value.ProductDescription</div>
+                                                <div class="row" style="align-content:center; align-items:center;">
+                                                    <div class="col-md-3"><b>@localizer["Category"]:</b> @value.Category.CategoryName</div>
+                                                    <div class="col-md-5"><b>@localizer["Created place"]:</b> @value.CreatedPlace.CountryName</div>
+                                                    <div class="col-md-2"><b>@localizer["Price"]:</b> @value.Price</div>
+                                                    <div class="col-md-2"><b>@localizer["Weight"]:</b> @value.Weight</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row flex-row-reverse">
+                                            <a class="btn btn-secondary btn-sm" href="/Home/RemoveFromProductBasketCookie/@value.ProductName">@localizer["Remove"]</a>
+                                            <a class="btn btn-secondary btn-sm" href="/Home/ProductCard/@value.ProductId">@localizer["Details"]</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <a class="btn btn-secondary btn-sm" href="/Home/CreateOrder">@localizer["Create order"]</a>
+        }
+    </div>
+</div>
