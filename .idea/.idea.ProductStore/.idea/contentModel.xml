@@ -1,0 +1,947 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/.cache/JetBrains/Rider2020.2/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.cache/JetBrains/Rider2020.2/resharper-host/local/Transient/Rider/v202/SolutionCaches/_ProductStore.-2012685039.00" t="ExcludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/consoles/db" t="IncludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/extensions" t="IncludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p="ProductStore" t="IncludeRecursive">
+        <e p="Areas" t="Include">
+          <e p="Identity" t="Include">
+            <e p="Data" t="Include">
+              <e p="ApplicationUser.cs" t="Include" />
+            </e>
+            <e p="IdentityHostingStartup.cs" t="Include" />
+            <e p="Pages" t="Include">
+              <e p="Account" t="Include">
+                <e p="AccessDenied.cshtml" t="Include" />
+                <e p="AccessDenied.cshtml.cs" t="Include" />
+                <e p="ConfirmEmail.cshtml" t="Include" />
+                <e p="ConfirmEmail.cshtml.cs" t="Include" />
+                <e p="ConfirmEmailChange.cshtml" t="Include" />
+                <e p="ConfirmEmailChange.cshtml.cs" t="Include" />
+                <e p="ExternalLogin.cshtml" t="Include" />
+                <e p="ExternalLogin.cshtml.cs" t="Include" />
+                <e p="ForgotPassword.cshtml" t="Include" />
+                <e p="ForgotPassword.cshtml.cs" t="Include" />
+                <e p="ForgotPasswordConfirmation.cshtml" t="Include" />
+                <e p="ForgotPasswordConfirmation.cshtml.cs" t="Include" />
+                <e p="Lockout.cshtml" t="Include" />
+                <e p="Lockout.cshtml.cs" t="Include" />
+                <e p="Login.cshtml" t="Include" />
+                <e p="Login.cshtml.cs" t="Include" />
+                <e p="LoginWith2fa.cshtml" t="Include" />
+                <e p="LoginWith2fa.cshtml.cs" t="Include" />
+                <e p="LoginWithRecoveryCode.cshtml" t="Include" />
+                <e p="LoginWithRecoveryCode.cshtml.cs" t="Include" />
+                <e p="Logout.cshtml" t="Include" />
+                <e p="Logout.cshtml.cs" t="Include" />
+                <e p="Manage" t="Include">
+                  <e p="ChangePassword.cshtml" t="Include" />
+                  <e p="ChangePassword.cshtml.cs" t="Include" />
+                  <e p="DeletePersonalData.cshtml" t="Include" />
+                  <e p="DeletePersonalData.cshtml.cs" t="Include" />
+                  <e p="Disable2fa.cshtml" t="Include" />
+                  <e p="Disable2fa.cshtml.cs" t="Include" />
+                  <e p="DownloadPersonalData.cshtml" t="Include" />
+                  <e p="DownloadPersonalData.cshtml.cs" t="Include" />
+                  <e p="Email.cshtml" t="Include" />
+                  <e p="Email.cshtml.cs" t="Include" />
+                  <e p="EnableAuthenticator.cshtml" t="Include" />
+                  <e p="EnableAuthenticator.cshtml.cs" t="Include" />
+                  <e p="ExternalLogins.cshtml" t="Include" />
+                  <e p="ExternalLogins.cshtml.cs" t="Include" />
+                  <e p="GenerateRecoveryCodes.cshtml" t="Include" />
+                  <e p="GenerateRecoveryCodes.cshtml.cs" t="Include" />
+                  <e p="Index.cshtml" t="Include" />
+                  <e p="Index.cshtml.cs" t="Include" />
+                  <e p="ManageNavPages.cs" t="Include" />
+                  <e p="PersonalData.cshtml" t="Include" />
+                  <e p="PersonalData.cshtml.cs" t="Include" />
+                  <e p="ResetAuthenticator.cshtml" t="Include" />
+                  <e p="ResetAuthenticator.cshtml.cs" t="Include" />
+                  <e p="SetPassword.cshtml" t="Include" />
+                  <e p="SetPassword.cshtml.cs" t="Include" />
+                  <e p="ShowRecoveryCodes.cshtml" t="Include" />
+                  <e p="ShowRecoveryCodes.cshtml.cs" t="Include" />
+                  <e p="TwoFactorAuthentication.cshtml" t="Include" />
+                  <e p="TwoFactorAuthentication.cshtml.cs" t="Include" />
+                  <e p="_Layout.cshtml" t="Include" />
+                  <e p="_ManageNav.cshtml" t="Include" />
+                  <e p="_StatusMessage.cshtml" t="Include" />
+                  <e p="_ViewImports.cshtml" t="Include" />
+                </e>
+                <e p="Register.cshtml" t="Include" />
+                <e p="Register.cshtml.cs" t="Include" />
+                <e p="RegisterConfirmation.cshtml" t="Include" />
+                <e p="RegisterConfirmation.cshtml.cs" t="Include" />
+                <e p="ResetPassword.cshtml" t="Include" />
+                <e p="ResetPassword.cshtml.cs" t="Include" />
+                <e p="ResetPasswordConfirmation.cshtml" t="Include" />
+                <e p="ResetPasswordConfirmation.cshtml.cs" t="Include" />
+                <e p="_ExternalAuthentication.cshtml" t="Include" />
+                <e p="_StatusMessage.cshtml" t="Include" />
+                <e p="_ViewImports.cshtml" t="Include" />
+              </e>
+              <e p="Error.cshtml" t="Include" />
+              <e p="Error.cshtml.cs" t="Include" />
+              <e p="_AuthLayout.cshtml" t="Include" />
+              <e p="_ValidationScriptsPartial.cshtml" t="Include" />
+              <e p="_ViewImports.cshtml" t="Include" />
+              <e p="_ViewStart.cshtml" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Constrain" t="Include">
+          <e p="CustomConstrain.cs" t="Include" />
+        </e>
+        <e p="Controllers" t="Include">
+          <e p="API" t="Include">
+            <e p="LanguageController.cs" t="Include" />
+            <e p="PostCommentController.cs" t="Include" />
+          </e>
+          <e p="AdminController.cs" t="Include" />
+          <e p="CategoriesController.cs" t="Include" />
+          <e p="CommentsController.cs" t="Include" />
+          <e p="CountriesController.cs" t="Include" />
+          <e p="CultureController.cs" t="Include" />
+          <e p="HomeController.cs" t="Include" />
+          <e p="MailController.cs" t="Include" />
+          <e p="MarksController.cs" t="Include" />
+          <e p="OrdersController.cs" t="Include" />
+          <e p="PagesController.cs" t="Include" />
+          <e p="ProductsController.cs" t="Include" />
+          <e p="RatingsController.cs" t="Include" />
+          <e p="RoleManagerController.cs" t="Include" />
+          <e p="SalesController.cs" t="Include" />
+          <e p="UserRolesController.cs" t="Include" />
+          <e p="UsersController.cs" t="Include" />
+        </e>
+        <e p="Data" t="Include">
+          <e p="AuthDbContext.cs" t="Include" />
+          <e p="ContextSeed.cs" t="Include" />
+          <e p="Migrations" t="Include">
+            <e p="20201004062739_Initial-Create.Designer.cs" t="Include" />
+            <e p="20201004062739_Initial-Create.cs" t="Include" />
+            <e p="20201004075852_Product-County-Models.Designer.cs" t="Include" />
+            <e p="20201004075852_Product-County-Models.cs" t="Include" />
+            <e p="20201004080507_UserUpdate.Designer.cs" t="Include" />
+            <e p="20201004080507_UserUpdate.cs" t="Include" />
+            <e p="20201004122017_Category.Designer.cs" t="Include" />
+            <e p="20201004122017_Category.cs" t="Include" />
+            <e p="20201004143810_Basket-Rating-Sale.Designer.cs" t="Include" />
+            <e p="20201004143810_Basket-Rating-Sale.cs" t="Include" />
+            <e p="20201004144415_Basket-Rating-Sale-1.Designer.cs" t="Include" />
+            <e p="20201004144415_Basket-Rating-Sale-1.cs" t="Include" />
+            <e p="20201004184319_MyMigration.Designer.cs" t="Include" />
+            <e p="20201004184319_MyMigration.cs" t="Include" />
+            <e p="20201005061115_Product-Changes-Second.Designer.cs" t="Include" />
+            <e p="20201005061115_Product-Changes-Second.cs" t="Include" />
+            <e p="20201005063458_Product-Changes-Thirt.Designer.cs" t="Include" />
+            <e p="20201005063458_Product-Changes-Thirt.cs" t="Include" />
+            <e p="20201005071509_Comment-Changies.Designer.cs" t="Include" />
+            <e p="20201005071509_Comment-Changies.cs" t="Include" />
+            <e p="20201005072733_Comment.Designer.cs" t="Include" />
+            <e p="20201005072733_Comment.cs" t="Include" />
+            <e p="20201006190338_Image-For-User.Designer.cs" t="Include" />
+            <e p="20201006190338_Image-For-User.cs" t="Include" />
+            <e p="20201008171753_Category-change.Designer.cs" t="Include" />
+            <e p="20201008171753_Category-change.cs" t="Include" />
+            <e p="20201008172610_Added-Images.Designer.cs" t="Include" />
+            <e p="20201008172610_Added-Images.cs" t="Include" />
+            <e p="20201008182301_Fix-Mistace.Designer.cs" t="Include" />
+            <e p="20201008182301_Fix-Mistace.cs" t="Include" />
+            <e p="20201018155649_ChangeUser.Designer.cs" t="Include" />
+            <e p="20201018155649_ChangeUser.cs" t="Include" />
+            <e p="20201018163748_Update-Images.Designer.cs" t="Include" />
+            <e p="20201018163748_Update-Images.cs" t="Include" />
+            <e p="AuthDbContextModelSnapshot.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Enums" t="Include">
+          <e p="Roles.cs" t="Include" />
+        </e>
+        <e p="Hubs" t="Include">
+          <e p="CommentHub.cs" t="Include" />
+        </e>
+        <e p="Logs" t="Include">
+          <e p="mylog-All-20201015.txt" t="Include" />
+          <e p="mylog-All-20201016.txt" t="Include" />
+          <e p="mylog-All-20201017.txt" t="Include" />
+          <e p="mylog-All-20201018.txt" t="Include" />
+          <e p="mylog-Error-20201015.txt" t="Include" />
+          <e p="mylog-Error-20201016.txt" t="Include" />
+          <e p="mylog-Error-20201017.txt" t="Include" />
+          <e p="mylog-Error-20201018.txt" t="Include" />
+        </e>
+        <e p="Models" t="Include">
+          <e p="Category.cs" t="Include" />
+          <e p="Comment.cs" t="Include" />
+          <e p="Country.cs" t="Include" />
+          <e p="MailRequest.cs" t="Include" />
+          <e p="Mark.cs" t="Include" />
+          <e p="Order.cs" t="Include" />
+          <e p="Product.cs" t="Include" />
+          <e p="ProductBasket.cs" t="Include" />
+          <e p="Rating.cs" t="Include" />
+          <e p="Sale.cs" t="Include" />
+          <e p="WelcomeRequest.cs" t="Include" />
+        </e>
+        <e p="ProductStore.csproj" t="IncludeRecursive" />
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="PublishProfiles" t="Include">
+            <e p="OnlineShoppingStore - Web Deploy.pubxml" t="Include" />
+          </e>
+          <e p="ServiceDependencies" t="Include">
+            <e p="OnlineShoppingStore - Web Deploy" t="Include">
+              <e p="mssql1.arm.json" t="Include" />
+              <e p="profile.arm.json" t="Include" />
+            </e>
+          </e>
+          <e p="launchSettings.json" t="Include" />
+          <e p="serviceDependencies.OnlineShoppingStore - Web Deploy.json" t="Include" />
+          <e p="serviceDependencies.json" t="Include" />
+          <e p="serviceDependencies.local.json" t="Include" />
+        </e>
+        <e p="Repositories" t="Include">
+          <e p="CommentRepositoryAsync.cs" t="Include" />
+          <e p="GenericRepositoryAsync.cs" t="Include" />
+          <e p="UnitOfWork.cs" t="Include" />
+        </e>
+        <e p="Resources" t="Include">
+          <e p="Areas" t="Include">
+            <e p="Identity" t="Include">
+              <e p="Pages" t="Include">
+                <e p="Account" t="Include">
+                  <e p="Login.en.resx" t="Include" />
+                  <e p="Login.ru.resx" t="Include" />
+                  <e p="Login.uk.resx" t="Include" />
+                  <e p="Manage" t="Include">
+                    <e p="ChangePassword.en.resx" t="Include" />
+                    <e p="ChangePassword.ru.resx" t="Include" />
+                    <e p="ChangePassword.uk.resx" t="Include" />
+                    <e p="Email.en.resx" t="Include" />
+                    <e p="Email.ru.resx" t="Include" />
+                    <e p="Email.uk.resx" t="Include" />
+                    <e p="ExternalLogins.en.resx" t="Include" />
+                    <e p="ExternalLogins.ru.resx" t="Include" />
+                    <e p="ExternalLogins.uk.resx" t="Include" />
+                    <e p="Index.en.resx" t="Include" />
+                    <e p="Index.ru.resx" t="Include" />
+                    <e p="Index.uk.resx" t="Include" />
+                    <e p="_Layout.en.resx" t="Include" />
+                    <e p="_Layout.ru.resx" t="Include" />
+                    <e p="_Layout.uk.resx" t="Include" />
+                    <e p="_ManageNav.en.resx" t="Include" />
+                    <e p="_ManageNav.ru.resx" t="Include" />
+                    <e p="_ManageNav.uk.resx" t="Include" />
+                  </e>
+                  <e p="Register.en.resx" t="Include" />
+                  <e p="Register.ru.resx" t="Include" />
+                  <e p="Register.uk.resx" t="Include" />
+                </e>
+                <e p="_AuthLayout.en.resx" t="Include" />
+                <e p="_AuthLayout.uk.resx" t="Include" />
+                <e p="_authLayout.ru.resx" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="Controllers" t="Include">
+            <e p="API" t="Include">
+              <e p="LanguageController.en.resx" t="Include" />
+              <e p="LanguageController.ru.resx" t="Include" />
+            </e>
+          </e>
+          <e p="VIews" t="Include">
+            <e p="Admin" t="Include">
+              <e p="Index.en.resx" t="Include" />
+              <e p="Index.ru.resx" t="Include" />
+              <e p="Index.uk.resx" t="Include" />
+              <e p="_AdminLayout.en.resx" t="Include" />
+              <e p="_AdminLayout.ru.resx" t="Include" />
+              <e p="_AdminLayout.uk.resx" t="Include" />
+            </e>
+            <e p="Categories" t="Include">
+              <e p="Create.en.resx" t="Include" />
+              <e p="Create.ru.resx" t="Include" />
+              <e p="Create.uk.resx" t="Include" />
+              <e p="Delete.en.resx" t="Include" />
+              <e p="Delete.ru.resx" t="Include" />
+              <e p="Delete.uk.resx" t="Include" />
+              <e p="Details.en.resx" t="Include" />
+              <e p="Details.ru.resx" t="Include" />
+              <e p="Details.uk.resx" t="Include" />
+              <e p="Edit.en.resx" t="Include" />
+              <e p="Edit.ru.resx" t="Include" />
+              <e p="Edit.uk.resx" t="Include" />
+              <e p="Index.en.resx" t="Include" />
+              <e p="Index.ru.resx" t="Include" />
+              <e p="Index.uk.resx" t="Include" />
+            </e>
+            <e p="Comments" t="Include">
+              <e p="Create.en.resx" t="Include" />
+              <e p="Create.ru.resx" t="Include" />
+              <e p="Create.uk.resx" t="Include" />
+              <e p="Delete.en.resx" t="Include" />
+              <e p="Delete.ru.resx" t="Include" />
+              <e p="Delete.uk.resx" t="Include" />
+              <e p="Details.en.resx" t="Include" />
+              <e p="Details.ru.resx" t="Include" />
+              <e p="Details.uk.resx" t="Include" />
+              <e p="Edit.en.resx" t="Include" />
+              <e p="Edit.ru.resx" t="Include" />
+              <e p="Edit.uk.resx" t="Include" />
+              <e p="Index.en.resx" t="Include" />
+              <e p="Index.ru.resx" t="Include" />
+              <e p="Index.uk.resx" t="Include" />
+            </e>
+            <e p="Countries" t="Include">
+              <e p="Create.en.resx" t="Include" />
+              <e p="Create.ru.resx" t="Include" />
+              <e p="Create.uk.resx" t="Include" />
+              <e p="Delete.en.resx" t="Include" />
+              <e p="Delete.ru.resx" t="Include" />
+              <e p="Delete.uk.resx" t="Include" />
+              <e p="Details.en.resx" t="Include" />
+              <e p="Details.ru.resx" t="Include" />
+              <e p="Details.uk.resx" t="Include" />
+              <e p="Edit.en.resx" t="Include" />
+              <e p="Edit.ru.resx" t="Include" />
+              <e p="Edit.uk.resx" t="Include" />
+              <e p="Index.en.resx" t="Include" />
+              <e p="Index.ru.resx" t="Include" />
+              <e p="Index.uk.resx" t="Include" />
+            </e>
+            <e p="Home" t="Include">
+              <e p="About.en.resx" t="Include" />
+              <e p="About.ru.resx" t="Include" />
+              <e p="About.uk.resx" t="Include" />
+              <e p="CategoryCard.en.resx" t="Include" />
+              <e p="CategoryCard.ru.resx" t="Include" />
+              <e p="CategoryCard.uk.resx" t="Include" />
+              <e p="CategoryItem.en.resx" t="Include" />
+              <e p="CategoryItem.ru.resx" t="Include" />
+              <e p="CategoryItem.uk.resx" t="Include" />
+              <e p="Index.en.resx" t="Include" />
+              <e p="Index.ru.resx" t="Include" />
+              <e p="Index.uk.resx" t="Include" />
+              <e p="Privacy.en.resx" t="Include" />
+              <e p="Privacy.ru.resx" t="Include" />
+              <e p="Privacy.uk.resx" t="Include" />
+              <e p="ProductCard.en.resx" t="Include" />
+              <e p="ProductCard.ru.resx" t="Include" />
+              <e p="ProductCard.uk.resx" t="Include" />
+              <e p="Products.en.resx" t="Include" />
+              <e p="Products.ru.resx" t="Include" />
+              <e p="Products.uk.resx" t="Include" />
+              <e p="Sales.en.resx" t="Include" />
+              <e p="Sales.ru.resx" t="Include" />
+              <e p="Sales.uk.resx" t="Include" />
+              <e p="_DisplayCategoryPartial.en.resx" t="Include" />
+              <e p="_DisplayCategoryPartial.ru.resx" t="Include" />
+              <e p="_DisplayCategoryPartial.uk.resx" t="Include" />
+              <e p="_DisplayProductPartial.en.resx" t="Include" />
+              <e p="_DisplayProductPartial.ru.resx" t="Include" />
+              <e p="_DisplayProductPartial.uk.resx" t="Include" />
+            </e>
+            <e p="Mail" t="Include">
+              <e p="SendMail.en.resx" t="Include" />
+              <e p="SendMail.ru.resx" t="Include" />
+              <e p="SendWelcomeMail.en.resx" t="Include" />
+              <e p="SendWelcomeMail.ru.resx" t="Include" />
+            </e>
+            <e p="Marks" t="Include">
+              <e p="Create.en.resx" t="Include" />
+              <e p="Create.ru.resx" t="Include" />
+              <e p="Create.uk.resx" t="Include" />
+              <e p="Delete.en.resx" t="Include" />
+              <e p="Delete.ru.resx" t="Include" />
+              <e p="Delete.uk.resx" t="Include" />
+              <e p="Details.en.resx" t="Include" />
+              <e p="Details.ru.resx" t="Include" />
+              <e p="Details.uk.resx" t="Include" />
+              <e p="Edit.en.resx" t="Include" />
+              <e p="Edit.ru.resx" t="Include" />
+              <e p="Edit.uk.resx" t="Include" />
+              <e p="Index.en.resx" t="Include" />
+              <e p="Index.ru.resx" t="Include" />
+              <e p="Index.uk.resx" t="Include" />
+            </e>
+            <e p="Orders" t="Include">
+              <e p="Create.en.resx" t="Include" />
+              <e p="Create.ru.resx" t="Include" />
+              <e p="Create.uk.resx" t="Include" />
+              <e p="Delete.en.resx" t="Include" />
+              <e p="Delete.ru.resx" t="Include" />
+              <e p="Delete.uk.resx" t="Include" />
+              <e p="Details.en.resx" t="Include" />
+              <e p="Details.ru.resx" t="Include" />
+              <e p="Details.uk.resx" t="Include" />
+              <e p="Edit.en.resx" t="Include" />
+              <e p="Edit.ru.resx" t="Include" />
+              <e p="Edit.uk.resx" t="Include" />
+              <e p="Index.en.resx" t="Include" />
+              <e p="Index.ru.resx" t="Include" />
+              <e p="Index.uk.resx" t="Include" />
+            </e>
+            <e p="Products" t="Include">
+              <e p="Create.en.resx" t="Include" />
+              <e p="Create.ru.resx" t="Include" />
+              <e p="Create.uk.resx" t="Include" />
+              <e p="Delete.en.resx" t="Include" />
+              <e p="Delete.ru.resx" t="Include" />
+              <e p="Delete.uk.resx" t="Include" />
+              <e p="Details.en.resx" t="Include" />
+              <e p="Details.ru.resx" t="Include" />
+              <e p="Details.uk.resx" t="Include" />
+              <e p="Edit.en.resx" t="Include" />
+              <e p="Edit.ru.resx" t="Include" />
+              <e p="Edit.uk.resx" t="Include" />
+              <e p="Index.en.resx" t="Include" />
+              <e p="Index.ru.resx" t="Include" />
+              <e p="Index.uk.resx" t="Include" />
+            </e>
+            <e p="Ratings" t="Include">
+              <e p="Create.en.resx" t="Include" />
+              <e p="Create.ru.resx" t="Include" />
+              <e p="Create.uk.resx" t="Include" />
+              <e p="Delete.en.resx" t="Include" />
+              <e p="Delete.ru.resx" t="Include" />
+              <e p="Delete.uk.resx" t="Include" />
+              <e p="Details.en.resx" t="Include" />
+              <e p="Details.ru.resx" t="Include" />
+              <e p="Details.uk.resx" t="Include" />
+              <e p="Edit.en.resx" t="Include" />
+              <e p="Edit.ru.resx" t="Include" />
+              <e p="Edit.uk.resx" t="Include" />
+              <e p="Index.en.resx" t="Include" />
+              <e p="Index.ru.resx" t="Include" />
+              <e p="Index.uk.resx" t="Include" />
+            </e>
+            <e p="RoleManager" t="Include">
+              <e p="Index.en.resx" t="Include" />
+              <e p="Index.ru.resx" t="Include" />
+              <e p="Index.uk.resx" t="Include" />
+            </e>
+            <e p="Sales" t="Include">
+              <e p="Create.en.resx" t="Include" />
+              <e p="Create.ru.resx" t="Include" />
+              <e p="Create.uk.resx" t="Include" />
+              <e p="Delete.en.resx" t="Include" />
+              <e p="Delete.ru.resx" t="Include" />
+              <e p="Delete.uk.resx" t="Include" />
+              <e p="Details.en.resx" t="Include" />
+              <e p="Details.ru.resx" t="Include" />
+              <e p="Details.uk.resx" t="Include" />
+              <e p="Edit.en.resx" t="Include" />
+              <e p="Edit.ru.resx" t="Include" />
+              <e p="Edit.uk.resx" t="Include" />
+              <e p="Index.en.resx" t="Include" />
+              <e p="Index.ru.resx" t="Include" />
+              <e p="Index.uk.resx" t="Include" />
+            </e>
+            <e p="Shared" t="Include">
+              <e p="AuthorizeFailed.en.resx" t="Include" />
+              <e p="AuthorizeFailed.ru.resx" t="Include" />
+              <e p="AuthorizeFailed.uk.resx" t="Include" />
+              <e p="Components" t="Include">
+                <e p="Category" t="Include">
+                  <e p="Default.en.resx" t="Include" />
+                  <e p="Default.ru.resx" t="Include" />
+                  <e p="Default.uk.resx" t="Include" />
+                </e>
+                <e p="EnergyInfo" t="Include">
+                  <e p="Default.en.resx" t="Include" />
+                  <e p="Default.ru.resx" t="Include" />
+                  <e p="Default.uk.resx" t="Include" />
+                </e>
+                <e p="Product" t="Include">
+                  <e p="Default.en.resx" t="Include" />
+                  <e p="Default.ru.resx" t="Include" />
+                  <e p="Default.uk.resx" t="Include" />
+                </e>
+                <e p="User" t="Include">
+                  <e p="Default.en.resx" t="Include" />
+                  <e p="Default.ru.resx" t="Include" />
+                  <e p="Default.uk.resx" t="Include" />
+                </e>
+              </e>
+              <e p="Error.en.resx" t="Include" />
+              <e p="Error.ru.resx" t="Include" />
+              <e p="Error.uk.resx" t="Include" />
+              <e p="_CulturePartial.en.resx" t="Include" />
+              <e p="_CulturePartial.ru.resx" t="Include" />
+              <e p="_CulturePartial.uk.resx" t="Include" />
+              <e p="_Layout.en.resx" t="Include" />
+              <e p="_Layout.ru.resx" t="Include" />
+              <e p="_Layout.uk.resx" t="Include" />
+              <e p="_LoginPartial.ru.resx" t="Include" />
+              <e p="_SuccessPartial.en.resx" t="Include" />
+              <e p="_SuccessPartial.ru.resx" t="Include" />
+              <e p="_SuccessPartial.uk.resx" t="Include" />
+              <e p="_loginPartial.en.resx" t="Include" />
+              <e p="_loginPartial.uk.resx" t="Include" />
+            </e>
+            <e p="UserRoles" t="Include">
+              <e p="Index.en.resx" t="Include" />
+              <e p="Index.ru.resx" t="Include" />
+              <e p="Index.uk.resx" t="Include" />
+              <e p="Manage.en.resx" t="Include" />
+              <e p="Manage.ru.resx" t="Include" />
+              <e p="Manage.uk.resx" t="Include" />
+            </e>
+            <e p="Users" t="Include">
+              <e p="Delete.en.resx" t="Include" />
+              <e p="Delete.ru.resx" t="Include" />
+              <e p="Delete.uk.resx" t="Include" />
+              <e p="Details.en.resx" t="Include" />
+              <e p="Details.ru.resx" t="Include" />
+              <e p="Details.uk.resx" t="Include" />
+              <e p="Index.en.resx" t="Include" />
+              <e p="Index.ru.resx" t="Include" />
+              <e p="Index.uk.resx" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="ScaffoldingReadMe.txt" t="Include" />
+        <e p="Services" t="Include">
+          <e p="ICommentRepositoryAsync .cs" t="Include" />
+          <e p="IGenericRepositoryAsync.cs" t="Include" />
+          <e p="IMailService.cs" t="Include" />
+          <e p="IUnitOfWork.cs" t="Include" />
+          <e p="ImageService.cs" t="Include" />
+          <e p="MailService.cs" t="Include" />
+        </e>
+        <e p="Settings" t="Include">
+          <e p="MailSettings.cs" t="Include" />
+        </e>
+        <e p="Startup.cs" t="Include" />
+        <e p="VIewModels" t="Include">
+          <e p="CommentViewModel.cs" t="Include" />
+          <e p="ErrorViewModel.cs" t="Include" />
+          <e p="ManageUserRolesViewModel.cs" t="Include" />
+          <e p="UserRolesViewModel.cs" t="Include" />
+        </e>
+        <e p="ViewComponents" t="Include">
+          <e p="CategoryViewComponent.cs" t="Include" />
+          <e p="EnergyInfoViewComponent.cs" t="Include" />
+          <e p="ProductViewComponent.cs" t="Include" />
+          <e p="UserViewComponent.cs" t="Include" />
+        </e>
+        <e p="Views" t="Include">
+          <e p="Admin" t="Include">
+            <e p="Index.cshtml" t="Include" />
+            <e p="_AdminLayout.cshtml" t="Include" />
+          </e>
+          <e p="Categories" t="Include">
+            <e p="Create.cshtml" t="Include" />
+            <e p="Delete.cshtml" t="Include" />
+            <e p="Details.cshtml" t="Include" />
+            <e p="Edit.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Comments" t="Include">
+            <e p="Create.cshtml" t="Include" />
+            <e p="Delete.cshtml" t="Include" />
+            <e p="Details.cshtml" t="Include" />
+            <e p="Edit.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Countries" t="Include">
+            <e p="Create.cshtml" t="Include" />
+            <e p="Delete.cshtml" t="Include" />
+            <e p="Details.cshtml" t="Include" />
+            <e p="Edit.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Home" t="Include">
+            <e p="About.cshtml" t="Include" />
+            <e p="Category.cshtml" t="Include" />
+            <e p="CategoryCard.cshtml" t="Include" />
+            <e p="CategoryItems.cshtml" t="Include" />
+            <e p="FindProduct.cshtml" t="Include" />
+            <e p="Image.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+            <e p="Privacy.cshtml" t="Include" />
+            <e p="ProductCard.cshtml" t="Include" />
+            <e p="Products.cshtml" t="Include" />
+            <e p="Sales.cshtml" t="Include" />
+            <e p="_DisplayCategoryPartial.cshtml" t="Include" />
+            <e p="_DisplayComments.cshtml" t="Include" />
+            <e p="_DisplayProductPartial.cshtml" t="Include" />
+          </e>
+          <e p="Mail" t="Include">
+            <e p="SendMail.cshtml" t="Include" />
+            <e p="SendWelcomeMail.cshtml" t="Include" />
+          </e>
+          <e p="Marks" t="Include">
+            <e p="Create.cshtml" t="Include" />
+            <e p="Delete.cshtml" t="Include" />
+            <e p="Details.cshtml" t="Include" />
+            <e p="Edit.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Orders" t="Include">
+            <e p="Create.cshtml" t="Include" />
+            <e p="Delete.cshtml" t="Include" />
+            <e p="Details.cshtml" t="Include" />
+            <e p="Edit.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Pages" t="Include">
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Products" t="Include">
+            <e p="Create.cshtml" t="Include" />
+            <e p="Delete.cshtml" t="Include" />
+            <e p="Details.cshtml" t="Include" />
+            <e p="Edit.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Ratings" t="Include">
+            <e p="Create.cshtml" t="Include" />
+            <e p="Delete.cshtml" t="Include" />
+            <e p="Details.cshtml" t="Include" />
+            <e p="Edit.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="RoleManager" t="Include">
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Sales" t="Include">
+            <e p="Create.cshtml" t="Include" />
+            <e p="Delete.cshtml" t="Include" />
+            <e p="Details.cshtml" t="Include" />
+            <e p="Edit.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Shared" t="Include">
+            <e p="AuthorizationFailed.cshtml" t="Include" />
+            <e p="Components" t="Include">
+              <e p="Category" t="Include">
+                <e p="Default.cshtml" t="Include" />
+              </e>
+              <e p="EnergyInfo" t="Include">
+                <e p="Default.cshtml" t="Include" />
+              </e>
+              <e p="Product" t="Include">
+                <e p="Default.cshtml" t="Include" />
+              </e>
+              <e p="User" t="Include">
+                <e p="Default.cshtml" t="Include" />
+              </e>
+            </e>
+            <e p="Error.cshtml" t="Include" />
+            <e p="_CulturePartial.cshtml" t="Include" />
+            <e p="_Layout.cshtml" t="Include" />
+            <e p="_LoginPartial.cshtml" t="Include" />
+            <e p="_StatusMessage.cshtml" t="Include" />
+            <e p="_SuccessPartial.cshtml" t="Include" />
+            <e p="_ValidationScriptsPartial.cshtml" t="Include" />
+          </e>
+          <e p="UserRoles" t="Include">
+            <e p="Index.cshtml" t="Include" />
+            <e p="Manage.cshtml" t="Include" />
+          </e>
+          <e p="Users" t="Include">
+            <e p="Delete.cshtml" t="Include" />
+            <e p="Details.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="_ViewImports.cshtml" t="Include" />
+          <e p="_ViewStart.cshtml" t="Include" />
+        </e>
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="libman.json" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="ProductStore.AssemblyInfo.cs" t="Include" />
+              <e p="ProductStore.RazorAssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="wwwroot" t="Include">
+          <e p="Templates" t="Include">
+            <e p="ForgotPasswordTemplate.html" t="Include" />
+            <e p="VerifiedTemplate.html" t="Include" />
+            <e p="WelcomeTemplate.html" t="Include" />
+          </e>
+          <e p="css" t="Include">
+            <e p="Article-Clean.css" t="Include" />
+            <e p="Article-List.css" t="Include" />
+            <e p="Cards.css" t="Include" />
+            <e p="Community-ChatComments.css" t="Include" />
+            <e p="Data-Table.css" t="Include" />
+            <e p="Footer-Clean.css" t="Include" />
+            <e p="Footer-Dark.css" t="Include" />
+            <e p="Login-Form-Dark.css" t="Include" />
+            <e p="MainLayout.css" t="Include" />
+            <e p="Navigation-with-Button.css" t="Include" />
+            <e p="Pretty-Search-Form.css" t="Include" />
+            <e p="Profile-Edit-Form-1.css" t="Include" />
+            <e p="Profile-Edit-Form.css" t="Include" />
+            <e p="Registration-Form-with-Photo.css" t="Include" />
+            <e p="Sidebar-Cool-SB-Admin-Inspirate.css" t="Include" />
+            <e p="Simple-Slider.css" t="Include" />
+            <e p="bootstrap-grid.css" t="Include" />
+            <e p="bootstrap-grid.css.map" t="Include" />
+            <e p="bootstrap-grid.min.css" t="Include" />
+            <e p="bootstrap-grid.min.css.map" t="Include" />
+            <e p="bootstrap-reboot.css" t="Include" />
+            <e p="bootstrap-reboot.css.map" t="Include" />
+            <e p="bootstrap-reboot.min.css" t="Include" />
+            <e p="bootstrap-reboot.min.css.map" t="Include" />
+            <e p="bootstrap.css" t="Include" />
+            <e p="bootstrap.css.map" t="Include" />
+            <e p="bootstrap.min.css" t="Include" />
+            <e p="bootstrap.min.css.map" t="Include" />
+            <e p="canito-detalle-producto.css" t="Include" />
+            <e p="gift-product-long.css" t="Include" />
+            <e p="site.css" t="Include" />
+            <e p="smoothproducts.css" t="Include" />
+            <e p="styles.css" t="Include" />
+          </e>
+          <e p="favicon.ico" t="Include" />
+          <e p="files" t="Include">
+            <e p="1489254461807.jpg" t="Include" />
+            <e p="American-Flag.jpeg" t="Include" />
+            <e p="Bakery-Products.jpg" t="Include" />
+            <e p="Banana.jpg" t="Include" />
+            <e p="BasicUserPhoto.png" t="Include" />
+            <e p="Berries.jpg" t="Include" />
+            <e p="Blueberry.jpg" t="Include" />
+            <e p="Britan-Flag.jpg" t="Include" />
+            <e p="Flag_of_Belarus_.png" t="Include" />
+            <e p="apple.jpeg" t="Include" />
+            <e p="fresh-fruits.jpeg" t="Include" />
+            <e p="orange.jpg" t="Include" />
+            <e p="russian-flag-russian-flag-russia-flag-of-russia.jpg" t="Include" />
+            <e p="toys.jpg" t="Include" />
+            <e p="vegetables.jpg" t="Include" />
+            <e p="watermellon.jpg" t="Include" />
+          </e>
+          <e p="fonts" t="Include">
+            <e p="FontAwesome.otf" t="Include" />
+            <e p="Simple-Line-Icons.eot" t="Include" />
+            <e p="Simple-Line-Icons.svg" t="Include" />
+            <e p="Simple-Line-Icons.ttf" t="Include" />
+            <e p="Simple-Line-Icons.woff" t="Include" />
+            <e p="Simple-Line-Icons.woff2" t="Include" />
+            <e p="font-awesome.min.css" t="Include" />
+            <e p="fontawesome-webfont.eot" t="Include" />
+            <e p="fontawesome-webfont.svg" t="Include" />
+            <e p="fontawesome-webfont.ttf" t="Include" />
+            <e p="fontawesome-webfont.woff" t="Include" />
+            <e p="fontawesome-webfont.woff2" t="Include" />
+            <e p="ionicons.eot" t="Include" />
+            <e p="ionicons.min.css" t="Include" />
+            <e p="ionicons.svg" t="Include" />
+            <e p="ionicons.ttf" t="Include" />
+            <e p="ionicons.woff" t="Include" />
+            <e p="simple-line-icons.min.css" t="Include" />
+          </e>
+          <e p="images" t="Include">
+            <e p="1489254461807.jpg" t="Include" />
+            <e p="19-best-online-shopping-store-cart-logo.gif" t="Include" />
+            <e p="American-Flag.jpeg" t="Include" />
+            <e p="Bakery-Products.jpg" t="Include" />
+            <e p="Banana.jpg" t="Include" />
+            <e p="BasicUserPhoto.png" t="Include" />
+            <e p="Berries.jpg" t="Include" />
+            <e p="Blog-Online-Store-2020-1200x600.png" t="Include" />
+            <e p="Blueberry.jpg" t="Include" />
+            <e p="Britan-Flag.jpg" t="Include" />
+            <e p="Flag_of_Belarus_.png" t="Include" />
+            <e p="Flag_of_Ukraine.png" t="Include" />
+            <e p="Strawberry.jpg" t="Include" />
+            <e p="apple.jpeg" t="Include" />
+            <e p="basket.png" t="Include" />
+            <e p="beach.jpg" t="Include" />
+            <e p="building.jpg" t="Include" />
+            <e p="descarga.jpg" t="Include" />
+            <e p="desk.jpg" t="Include" />
+            <e p="ecommerce-platform.jpg" t="Include" />
+            <e p="fresh-fruits.jpeg" t="Include" />
+            <e p="kertas1-.jpg" t="Include" />
+            <e p="loft.jpg" t="Include" />
+            <e p="mango.jpg" t="Include" />
+            <e p="meeting.jpg" t="Include" />
+            <e p="mil_hojas_web_2000x.jpg" t="Include" />
+            <e p="orange.jpg" t="Include" />
+            <e p="pineapple.jpg" t="Include" />
+            <e p="russian-flag-russian-flag-russia-flag-of-russia.jpg" t="Include" />
+            <e p="slide.jpg" t="Include" />
+            <e p="slider1.png" t="Include" />
+            <e p="slider2.png" t="Include" />
+            <e p="slider3.jpg" t="Include" />
+            <e p="star-sky.jpg" t="Include" />
+            <e p="store-1569252622.png" t="Include" />
+            <e p="toys.jpg" t="Include" />
+            <e p="vegetables.jpg" t="Include" />
+            <e p="watermellon.jpg" t="Include" />
+          </e>
+          <e p="js" t="Include">
+            <e p="Chat.js" t="Include" />
+            <e p="Comments.js" t="Include" />
+            <e p="Profile-Edit-Form.js" t="Include" />
+            <e p="README.md" t="Include" />
+            <e p="Simple-Slider.js" t="Include" />
+            <e p="bootstrap.bundle.js" t="Include" />
+            <e p="bootstrap.bundle.js.map" t="Include" />
+            <e p="bootstrap.bundle.min.js" t="Include" />
+            <e p="bootstrap.bundle.min.js.map" t="Include" />
+            <e p="bootstrap.js" t="Include" />
+            <e p="bootstrap.js.map" t="Include" />
+            <e p="bootstrap.min.js" t="Include" />
+            <e p="bootstrap.min.js.map" t="Include" />
+            <e p="bs-init.js" t="Include" />
+            <e p="index.d.ts" t="Include" />
+            <e p="index.js.flow" t="Include" />
+            <e p="jquery-3.4.1.intellisense.js" t="Include" />
+            <e p="jquery-3.4.1.js" t="Include" />
+            <e p="jquery-3.4.1.min.js" t="Include" />
+            <e p="jquery-3.4.1.min.map" t="Include" />
+            <e p="jquery-3.4.1.slim.js" t="Include" />
+            <e p="jquery-3.4.1.slim.min.js" t="Include" />
+            <e p="jquery-3.4.1.slim.min.map" t="Include" />
+            <e p="jquery.min.js" t="Include" />
+            <e p="jquery.validate-vsdoc.js" t="Include" />
+            <e p="jquery.validate.js" t="Include" />
+            <e p="jquery.validate.min.js" t="Include" />
+            <e p="jquery.validate.unobtrusive.js" t="Include" />
+            <e p="jquery.validate.unobtrusive.min.js" t="Include" />
+            <e p="modernizr-2.8.3.js" t="Include" />
+            <e p="popper-utils.js" t="Include" />
+            <e p="popper-utils.js.map" t="Include" />
+            <e p="popper-utils.min.js" t="Include" />
+            <e p="popper-utils.min.js.map" t="Include" />
+            <e p="popper.js" t="Include" />
+            <e p="popper.js.map" t="Include" />
+            <e p="popper.min.js" t="Include" />
+            <e p="popper.min.js.map" t="Include" />
+            <e p="signalr" t="Include">
+              <e p="dist" t="Include">
+                <e p="browser" t="Include">
+                  <e p="signalr.js" t="Include" />
+                  <e p="signalr.min.js" t="Include" />
+                </e>
+              </e>
+            </e>
+            <e p="site.js" t="Include" />
+            <e p="smoothproducts.min.js" t="Include" />
+            <e p="theme.js" t="Include" />
+          </e>
+          <e p="lib" t="Include">
+            <e p="bootstrap" t="Include">
+              <e p="LICENSE" t="Include" />
+              <e p="dist" t="Include">
+                <e p="css" t="Include">
+                  <e p="bootstrap-grid.css" t="Include" />
+                  <e p="bootstrap-grid.css.map" t="Include" />
+                  <e p="bootstrap-grid.min.css" t="Include" />
+                  <e p="bootstrap-grid.min.css.map" t="Include" />
+                  <e p="bootstrap-reboot.css" t="Include" />
+                  <e p="bootstrap-reboot.css.map" t="Include" />
+                  <e p="bootstrap-reboot.min.css" t="Include" />
+                  <e p="bootstrap-reboot.min.css.map" t="Include" />
+                  <e p="bootstrap.css" t="Include" />
+                  <e p="bootstrap.css.map" t="Include" />
+                  <e p="bootstrap.min.css" t="Include" />
+                  <e p="bootstrap.min.css.map" t="Include" />
+                </e>
+                <e p="js" t="Include">
+                  <e p="bootstrap.bundle.js" t="Include" />
+                  <e p="bootstrap.bundle.js.map" t="Include" />
+                  <e p="bootstrap.bundle.min.js" t="Include" />
+                  <e p="bootstrap.bundle.min.js.map" t="Include" />
+                  <e p="bootstrap.js" t="Include" />
+                  <e p="bootstrap.js.map" t="Include" />
+                  <e p="bootstrap.min.js" t="Include" />
+                  <e p="bootstrap.min.js.map" t="Include" />
+                </e>
+              </e>
+            </e>
+            <e p="datatables" t="Include">
+              <e p="css" t="Include">
+                <e p="dataTables.bootstrap.css" t="Include" />
+                <e p="dataTables.bootstrap.min.css" t="Include" />
+                <e p="dataTables.bootstrap4.css" t="Include" />
+                <e p="dataTables.bootstrap4.min.css" t="Include" />
+                <e p="dataTables.foundation.css" t="Include" />
+                <e p="dataTables.foundation.min.css" t="Include" />
+                <e p="dataTables.jqueryui.css" t="Include" />
+                <e p="dataTables.jqueryui.min.css" t="Include" />
+                <e p="dataTables.material.css" t="Include" />
+                <e p="dataTables.material.min.css" t="Include" />
+                <e p="dataTables.semanticui.css" t="Include" />
+                <e p="dataTables.semanticui.min.css" t="Include" />
+                <e p="dataTables.uikit.css" t="Include" />
+                <e p="dataTables.uikit.min.css" t="Include" />
+                <e p="jquery.dataTables.css" t="Include" />
+                <e p="jquery.dataTables.min.css" t="Include" />
+                <e p="jquery.dataTables_themeroller.css" t="Include" />
+                <e p="jquery.dataTables_themeroller.min.css" t="Include" />
+              </e>
+              <e p="images" t="Include">
+                <e p="sort_asc.png" t="Include" />
+                <e p="sort_asc_disabled.png" t="Include" />
+                <e p="sort_both.png" t="Include" />
+                <e p="sort_desc.png" t="Include" />
+                <e p="sort_desc_disabled.png" t="Include" />
+              </e>
+              <e p="js" t="Include">
+                <e p="dataTables.bootstrap.js" t="Include" />
+                <e p="dataTables.bootstrap.min.js" t="Include" />
+                <e p="dataTables.bootstrap4.js" t="Include" />
+                <e p="dataTables.bootstrap4.min.js" t="Include" />
+                <e p="dataTables.dataTables.js" t="Include" />
+                <e p="dataTables.dataTables.min.js" t="Include" />
+                <e p="dataTables.foundation.js" t="Include" />
+                <e p="dataTables.foundation.min.js" t="Include" />
+                <e p="dataTables.jqueryui.js" t="Include" />
+                <e p="dataTables.jqueryui.min.js" t="Include" />
+                <e p="dataTables.material.js" t="Include" />
+                <e p="dataTables.material.min.js" t="Include" />
+                <e p="dataTables.semanticui.js" t="Include" />
+                <e p="dataTables.semanticui.min.js" t="Include" />
+                <e p="dataTables.uikit.js" t="Include" />
+                <e p="dataTables.uikit.min.js" t="Include" />
+                <e p="jquery.dataTables.js" t="Include" />
+                <e p="jquery.dataTables.min.js" t="Include" />
+              </e>
+            </e>
+            <e p="jquery" t="Include">
+              <e p="LICENSE.txt" t="Include" />
+              <e p="dist" t="Include">
+                <e p="jquery.js" t="Include" />
+                <e p="jquery.min.js" t="Include" />
+                <e p="jquery.min.map" t="Include" />
+              </e>
+            </e>
+            <e p="jquery-validation" t="Include">
+              <e p="LICENSE.md" t="Include" />
+              <e p="dist" t="Include">
+                <e p="additional-methods.js" t="Include" />
+                <e p="additional-methods.min.js" t="Include" />
+                <e p="jquery.validate.js" t="Include" />
+                <e p="jquery.validate.min.js" t="Include" />
+              </e>
+            </e>
+            <e p="jquery-validation-unobtrusive" t="Include">
+              <e p="LICENSE.txt" t="Include" />
+              <e p="jquery.validate.unobtrusive.js" t="Include" />
+              <e p="jquery.validate.unobtrusive.min.js" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="ProductStore.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
