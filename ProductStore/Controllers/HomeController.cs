@@ -369,7 +369,11 @@ namespace ProductStore.Controllers
         [Route("CreateOrder")]
         public IActionResult CreateOrder()
         {
-            return View();
+            if (Request.Cookies["ProductBasket1"] != null)
+            {
+                return View();
+            }
+            return RedirectToAction(nameof(Basket));
         }
 
         [HttpPost]

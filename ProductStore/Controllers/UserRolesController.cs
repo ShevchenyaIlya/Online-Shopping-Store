@@ -90,6 +90,7 @@ namespace ProductStore.Controllers
                 return View();
             }
             var roles = await _userManager.GetRolesAsync(user);
+            roles.Remove("admin");
             var result = await _userManager.RemoveFromRolesAsync(user, roles);
             if (!result.Succeeded)
             {
