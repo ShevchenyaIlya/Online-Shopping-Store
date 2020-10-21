@@ -8,11 +8,16 @@
     ViewBag.Title = "ProductCard";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var user = await UserManager.GetUserAsync(User);
+    var userId = "";
+    if (user != null)
+    {
+        userId = user.Id;
+    }
     //var userImage = string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(user.ProfilePicture));
 }
 @{
-//var base64 = Convert.ToBase64String(Model.ProductPicture);
-//var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+    //var base64 = Convert.ToBase64String(Model.ProductPicture);
+    //var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
 }
 
 <div class="container">
@@ -27,19 +32,57 @@
                 <h1 class="col-md-10">@Model.ProductName</h1>
 
                 <div class="col-md-2">
-                    <a href="#"><img src="~/images/basket.png" style="width: 45px; height: 38px; background-color: transparent; border-radius: 5%; align-self:end" /></a>
+                    <a href="/Home/AddToProductBasketCookie/@Model.ProductName"><img src="~/images/basket.png" style="width: 45px; height: 38px; background-color: transparent; border-radius: 5%; align-self:end" /></a>
                 </div>
             </div>
 
             <div class="col-md-12" style="align-content:center">
-                <div class="gift__rating">
+                <div class="gift__rating" id="ratinglist">
+                    @*<i class="fa fa-star fa-check"></i>
                     <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star fa-star-half-o"></i>
-                    <span class="gift__rating-number">(35)</span>
+                    <i class="fa fa-star-half"></i>
+                    <i class="fa fa-star-half-empty"></i>
+                    <i class="fa fa-star-half-full"></i>
+                    <i class="fa fa-star-half-o"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa-star fa checked"></i>
+                    <i class="fa-star fa checked"></i>
+                    <i class="fa-star fa checked"></i>
+                    <i class="fa-star fa"></i>
+                    <span class="gift__rating-number">(35)</span>*@
+                    @{
+                        var rating = ViewBag.Rating;
+                    }
+
+                    @for (int i = 0; i < rating.FullStars; i++)
+                    {
+                        string identif = "ratingValue" + (i + 1);
+                        <a href="javascript:void(0)" id="@identif" class="fa fa-star" style="color: #FFD700"></a>
+                    }
+
+                    @if (rating.HalfStar)
+                    {
+                        string identif = "ratingValue" + (rating.FullStars + 1);
+                        <a href="javascript:void(0)" id="@identif" class="fa fa-star-half-o" style="color: #FFD700"></a>
+                    }
+
+                    @for (int i = 0; i < rating.EmptyStart; i++)
+                    {
+                        string identif = "ratingValue" + (5 - rating.EmptyStart + i + 1);
+                        <a href="javascript:void(0)" id="@identif" class="fa fa-star-o" style="color: #FFD700"></a>
+                    }
+
+                    @if (rating.MarkCount == 0)
+                    {
+                        <span class="gift__rating-number">(Be the first)</span>
+                    }
+                    else
+                    {
+                        <span class="gift__rating-number">(@rating.MarkCount)</span>
+                    }
+                    @*<partial name="_DisplayRatingPartial" model="@ViewBag.Rating" />*@
                 </div>
+                @*<a href="#">Set rating</a>*@
             </div>
             <hr />
             <p>
@@ -96,6 +139,8 @@
         </div>
         <div class="card-body" style="height:auto;">
             @*<form asp-action="Comment" method="post">*@
+            @if (user != null)
+            {
                 <ul class="list-group">
                     <li class="list-group-item" style="margin-bottom:6px;">
                         <div class="media">
@@ -103,16 +148,9 @@
                             <div class="media-body">
                                 <div class="media" style="overflow:visible;">
                                     <div>
-                                        @if (user != null)
+                                        @if (user.ProfilePicture != null)
                                         {
-                                            if (user.ProfilePicture != null)
-                                            {
-                                                <img class="mr-3" style="width: 40px; height:40px;" src="@user.ProfilePicture">
-                                            }
-                                            else
-                                            {
-                                                <img id="profilePicture" style=" vertical-align: central; width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; margin-left: 10px; object-fit: cover" src="~/images/BasicUserPhoto.png">
-                                            }
+                                            <img class="mr-3" style="width: 40px; height:40px;" src="@user.ProfilePicture">
                                         }
                                         else
                                         {
@@ -131,7 +169,7 @@
                                                 <input id="username" name="username" class="form-control" style="width:100%" value="@user.UserName" type="text" hidden />
                                                 <input id="image" name="image" class="form-control" style="width:100%" value="@user.ProfilePicture" type="text" hidden />
                                                 <input id="productName" name="productName" class="form-control" style="width:100%" value="@Model.ProductName" type="text" hidden />
-                                                <button id="sendButton1" class="btn btn-light" type="submit">Add Comment</button>
+                                                <button id="sendButton1" class="btn btn-secondary btn-sm" type="submit">Add Comment</button>
                                             </div>
                                         </div>
                                     </div>
@@ -140,11 +178,12 @@
                         </div>
                     </li>
                 </ul>
+            }
             @*</form>*@
             <div id="commentlist">
                 <partial name="_DisplayComments" model=comments />
             </div>
-            <a href="javascript:void(0)" id="clicklink">Load more</a>
+            <a id="clicklink" class="btn btn-secondary btn-sm">Load more</a>
         </div>
     </div>
 </div>
@@ -164,75 +203,105 @@
                 data: { productName: prod}
             });
         });
+    </script>
 
+    <script>
+        $("#ratingValue1").click(function () {
+            var prod = '@Model.ProductName';
+            var userIdentificator = '@userId';
+            var ratingValue = "1";
+            $.ajax({
+                type: "get",
+                url: "/Home/OnUpdateRating",
+                success: function (responce) {
+                    $("#ratinglist").html(responce);
+                },
+                data: { productName: prod, userId: userIdentificator, value: ratingValue}
+            });
+        });
+    </script>
+
+    <script>
+        $("#ratingValue2").click(function () {
+            var prod = '@Model.ProductName';
+            var userIdentificator = '@userId';
+            var ratingValue = "2";
+            $.ajax({
+                type: "get",
+                url: "/Home/OnUpdateRating",
+                success: function (responce) {
+                    $("#ratinglist").html(responce);
+                },
+                data: { productName: prod, userId: userIdentificator, value: ratingValue }
+            });
+        });
+    </script>
+    <script>
+        $("#ratingValue3").click(function () {
+            var prod = '@Model.ProductName';
+            var userIdentificator = '@userId';
+            var ratingValue = "3";
+            $.ajax({
+                type: "get",
+                url: "/Home/OnUpdateRating",
+                success: function (responce) {
+                    $("#ratinglist").html(responce);
+                },
+                data: { productName: prod, userId: userIdentificator, value: ratingValue }
+            });
+        });
+    </script>
+    <script>
+        $("#ratingValue4").click(function () {
+            var prod = '@Model.ProductName';
+            var userIdentificator = '@userId';
+            var ratingValue = "4";
+            $.ajax({
+                type: "get",
+                url: "/Home/OnUpdateRating",
+                success: function (responce) {
+                    $("#ratinglist").html(responce);
+                },
+                data: { productName: prod, userId: userIdentificator, value: ratingValue }
+            });
+        });
+    </script>
+    <script>
+        $("#ratingValue5").click(function () {
+            var prod = '@Model.ProductName';
+            var userIdentificator = '@userId';
+            var ratingValue = "5";
+            $.ajax({
+                type: "get",
+                url: "/Home/OnUpdateRating",
+                success: function (responce) {
+                    $("#ratinglist").html(responce);
+                },
+                data: { productName: prod, userId: userIdentificator, value: ratingValue }
+            });
+        });
     </script>
 }
-@*<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#insert").click(function () {
-                val1 = "5";
-                val2 = "2";
 
-                $.ajax({
-                    type: "POST",
-                    url: "@Url.Action("Add")",
-                    data: { number1: val1, number2: val2 },
-                    dataType: "text",
-                    success: function (msg) {
-                        console.log(msg);
-                    },
-                    error: function (req, status, error) {
-                        console.log(msg);
-                    }
-                });
-            }
-        });
-    </script>*@
-
-@*@section scripts{
-    <script>
-        function GetPatient() {
-            var PID = document.getElementById("#PID");
-            var val1 = document.getElementById("#commentTitle").val();
-            var val2 = document.getElementById("#commentBody").val();
+    @*<script>
+        $("#ratingValue").click(function () {
+            var prod = '@Model.ProductName';
+            var userIdentificator = '@user.Id';
+            var ratingValue = "1";
             $.ajax({
-                type: "POST",
-                url: "@Url.Action("Add")";
-                data: { number1: val1, number2: val2 },
-                success: function (data) {
-
-                }
-                });
-            }
-
-        PID.onclick = () => {
-            GetPatient();
-        }
-
-    </script>
-    }*@
-@*<script type="text/javascript">
-        $(document).ready(function () {
-            $("#insert").click(function () {
-                val1 = document.getElementById("commentTitle").value;
-                val2 = document.getElementById("commentBody").value;
-
-                $.ajax({
-                    type: "POST",
-                    url: "@Url.Action("Add")",
-                    data: { number1: val1, number2: val2 },
-                    dataType: "text",
-                    success: function (msg) {
-                        console.log(msg);
-                    },
-                    error: function (req, status, error) {
-                        console.log(msg);
-                    }
-                });
-            }
+                type: "get",
+                url: "/Home/OnUpdateRating",
+                success: function (responce) {
+                    $("#ratinglist").html(responce);
+                },
+                data: { productName: prod, userId: userIdentificator, value: ratingValue }
+            });
         });
     </script>*@
+
+
+
+
 @*<script type="text/javascript">
         var btn = document.getElementById("customButton");
         btn.addEventListener("click", function () {
