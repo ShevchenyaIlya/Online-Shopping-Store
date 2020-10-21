@@ -41,18 +41,18 @@
                 <label asp-for="Input.ProfilePicture" style="width: 100%;"></label>
                 @if (Model.Input.ProfilePicture != null)
                 {
-                    <img id="profilePicture" style="width:350px;height:350px; object-fit:cover" src="@Model.Input.ProfilePicture">
+                    <img class="profilePicture" id="profilePicture" style="width:350px;height:350px; object-fit:cover" src="@Model.Input.ProfilePicture">
                 }
                 else
                 {
-                    <img id="profilePicture" style="width:350px;height:350px; object-fit:cover" src="~/images/BasicUserPhoto.png">
+                    <img class="profilePicture" id="profilePicture" style="width:350px;height:350px; object-fit:cover" src="~/images/BasicUserPhoto.png">
                 }
                 <input type="file"
+                       class="image-uploader"
                        accept=".png,.jpg,.jpeg,.gif,.tif"
                        asp-for="Input.ProfilePicture"
-                       class="form-control"
                        style="border:0px!important;padding: 0px;padding-top: 10px;padding-bottom: 30px;"
-                       onchange="document.getElementById('profilePicture').src = window.URL.createObjectURL(this.files[0])" />
+                       onchange="document.getElementById('profilePictureLayout').src = window.URL.createObjectURL(this.files[0])" />
                 <span asp-validation-for="Input.ProfilePicture" class="text-danger"></span>
             </div>
         </div>
