@@ -1,0 +1,58 @@
+﻿@model ProductStore.Models.Order
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+@{
+    ViewData["Title"] = "CreateOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>@localizer["Order"]</h4>
+<hr />
+<div class="register-photo">
+    <div class="form-container">
+        <div class="form-horizontal">
+            <div class="row">
+                <form asp-action="CreateOrder" method="post" style=" width: 95%; margin-left: 20px; ">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Country" class="control-label"></label>
+                        <input asp-for="Country" class="form-control" />
+                        <span asp-validation-for="Country" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="State" class="control-label"></label>
+                        <input asp-for="State" class="form-control" />
+                        <span asp-validation-for="State" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="City" class="control-label"></label>
+                        <input asp-for="City" class="form-control" />
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Addres" class="control-label"></label>
+                        <input asp-for="Addres" class="form-control" />
+                        <span asp-validation-for="Addres" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ZipCode" class="control-label"></label>
+                        <input asp-for="ZipCode" class="form-control" />
+                        <span asp-validation-for="ZipCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PaymentType" class="control-label"></label>
+                        <input asp-for="PaymentType" class="form-control" />
+                        <span asp-validation-for="PaymentType" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="@localizer["Create"]" class="btn btn-secondary btn-lg btn-block" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
