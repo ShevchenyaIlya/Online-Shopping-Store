@@ -45,11 +45,11 @@
             <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
                 @if (profilePhoto != null)
                 {
-                    <img id="profilePicture" style=" vertical-align: central; width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; margin-left: 10px; object-fit: cover" src="@profilePhoto">
+                    <img id="profilePictureLayout" style=" vertical-align: central; width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; margin-left: 10px; object-fit: cover" src="@profilePhoto">
                 }
                 else
                 {
-                    <img id="profilePicture" style=" vertical-align: central; width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; margin-left: 10px; object-fit: cover" src="~/images/BasicUserPhoto.png">
+                    <img id="profilePictureLayout" style=" vertical-align: central; width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; margin-left: 10px; object-fit: cover" src="~/images/BasicUserPhoto.png">
                 }
             </a>
         </li>
