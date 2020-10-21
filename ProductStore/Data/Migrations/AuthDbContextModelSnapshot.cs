@@ -478,12 +478,17 @@ namespace ProductStore.Migrations
                     b.Property<string>("CustomerId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<long?>("OrderId")
+                        .HasColumnType("bigint");
+
                     b.Property<long?>("ProductsProductId")
                         .HasColumnType("bigint");
 
                     b.HasKey("BasketId");
 
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("OrderId");
 
                     b.HasIndex("ProductsProductId");
 
@@ -641,6 +646,10 @@ namespace ProductStore.Migrations
                     b.HasOne("ProductStore.Areas.Identity.Data.ApplicationUser", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId");
+
+                    b.HasOne("ProductStore.Models.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId");
 
                     b.HasOne("ProductStore.Models.Product", "Products")
                         .WithMany()
