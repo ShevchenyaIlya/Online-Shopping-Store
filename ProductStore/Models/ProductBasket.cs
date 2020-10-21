@@ -18,5 +18,8 @@ namespace ProductStore.Models
 
         [Display(Name = "Products")]
         public Product Products { get; set; }
+
+        [Display(Name = "Order")]
+        public virtual Order Order { get; set; }
     }
 }
