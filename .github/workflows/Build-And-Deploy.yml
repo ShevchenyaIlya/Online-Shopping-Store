@@ -26,4 +26,4 @@ jobs:
       uses: azure/appservice-actions/webapp@master
       with: 
         app-name: mynewestwebapplication
-        publish-profile: ${{ secrets.azureWebAppPublishProfile }}  
+        publish-profile: ${{ secrets.AZURE_DEPLOY }}  
