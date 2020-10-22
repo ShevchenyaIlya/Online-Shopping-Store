@@ -10,3 +10,16 @@ $('.image-uploader').on('change', function (e) {
 
     reader.readAsDataURL(selectedFile);
 })
+
+
+$("#categoriesDropdown").change(function () {
+    var prod = document.getElementById("categoriesDropdown").value;
+    $.ajax({
+        type: "get",
+        url: "/Home/FindProductByCategory",
+        success: function (response) {
+            $("#productslist").html(response);
+        },
+        data: { category: prod }
+    });
+});
