@@ -1,21 +1,24 @@
-﻿@model ProductStore.Models.Product
+﻿@model IEnumerable<ProductStore.Models.Product>
 @inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
-<div class="card">
-    <div class="card-img" style="background-image: url(@Model.ProductPicture);">
-    </div>
-    <div class="card-body">
-        <h5 class="card-title">@Model.ProductName</h5>
-        <h6 class="card-text">@Model.ProductDescription</h6>
-    </div>
-    <div class="card-footer">
-        <div class="row">
-            <small class="text-muted">
-                <a href="/Home/ProductCard/@Model.ProductId" class="btn btn-secondary" role="button" aria-pressed="true">@localizer["MoreInfo"]</a>
-            </small>
-            <h4 style="align-self:end; background-color: transparent; height: 40px; margin-left:20px; text-align:center; width: 38%; border-radius: 5%">@Model.Price руб.</h4>
-            <a href="/Home/AddToProductBasketCookie/@Model.ProductName"><img src="~/images/basket.png" style="width:45px; height: 38px; background-color: transparent; border-radius: 5%; align-self: end; margin-left: 15px" /></a>
+@foreach (var product in Model)
+{
+    <div class="card">
+        <div class="card-img" style="background-image: url(@product.ProductPicture);">
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">@product.ProductName</h5>
+            <h6 class="card-text">@product.ProductDescription</h6>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <small class="text-muted">
+                    <a href="/Home/ProductCard/@product.ProductId" class="btn btn-secondary" role="button" aria-pressed="true">@localizer["MoreInfo"]</a>
+                </small>
+                <h4 style="align-self:end; background-color: transparent; height: 40px; margin-left:20px; text-align:center; width: 38%; border-radius: 5%">@product.Price руб.</h4>
+                <a href="/Home/AddToProductBasketCookie/@product.ProductName"><img src="~/images/basket.png" style="width:45px; height: 38px; background-color: transparent; border-radius: 5%; align-self: end; margin-left: 15px" /></a>
+            </div>
         </div>
     </div>
-</div>
+}
 
