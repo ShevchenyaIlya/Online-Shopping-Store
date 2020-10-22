@@ -346,16 +346,29 @@ namespace ProductStore.Controllers
         [Route("FindProduct")]
         public async Task<IActionResult> FindProduct(string searching)
         {
-            var products = from product in _context.Products
+            var products = from product in _context.Products.Include(m => m.CreatedPlace)
                            select product;
 
             ViewBag.Categories = await _context.Category.ToListAsync();
             if (!String.IsNullOrEmpty(searching))
             {
-                products = products.Where(product => product.ProductName.Contains(searching));
+                products = products.Where(product => product.ProductName.Contains(searching) || product.CreatedPlace.CountryName.Contains(searching));
+                return PartialView("_DisplayProductPartial", products.ToList());
             }
 
             return View(products.ToList());
+        }
+
+        [AllowAnonymous]
+        [Route("FindProductByCategory")]
+        public async Task<IActionResult> FindProductByCategory(string category)
+        {
+            var products = from product in _context.Products.Include(m => m.CreatedPlace).Include(m => m.Category)
+                           select product;
+
+            ViewBag.Categories = await _context.Category.ToListAsync();
+            products = products.Where(product => product.Category.CategoryName.Contains(category));
+            return PartialView("_DisplayProductPartial", products.ToList());
         }
 
         [Authorize]
