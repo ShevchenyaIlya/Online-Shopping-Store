@@ -34,10 +34,7 @@
     </div>
     <h2 style="text-align: center">@localizer["Products"]</h2>
     <div class="card-columns">
-        @foreach (var product in ViewBag.Products)
-        {
-            <partial name="_DisplayProductPartial" model=product />
-        }
+        <partial name="_DisplayProductPartial" model=ViewBag.Products />
     </div>
 </div>
 @*<div style="background-color:white; height: 10px"></div>

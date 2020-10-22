@@ -10,9 +10,6 @@
 </span>
 <hr />
 <div class="card-columns">
-    @foreach (var product in Model)
-    {
-        <partial name="_DisplayProductPartial" model=product />
-    }
+    <partial name="_DisplayProductPartial" model=@Model />
 </div>
 

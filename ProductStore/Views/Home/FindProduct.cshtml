@@ -8,26 +8,23 @@
 
 <div class="row">
     <div class="col-md-8" style="height: 40px">
-        @using (Html.BeginForm("FindProduct", "Home", FormMethod.Get))
-        {
-            <div class="input-group">
-                <div class="input-group-prepend" style="height:40px">
-                    <span class="input-group-text">
-                        <i class="fa fa-search"></i>
-                    </span>
-                </div>
-                <div style="height:40px">
-                    @Html.TextBox("searching", "", new { @style = "height: 40px" })
-                </div>
-                <div style="padding-left: 5px; height: 40px"></div>
-                <div class="input-group-append">
-                    <input class="btn btn-light" type="submit" value="Search" />
-                </div>
+        <div class="input-group">
+            <div class="input-group-prepend" style="height:40px">
+                <span class="input-group-text">
+                    <i class="fa fa-search"></i>
+                </span>
             </div>
-        }
+            <div style="height:40px">
+                @Html.TextBox("searching", "", new { @style = "height: 40px", @id = "searcher"})
+            </div>
+            <div style="padding-left: 5px; height: 40px"></div>
+            <div class="input-group-append">
+                <input class="btn btn-light" type="submit" value="Search" id="submitSearch" />
+            </div>
+        </div>
     </div>
     <div class="col-md-4">
-        <select class="custom-select mr-sm-2" name="Categories">
+        <select class="custom-select mr-sm-2" name="Categories" id="categoriesDropdown">
             @foreach (var value in ViewBag.Categories)
             {
                 <option>@value.CategoryName</option>
@@ -37,9 +34,28 @@
 </div>
 
 <hr />
-<div class="card-columns">
-    @foreach (var product in Model)
-    {
-        <partial name="_DisplayProductPartial" model=product />
-    }
+<div class="card-columns" id="productslist">
+    <partial name="_DisplayProductPartial" model=@Model />
 </div>
+
+
+@section Scripts
+{
+    <script>
+        $("#submitSearch").click(function () {
+            var prod = document.getElementById("searcher").value;
+            $.ajax({
+                type: "get",
+                url: "/Home/FindProduct",
+                success: function (response) {
+                    $("#productslist").html(response);
+                },
+                data: { searching: prod}
+            });
+        });
+    </script>
+
+    <script>
+        
+    </script>
+}
