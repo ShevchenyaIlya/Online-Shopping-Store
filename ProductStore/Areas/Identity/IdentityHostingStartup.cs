@@ -23,9 +23,9 @@ namespace ProductStore.Areas.Identity
                         context.Configuration.GetConnectionString("AuthDbContextConnection")));
 
                 #region Repositories
-                services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
-                services.AddTransient<ICustomerRepositoryAsync, CommentRepositoryAsync>();
-                services.AddTransient<IUnitOfWork, UnitOfWork>();
+                services.AddScoped(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
+                services.AddScoped<ICustomerRepositoryAsync, CommentRepositoryAsync>();
+                services.AddScoped<IUnitOfWork, UnitOfWork>();
                 #endregion
 
                 services.AddDefaultIdentity<ApplicationUser>(options => {
