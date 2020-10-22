@@ -3,3 +3,7 @@
 /ProductStore/obj/ProductStore.csproj.EntityFrameworkCore.targets
 /ProductStore/obj/ProductStore.csproj.nuget.g.props
 /ProductStore/obj
+/NUnitTests/obj/Debug/
+/NUnitTests/bin/Debug/
+/XUnitTests/bin/Debug/
+/XUnitTests/obj/Debug/
