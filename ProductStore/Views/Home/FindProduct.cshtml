@@ -46,7 +46,7 @@
             var prod = document.getElementById("searcher").value;
             $.ajax({
                 type: "get",
-                url: "/Home/FindProduct",
+                url: "/Home/SearchProduct",
                 success: function (response) {
                     $("#productslist").html(response);
                 },

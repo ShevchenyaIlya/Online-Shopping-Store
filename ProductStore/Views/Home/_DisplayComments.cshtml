@@ -27,7 +27,7 @@
                                         <div style="width:100%; word-break:break-word">@comment.CommentTitle</div>
                                         <hr />
                                         <div style="width:100%; word-break:break-word">@comment.CommentBody</div>
-                                        <small class="text-muted">@comment.PostDate</small>
+                                        <small class="text-muted">@comment.PostDate.ToLocalTime()</small>
                                     </p>
                                 </div>
                             </div>
