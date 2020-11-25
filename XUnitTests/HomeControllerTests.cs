@@ -33,13 +33,9 @@ namespace XUnitTests
         [InlineData("/Index")]
         public async Task CheckCorrectContent(string url)
         {
-            // Arrange
             var client = _factory.CreateClient();
-
-            // Act
             var response = await client.GetAsync(url);
 
-            // Assert
             response.EnsureSuccessStatusCode(); // Status Code 200-299
             Assert.Equal("text/html; charset=utf-8",
                 response.Content.Headers.ContentType.ToString());
@@ -53,11 +49,9 @@ namespace XUnitTests
             var options = new DbContextOptionsBuilder<AuthDbContext>()
             .UseSqlServer(cn1).Options;
             dbContext = new AuthDbContext(options);
-            // Arrange
             var controller = new HomeController(dbContext, logger.Object);
             var result = await controller.FindProduct("apple");
 
-            //Assert.Equal(result.ViewName, "_DisplayProductsPartial");
             var viewResult = Assert.IsType<PartialViewResult>(result);
             var model = Assert.IsAssignableFrom<IEnumerable<Product>>(
                 viewResult.ViewData.Model);
