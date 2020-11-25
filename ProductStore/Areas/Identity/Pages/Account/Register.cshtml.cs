@@ -129,7 +129,8 @@ namespace ProductStore.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    WelcomeRequest request = new WelcomeRequest {
+                    WelcomeRequest request = new WelcomeRequest
+                    {
                         ToEmail = user.Email,
                         UserName = user.UserName
                     };
