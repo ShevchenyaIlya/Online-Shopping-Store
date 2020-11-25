@@ -49,7 +49,8 @@ namespace ProductStore.Controllers
             return new List<string>(await _userManager.GetRolesAsync(user));
         }
 
-        [Route("Manage/{userId:maxlength(50)}")]
+        [HttpGet]
+        [Route("Manage")]
         public async Task<IActionResult> Manage(string userId)
         {
             ViewBag.userId = userId;
@@ -80,8 +81,9 @@ namespace ProductStore.Controllers
             }
             return View(model);
         }
+
         [HttpPost]
-        [Route("Manage/{userId:maxlength(50)}")]
+        [Route("Manage")]
         public async Task<IActionResult> Manage(List<ManageUserRolesViewModel> model, string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);

@@ -89,11 +89,12 @@ namespace ProductStore.Controllers
                 string objCartListString = Request.Cookies["ProductBasket1"];
                 string[] objCartListStringSplit = objCartListString.Split('|');
                 List<Product> products = new List<Product>();
-                var productList = await _context.Products.ToListAsync();
+                
                 foreach (var value in objCartListStringSplit)
                 {
                     string[] result = value.Split("?");
-                    products.Add(productList.Find(mbox => mbox.ProductId == long.Parse(result[1])));
+                    var productList = (Product) _context.Products.FirstOrDefault((mbox => mbox.ProductId == long.Parse(result[1])));
+                    products.Add(productList);
                 }
                 products.Remove(await _context.Products.FirstOrDefaultAsync(mbox => mbox.ProductName == product));
                 Response.Cookies.Delete("ProductBasket1");
@@ -118,11 +119,12 @@ namespace ProductStore.Controllers
                 string objCartListString = Request.Cookies["ProductBasket1"];
                 string[] objCartListStringSplit = objCartListString.Split('|');
                 List<Product> products = new List<Product>();
-                var productList = await _context.Products.Include(m => m.Category).Include(m => m.CreatedPlace).ToListAsync();
+                
                 foreach (var value in objCartListStringSplit)
                 {
                     string[] result = value.Split("?");
-                    products.Add(productList.Find(mbox => mbox.ProductId == long.Parse(result[1])));
+                    var productList = (Product)_context.Products.Include(m => m.Category).Include(m => m.CreatedPlace).FirstOrDefault((mbox => mbox.ProductId == long.Parse(result[1])));
+                    products.Add(productList);
                 }
                 return View(products);
             }
@@ -206,7 +208,7 @@ namespace ProductStore.Controllers
             var dataComment = new Comment();
             dataComment.CommentTitle = commentTitle;
             dataComment.CommentBody = commentBody;
-            dataComment.PostDate = DateTime.Now;
+            dataComment.PostDate = DateTime.UtcNow;
             dataComment.CommentUser = await _context.Users.FirstOrDefaultAsync(m => m.UserName == User.Identity.Name);
             dataComment.CommentProduct = await _context.Products.FirstOrDefaultAsync(mbox => mbox.ProductName == productName);
 
@@ -348,15 +350,24 @@ namespace ProductStore.Controllers
         {
             var products = from product in _context.Products.Include(m => m.CreatedPlace)
                            select product;
+            ViewBag.Categories = await _context.Category.ToListAsync();
+
+            return View(products.ToList());
+        }
+
+        [AllowAnonymous]
+        [Route("SearchProduct")]
+        public async Task<IActionResult> SearchProduct(string searching)
+        {
+            var products = from product in _context.Products.Include(m => m.CreatedPlace)
+                           select product;
 
             ViewBag.Categories = await _context.Category.ToListAsync();
             if (!String.IsNullOrEmpty(searching))
             {
                 products = products.Where(product => product.ProductName.Contains(searching) || product.CreatedPlace.CountryName.Contains(searching));
-                return PartialView("_DisplayProductPartial", products.ToList());
             }
-
-            return View(products.ToList());
+            return PartialView("_DisplayProductPartial", products.ToList());
         }
 
         [AllowAnonymous]
@@ -408,11 +419,12 @@ namespace ProductStore.Controllers
             string objCartListString = Request.Cookies["ProductBasket1"];
             string[] objCartListStringSplit = objCartListString.Split('|');
             List<Product> products = new List<Product>();
-            var productList = await _context.Products.Include(m => m.Category).Include(m => m.CreatedPlace).ToListAsync();
             foreach (var value in objCartListStringSplit)
             {
                 string[] result = value.Split("?");
-                products.Add(productList.Find(mbox => mbox.ProductId == long.Parse(result[1])));
+                var productList = (Product) _context.Products.Include(m => m.Category).Include(m => m.CreatedPlace).FirstOrDefault(mbox => mbox.ProductId == long.Parse(result[1]));
+                if (productList.InStock)
+                    products.Add(productList);
             }
             double amountPaid = 0;
 
