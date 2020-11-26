@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -49,6 +50,7 @@ namespace ProductStore
             services.AddMvc()
                 .AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
+            services.AddDirectoryBrowser();
             var cultures = new List<CultureInfo> {
                 new CultureInfo("en"),
                 new CultureInfo("ru"),
@@ -100,6 +102,13 @@ namespace ProductStore
             //app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseRouting();
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                     Path.Combine(env.ContentRootPath, "Templates")),
+                RequestPath = "/StaticFiles"
+            });
 
             app.UseAuthentication();
             app.UseAuthorization();

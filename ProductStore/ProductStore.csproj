@@ -1,9 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>a9be0fda-e34e-454e-9d26-f961ad4d7427</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Templates\ForgotPasswordTemplate.html" />
+    <Content Include="Templates\VerifiedTemplate.html" />
+    <Content Include="Templates\WelcomeTemplate.html" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MailKit" Version="2.9.0" />
@@ -28,12 +34,6 @@
     <Folder Include="Repositories\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\files\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\Templates\ForgotPasswordTemplate.html" />
-    <None Include="wwwroot\Templates\VerifiedTemplate.html" />
-    <None Include="wwwroot\Templates\WelcomeTemplate.html" />
   </ItemGroup>
 
 </Project>

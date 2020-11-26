@@ -46,7 +46,7 @@ namespace ProductStore.Services
             builder.HtmlBody = mailRequest.Body;
             email.Body = builder.ToMessageBody();
             using var smtp = new SmtpClient();
-            smtp.Connect(_mailSettings.Host, _mailSettings.Port, SecureSocketOptions.StartTls);
+            smtp.Connect(_mailSettings.Host, _mailSettings.Port, false);
             smtp.Authenticate(_mailSettings.Mail, _mailSettings.Password);
             await smtp.SendAsync(email);
             smtp.Disconnect(true);
@@ -54,7 +54,7 @@ namespace ProductStore.Services
 
         public async Task SendWelcomeEmailAsync(WelcomeRequest request)
         {
-            string FilePath = Directory.GetCurrentDirectory() + "\\wwwroot\\Templates\\WelcomeTemplate.html";
+            string FilePath = Directory.GetCurrentDirectory() + "\\Templates\\WelcomeTemplate.html";
             StreamReader str = new StreamReader(FilePath);
             string MailText = str.ReadToEnd();
             str.Close();
@@ -67,7 +67,7 @@ namespace ProductStore.Services
             builder.HtmlBody = MailText;
             email.Body = builder.ToMessageBody();
             using var smtp = new SmtpClient();
-            smtp.Connect(_mailSettings.Host, _mailSettings.Port, SecureSocketOptions.StartTls);
+            smtp.Connect(_mailSettings.Host, _mailSettings.Port, false);
             smtp.Authenticate(_mailSettings.Mail, _mailSettings.Password);
             await smtp.SendAsync(email);
             smtp.Disconnect(true);
@@ -79,11 +79,11 @@ namespace ProductStore.Services
             string FilePath;
             if (flag)
             {
-                FilePath = Directory.GetCurrentDirectory() + "\\wwwroot\\Templates\\VerifiedTemplate.html";
+                FilePath = Directory.GetCurrentDirectory() + "\\Templates\\VerifiedTemplate.html";
             }
             else
             {
-                FilePath = Directory.GetCurrentDirectory() + "\\wwwroot\\Templates\\ForgotPasswordTemplate.html";
+                FilePath = Directory.GetCurrentDirectory() + "\\Templates\\ForgotPasswordTemplate.html";
             }
             StreamReader str = new StreamReader(FilePath);
             string MailText = str.ReadToEnd();
@@ -97,7 +97,7 @@ namespace ProductStore.Services
             builder.HtmlBody = MailText;
             email.Body = builder.ToMessageBody();
             using var smtp = new SmtpClient();
-            smtp.Connect(_mailSettings.Host, _mailSettings.Port, SecureSocketOptions.StartTls);
+            smtp.Connect(_mailSettings.Host, _mailSettings.Port, false);
             smtp.Authenticate(_mailSettings.Mail, _mailSettings.Password);
             await smtp.SendAsync(email);
             smtp.Disconnect(true);
