@@ -17,10 +17,11 @@ namespace ProductStore.Controllers.API
         {
             _localizer = localizer;
         }
+
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var guid = Guid.NewGuid();
+             var guid = Guid.NewGuid();
             var value = _localizer["RandomGUID", guid.ToString()].Value;
             return Ok(value);
         }

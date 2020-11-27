@@ -1,0 +1,1109 @@
+2020-11-27T07:05:46.3232378+03:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2020-11-27T07:05:46.3494974+03:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2020-11-27T07:05:46.3685480+03:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-11-27T07:05:46.3710284+03:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-11-27T07:05:46.3785165+03:00  [INF] Content root path: "C:\Users\Il\source\repos\ProductStore\ProductStore" (b5d60022)
+2020-11-27T07:05:52.7658367+03:00 0HM4IH6RTC946:00000001 [INF] Request starting HTTP/2 GET https://localhost:5001/   (ca22a1cb)
+2020-11-27T07:05:53.8471456+03:00 0HM4IH6RTC946:00000001 [INF] Entity Framework Core "3.1.8" initialized '"AuthDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-11-27T07:05:53.9587338+03:00 0HM4IH6RTC946:00000001 [INF] Executed DbCommand ("11"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0" (0723d8ff)
+2020-11-27T07:05:54.1755769+03:00 0HM4IH6RTC946:00000001 [INF] Executed DbCommand ("44"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0" (0723d8ff)
+2020-11-27T07:05:54.3640943+03:00 0HM4IH6RTC946:00000001 [INF] Executed DbCommand ("49"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0" (0723d8ff)
+2020-11-27T07:05:54.3732150+03:00 0HM4IH6RTC946:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:05:54.4018288+03:00 0HM4IH6RTC946:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:05:54.4092532+03:00 0HM4IH6RTC946:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:05:54.4144931+03:00 0HM4IH6RTC946:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:05:54.4188468+03:00 0HM4IH6RTC946:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:05:54.4290128+03:00 0HM4IH6RTC946:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:05:54.4403296+03:00 0HM4IH6RTC946:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:05:54.4511297+03:00 0HM4IH6RTC946:00000001 [INF] Executed DbCommand ("5"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:05:54.5314028+03:00 0HM4IH6RTC946:00000001 [INF] Executing endpoint '"ProductStore.Controllers.HomeController.Index (ProductStore)"' (500cc934)
+2020-11-27T07:05:54.8820388+03:00 0HM4IH6RTC946:00000001 [INF] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index()" on controller "ProductStore.Controllers.HomeController" ("ProductStore"). (122b2fdf)
+2020-11-27T07:05:54.9120722+03:00 0HM4IH6RTC946:00000001 [INF] Executing action method "ProductStore.Controllers.HomeController.Index (ProductStore)" - Validation state: Valid (dad538d7)
+2020-11-27T07:05:55.1825629+03:00 0HM4IH6RTC946:00000001 [INF] Executed DbCommand ("198"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[ProductId], [p].[AddedDate], [p].[Brand], [p].[Carbohydrates], [p].[CategoryId], [p].[CreatedPlaceCountryId], [p].[EnergyValue], [p].[Fat], [p].[ImageName], [p].[InStock], [p].[IsDeleted], [p].[Price], [p].[PriceForOneKilogram], [p].[ProductDescription], [p].[ProductName], [p].[ProductPicture], [p].[Protein], [p].[Quantity], [p].[Weight]
+FROM [Products] AS [p]
+ORDER BY [p].[AddedDate] DESC" (0723d8ff)
+2020-11-27T07:05:55.3923969+03:00 0HM4IH6RTC946:00000001 [INF] Executed action method "ProductStore.Controllers.HomeController.Index (ProductStore)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 468.9704ms. (50a9e262)
+2020-11-27T07:05:55.5196098+03:00 0HM4IH6RTC946:00000001 [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2020-11-27T07:05:56.4501362+03:00 0HM4IH6RTC946:00000001 [INF] Executed ViewResult - view "Index" executed in 1043.1055ms. (f66409e9)
+2020-11-27T07:05:56.4586898+03:00 0HM4IH6RTC946:00000001 [INF] Executed action "ProductStore.Controllers.HomeController.Index (ProductStore)" in 1569.4557ms (afa2e885)
+2020-11-27T07:05:56.4631285+03:00 0HM4IH6RTC946:00000001 [INF] Executed endpoint '"ProductStore.Controllers.HomeController.Index (ProductStore)"' (99874f2b)
+2020-11-27T07:05:56.4886435+03:00 0HM4IH6RTC946:00000001 [INF] Request finished in 3729.5464ms 200 text/html; charset=utf-8 (791a596a)
+2020-11-27T07:05:57.3687548+03:00 0HM4IH6RTC948:00000001 [INF] Request starting HTTP/2 GET https://localhost:5001/css/Community-ChatComments.css   (ca22a1cb)
+2020-11-27T07:05:57.3764045+03:00 0HM4IH6RTC948:0000000B [INF] Request starting HTTP/2 GET https://localhost:5001/files/Banana.jpg   (ca22a1cb)
+2020-11-27T07:05:57.3826607+03:00 0HM4IH6RTC948:0000000D [INF] Request starting HTTP/2 GET https://localhost:5001/files/apple.jpeg   (ca22a1cb)
+2020-11-27T07:05:57.3944053+03:00 0HM4IH6RTC948:00000007 [INF] Request starting HTTP/2 GET https://localhost:5001/files/Blueberry.jpg   (ca22a1cb)
+2020-11-27T07:05:57.4259586+03:00 0HM4IH6RTC948:00000009 [INF] Request starting HTTP/2 GET https://localhost:5001/files/orange.jpg   (ca22a1cb)
+2020-11-27T07:05:57.4388164+03:00 0HM4IH6RTC948:00000005 [INF] Request starting HTTP/2 GET https://localhost:5001/files/1489254461807.jpg   (ca22a1cb)
+2020-11-27T07:05:57.4683987+03:00 0HM4IH6RTC948:00000003 [INF] Request starting HTTP/2 GET https://localhost:5001/lib/datatables/css/dataTables.bootstrap4.min.css   (ca22a1cb)
+2020-11-27T07:05:57.4920057+03:00 0HM4IH6RTC948:0000000F [INF] Request starting HTTP/2 GET https://localhost:5001/js/signalr/dist/browser/signalr.js   (ca22a1cb)
+2020-11-27T07:05:57.4990690+03:00 0HM4IH6RTC948:00000011 [INF] Request starting HTTP/2 GET https://localhost:5001/js/Chat.js   (ca22a1cb)
+2020-11-27T07:05:57.5008562+03:00 0HM4IH6RTC948:0000000F [INF] The file "/js/signalr/dist/browser/signalr.js" was not modified (f1f8d725)
+2020-11-27T07:05:57.5118649+03:00 0HM4IH6RTC948:00000013 [INF] Request starting HTTP/2 GET https://localhost:5001/js/Comments.js   (ca22a1cb)
+2020-11-27T07:05:57.5169988+03:00 0HM4IH6RTC948:0000000D [INF] The file "/files/apple.jpeg" was not modified (f1f8d725)
+2020-11-27T07:05:57.5367762+03:00 0HM4IH6RTC948:0000000B [INF] The file "/files/Banana.jpg" was not modified (f1f8d725)
+2020-11-27T07:05:57.5467952+03:00 0HM4IH6RTC948:00000013 [INF] The file "/js/Comments.js" was not modified (f1f8d725)
+2020-11-27T07:05:57.5468091+03:00 0HM4IH6RTC948:00000015 [INF] Request starting HTTP/2 GET https://localhost:5001/js/MyRating.js   (ca22a1cb)
+2020-11-27T07:05:57.5535892+03:00 0HM4IH6RTC948:00000007 [INF] The file "/files/Blueberry.jpg" was not modified (f1f8d725)
+2020-11-27T07:05:57.5670994+03:00 0HM4IH6RTC948:00000013 [INF] Request finished in 50.3202ms 304 application/javascript (791a596a)
+2020-11-27T07:05:57.5683034+03:00 0HM4IH6RTC948:00000015 [INF] The file "/js/MyRating.js" was not modified (f1f8d725)
+2020-11-27T07:05:57.5694028+03:00 0HM4IH6RTC948:0000000F [INF] Request finished in 72.3692ms 304 application/javascript (791a596a)
+2020-11-27T07:05:57.5756438+03:00 0HM4IH6RTC948:0000000D [INF] Request finished in 179.1981ms 304 image/jpeg (791a596a)
+2020-11-27T07:05:57.5781910+03:00 0HM4IH6RTC948:0000000B [INF] Request finished in 186.6155ms 304 image/jpeg (791a596a)
+2020-11-27T07:05:57.5814605+03:00 0HM4IH6RTC948:00000015 [INF] Request finished in 35.833ms 304 application/javascript (791a596a)
+2020-11-27T07:05:57.5835712+03:00 0HM4IH6RTC948:00000007 [INF] Request finished in 191.4649ms 304 image/jpeg (791a596a)
+2020-11-27T07:05:57.5862538+03:00 0HM4IH6RTC948:00000009 [INF] The file "/files/orange.jpg" was not modified (f1f8d725)
+2020-11-27T07:05:57.5939488+03:00 0HM4IH6RTC948:00000005 [INF] The file "/files/1489254461807.jpg" was not modified (f1f8d725)
+2020-11-27T07:05:57.5970702+03:00 0HM4IH6RTC948:00000009 [INF] Request finished in 223.1601ms 304 image/jpeg (791a596a)
+2020-11-27T07:05:57.6004457+03:00 0HM4IH6RTC948:00000005 [INF] Request finished in 230.8471ms 304 image/jpeg (791a596a)
+2020-11-27T07:05:57.6034296+03:00 0HM4IH6RTC948:00000003 [INF] The file "/lib/datatables/css/dataTables.bootstrap4.min.css" was not modified (f1f8d725)
+2020-11-27T07:05:57.6096164+03:00 0HM4IH6RTC948:00000001 [INF] The file "/css/Community-ChatComments.css" was not modified (f1f8d725)
+2020-11-27T07:05:57.6139043+03:00 0HM4IH6RTC948:00000003 [INF] Request finished in 240.3043ms 304 text/css (791a596a)
+2020-11-27T07:05:57.6169979+03:00 0HM4IH6RTC948:00000001 [INF] Request finished in 248.5218ms 304 text/css (791a596a)
+2020-11-27T07:05:57.6183128+03:00 0HM4IH6RTC948:00000011 [INF] The file "/js/Chat.js" was not modified (f1f8d725)
+2020-11-27T07:05:57.6255226+03:00 0HM4IH6RTC948:00000011 [INF] Request finished in 140.9207ms 304 application/javascript (791a596a)
+2020-11-27T07:05:58.4769629+03:00 0HM4IH6RTC948:00000017 [INF] Request starting HTTP/2 GET https://localhost:5001/css/font-awesome.css   (ca22a1cb)
+2020-11-27T07:05:58.5081673+03:00 0HM4IH6RTC948:00000017 [INF] Entity Framework Core "3.1.8" initialized '"AuthDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-11-27T07:05:58.5200642+03:00 0HM4IH6RTC948:00000017 [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0" (0723d8ff)
+2020-11-27T07:05:58.5339257+03:00 0HM4IH6RTC948:00000017 [INF] Executed DbCommand ("3"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0" (0723d8ff)
+2020-11-27T07:05:58.5469868+03:00 0HM4IH6RTC948:00000017 [INF] Executed DbCommand ("8"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0" (0723d8ff)
+2020-11-27T07:05:58.5530620+03:00 0HM4IH6RTC948:00000017 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:05:58.5617475+03:00 0HM4IH6RTC948:00000017 [INF] Executed DbCommand ("3"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:05:58.5657860+03:00 0HM4IH6RTC948:00000017 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:05:58.5756526+03:00 0HM4IH6RTC948:00000017 [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:05:58.5838611+03:00 0HM4IH6RTC948:00000017 [INF] Executed DbCommand ("4"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:05:58.5932958+03:00 0HM4IH6RTC948:00000017 [INF] Executed DbCommand ("4"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:05:58.6001772+03:00 0HM4IH6RTC948:00000017 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:05:58.6081756+03:00 0HM4IH6RTC948:00000017 [INF] Executed DbCommand ("4"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:05:58.6186962+03:00 0HM4IH6RTC948:00000017 [INF] Request finished in 141.9965ms 404  (791a596a)
+2020-11-27T07:06:05.8125742+03:00 0HM4IH6RTC948:00000019 [INF] Request starting HTTP/2 GET https://localhost:5001/Identity/Account/Manage   (ca22a1cb)
+2020-11-27T07:06:05.9389883+03:00 0HM4IH6RTC948:00000019 [INF] Entity Framework Core "3.1.8" initialized '"AuthDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-11-27T07:06:05.9468254+03:00 0HM4IH6RTC948:00000019 [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0" (0723d8ff)
+2020-11-27T07:06:05.9562835+03:00 0HM4IH6RTC948:00000019 [INF] Executed DbCommand ("4"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0" (0723d8ff)
+2020-11-27T07:06:05.9631006+03:00 0HM4IH6RTC948:00000019 [INF] Executed DbCommand ("3"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0" (0723d8ff)
+2020-11-27T07:06:05.9734590+03:00 0HM4IH6RTC948:00000019 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:06:05.9793877+03:00 0HM4IH6RTC948:00000019 [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:06:05.9853065+03:00 0HM4IH6RTC948:00000019 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:06:05.9970193+03:00 0HM4IH6RTC948:00000019 [INF] Executed DbCommand ("3"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:06:06.0088051+03:00 0HM4IH6RTC948:00000019 [INF] Executed DbCommand ("7"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:06:06.0170545+03:00 0HM4IH6RTC948:00000019 [INF] Executed DbCommand ("3"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:06:06.0279600+03:00 0HM4IH6RTC948:00000019 [INF] Executed DbCommand ("7"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:06:06.0378048+03:00 0HM4IH6RTC948:00000019 [INF] Executed DbCommand ("3"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:06:06.0571167+03:00 0HM4IH6RTC948:00000019 [INF] Authorization was successful. (0d575a54)
+2020-11-27T07:06:06.0602374+03:00 0HM4IH6RTC948:00000019 [INF] Executing endpoint '"/Account/Manage/Index"' (500cc934)
+2020-11-27T07:06:06.1722577+03:00 0HM4IH6RTC948:00000019 [INF] Route matched with "{page = \"/Account/Manage/Index\", area = \"Identity\", action = \"\", controller = \"\"}". Executing page "/Account/Manage/Index" (547e620f)
+2020-11-27T07:06:06.1917997+03:00 0HM4IH6RTC948:00000019 [INF] Executing handler method "ProductStore.Areas.Identity.Pages.Account.Manage.IndexModel.OnGetAsync" - ModelState is Valid (cd3ef7ec)
+2020-11-27T07:06:06.2998017+03:00 0HM4IH6RTC948:00000019 [INF] Executed handler method "OnGetAsync", returned result "Microsoft.AspNetCore.Mvc.RazorPages.PageResult". (90fdc39c)
+2020-11-27T07:06:06.6798962+03:00 0HM4IH6RTC948:00000019 [INF] Executed page "/Account/Manage/Index" in 499.8702ms (02e01280)
+2020-11-27T07:06:06.6836586+03:00 0HM4IH6RTC948:00000019 [INF] Executed endpoint '"/Account/Manage/Index"' (99874f2b)
+2020-11-27T07:06:06.6952521+03:00 0HM4IH6RTC948:00000019 [INF] Request finished in 877.0377ms 200 text/html; charset=utf-8 (791a596a)
+2020-11-27T07:06:06.9737993+03:00 0HM4IH6RTC948:0000001B [INF] Request starting HTTP/2 GET https://localhost:5001/css/font-awesome.css   (ca22a1cb)
+2020-11-27T07:06:06.9926246+03:00 0HM4IH6RTC948:0000001B [INF] Request finished in 14.332ms 404  (791a596a)
+2020-11-27T07:06:09.0061017+03:00 0HM4IH6RTC948:0000001D [INF] Request starting HTTP/2 GET https://localhost:5001/Identity/Account/Manage/Email   (ca22a1cb)
+2020-11-27T07:06:09.0241672+03:00 0HM4IH6RTC948:0000001D [INF] Entity Framework Core "3.1.8" initialized '"AuthDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-11-27T07:06:09.0357319+03:00 0HM4IH6RTC948:0000001D [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0" (0723d8ff)
+2020-11-27T07:06:09.0508833+03:00 0HM4IH6RTC948:0000001D [INF] Executed DbCommand ("6"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0" (0723d8ff)
+2020-11-27T07:06:09.0635393+03:00 0HM4IH6RTC948:0000001D [INF] Executed DbCommand ("4"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0" (0723d8ff)
+2020-11-27T07:06:09.0744815+03:00 0HM4IH6RTC948:0000001D [INF] Executed DbCommand ("7"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:06:09.0818907+03:00 0HM4IH6RTC948:0000001D [INF] Executed DbCommand ("3"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:06:09.0936058+03:00 0HM4IH6RTC948:0000001D [INF] Executed DbCommand ("7"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:06:09.1013074+03:00 0HM4IH6RTC948:0000001D [INF] Executed DbCommand ("3"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:06:09.1121819+03:00 0HM4IH6RTC948:0000001D [INF] Executed DbCommand ("4"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:06:09.1235528+03:00 0HM4IH6RTC948:0000001D [INF] Executed DbCommand ("4"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:06:09.1321890+03:00 0HM4IH6RTC948:0000001D [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:06:09.1430958+03:00 0HM4IH6RTC948:0000001D [INF] Executed DbCommand ("5"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:06:09.1501877+03:00 0HM4IH6RTC948:0000001D [INF] Authorization was successful. (0d575a54)
+2020-11-27T07:06:09.1555271+03:00 0HM4IH6RTC948:0000001D [INF] Executing endpoint '"/Account/Manage/Email"' (500cc934)
+2020-11-27T07:06:09.1907607+03:00 0HM4IH6RTC948:0000001D [INF] Route matched with "{page = \"/Account/Manage/Email\", area = \"Identity\", action = \"\", controller = \"\"}". Executing page "/Account/Manage/Email" (547e620f)
+2020-11-27T07:06:09.3118087+03:00 0HM4IH6RTC948:0000001D [INF] Executing handler method "ProductStore.Areas.Identity.Pages.Account.Manage.EmailModel.OnGetAsync" - ModelState is Valid (cd3ef7ec)
+2020-11-27T07:06:09.3450049+03:00 0HM4IH6RTC948:0000001D [INF] Executed handler method "OnGetAsync", returned result "Microsoft.AspNetCore.Mvc.RazorPages.PageResult". (90fdc39c)
+2020-11-27T07:06:09.4655132+03:00 0HM4IH6RTC948:0000001D [INF] Executed page "/Account/Manage/Email" in 270.2182ms (02e01280)
+2020-11-27T07:06:09.4699667+03:00 0HM4IH6RTC948:0000001D [INF] Executed endpoint '"/Account/Manage/Email"' (99874f2b)
+2020-11-27T07:06:09.4738532+03:00 0HM4IH6RTC948:0000001D [INF] Request finished in 470.2935ms 200 text/html; charset=utf-8 (791a596a)
+2020-11-27T07:06:09.6669462+03:00 0HM4IH6RTC948:0000001F [INF] Request starting HTTP/2 GET https://localhost:5001/css/font-awesome.css   (ca22a1cb)
+2020-11-27T07:06:09.6828076+03:00 0HM4IH6RTC948:0000001F [INF] Request finished in 10.6916ms 404  (791a596a)
+2020-11-27T07:06:10.8168668+03:00 0HM4IH6RTC948:00000021 [INF] Request starting HTTP/2 POST https://localhost:5001/Identity/Account/Manage/Email?handler=SendVerificationEmail application/x-www-form-urlencoded 265 (ca22a1cb)
+2020-11-27T07:06:10.8462841+03:00 0HM4IH6RTC948:00000021 [INF] Entity Framework Core "3.1.8" initialized '"AuthDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-11-27T07:06:10.8573938+03:00 0HM4IH6RTC948:00000021 [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0" (0723d8ff)
+2020-11-27T07:06:10.8638913+03:00 0HM4IH6RTC948:00000021 [INF] Executed DbCommand ("2"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0" (0723d8ff)
+2020-11-27T07:06:10.8733592+03:00 0HM4IH6RTC948:00000021 [INF] Executed DbCommand ("5"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0" (0723d8ff)
+2020-11-27T07:06:10.8788781+03:00 0HM4IH6RTC948:00000021 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:06:10.8876505+03:00 0HM4IH6RTC948:00000021 [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:06:10.8919132+03:00 0HM4IH6RTC948:00000021 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:06:10.8969427+03:00 0HM4IH6RTC948:00000021 [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:06:10.9009709+03:00 0HM4IH6RTC948:00000021 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:06:10.9082487+03:00 0HM4IH6RTC948:00000021 [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:06:10.9125512+03:00 0HM4IH6RTC948:00000021 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:06:10.9170907+03:00 0HM4IH6RTC948:00000021 [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:06:10.9246056+03:00 0HM4IH6RTC948:00000021 [INF] Authorization was successful. (0d575a54)
+2020-11-27T07:06:10.9270902+03:00 0HM4IH6RTC948:00000021 [INF] Executing endpoint '"/Account/Manage/Email"' (500cc934)
+2020-11-27T07:06:10.9309953+03:00 0HM4IH6RTC948:00000021 [INF] Route matched with "{page = \"/Account/Manage/Email\", area = \"Identity\", action = \"\", controller = \"\"}". Executing page "/Account/Manage/Email" (547e620f)
+2020-11-27T07:06:11.0260376+03:00 0HM4IH6RTC948:00000021 [INF] Executing handler method "ProductStore.Areas.Identity.Pages.Account.Manage.EmailModel.OnPostSendVerificationEmailAsync" - ModelState is Valid (cd3ef7ec)
+2020-11-27T07:06:15.5890691+03:00 0HM4IH6RTC948:00000021 [INF] Executed handler method "OnPostSendVerificationEmailAsync", returned result "Microsoft.AspNetCore.Mvc.RedirectToPageResult". (90fdc39c)
+2020-11-27T07:06:15.5987249+03:00 0HM4IH6RTC948:00000021 [INF] Executing RedirectToPageResult, redirecting to null. (07cf2c9f)
+2020-11-27T07:06:15.6075658+03:00 0HM4IH6RTC948:00000021 [INF] Executed page "/Account/Manage/Email" in 4671.4291ms (02e01280)
+2020-11-27T07:06:15.6115616+03:00 0HM4IH6RTC948:00000021 [INF] Executed endpoint '"/Account/Manage/Email"' (99874f2b)
+2020-11-27T07:06:15.6263108+03:00 0HM4IH6RTC948:00000021 [INF] Request finished in 4800.251ms 302  (791a596a)
+2020-11-27T07:06:15.6318392+03:00 0HM4IH6RTC948:00000023 [INF] Request starting HTTP/2 GET https://localhost:5001/Identity/Account/Manage/Email   (ca22a1cb)
+2020-11-27T07:06:15.6402983+03:00 0HM4IH6RTC948:00000023 [INF] Entity Framework Core "3.1.8" initialized '"AuthDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-11-27T07:06:15.6553205+03:00 0HM4IH6RTC948:00000023 [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0" (0723d8ff)
+2020-11-27T07:06:15.6631193+03:00 0HM4IH6RTC948:00000023 [INF] Executed DbCommand ("3"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0" (0723d8ff)
+2020-11-27T07:06:15.6724358+03:00 0HM4IH6RTC948:00000023 [INF] Executed DbCommand ("4"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0" (0723d8ff)
+2020-11-27T07:06:15.6789692+03:00 0HM4IH6RTC948:00000023 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:06:15.6867556+03:00 0HM4IH6RTC948:00000023 [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:06:15.6914051+03:00 0HM4IH6RTC948:00000023 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:06:15.6963987+03:00 0HM4IH6RTC948:00000023 [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:06:15.7035720+03:00 0HM4IH6RTC948:00000023 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:06:15.7089191+03:00 0HM4IH6RTC948:00000023 [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:06:15.7130102+03:00 0HM4IH6RTC948:00000023 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:06:15.7196559+03:00 0HM4IH6RTC948:00000023 [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:06:15.7235317+03:00 0HM4IH6RTC948:00000023 [INF] Authorization was successful. (0d575a54)
+2020-11-27T07:06:15.7261992+03:00 0HM4IH6RTC948:00000023 [INF] Executing endpoint '"/Account/Manage/Email"' (500cc934)
+2020-11-27T07:06:15.7292391+03:00 0HM4IH6RTC948:00000023 [INF] Route matched with "{page = \"/Account/Manage/Email\", area = \"Identity\", action = \"\", controller = \"\"}". Executing page "/Account/Manage/Email" (547e620f)
+2020-11-27T07:06:15.7366366+03:00 0HM4IH6RTC948:00000023 [INF] Executing handler method "ProductStore.Areas.Identity.Pages.Account.Manage.EmailModel.OnGetAsync" - ModelState is Valid (cd3ef7ec)
+2020-11-27T07:06:15.7394234+03:00 0HM4IH6RTC948:00000023 [INF] Executed handler method "OnGetAsync", returned result "Microsoft.AspNetCore.Mvc.RazorPages.PageResult". (90fdc39c)
+2020-11-27T07:06:15.7628275+03:00 0HM4IH6RTC948:00000023 [INF] Executed page "/Account/Manage/Email" in 30.0641ms (02e01280)
+2020-11-27T07:06:15.7664126+03:00 0HM4IH6RTC948:00000023 [INF] Executed endpoint '"/Account/Manage/Email"' (99874f2b)
+2020-11-27T07:06:15.7740572+03:00 0HM4IH6RTC948:00000023 [INF] Request finished in 140.7831ms 200 text/html; charset=utf-8 (791a596a)
+2020-11-27T07:06:15.9333582+03:00 0HM4IH6RTC948:00000025 [INF] Request starting HTTP/2 GET https://localhost:5001/css/font-awesome.css   (ca22a1cb)
+2020-11-27T07:06:15.9760680+03:00 0HM4IH6RTC948:00000025 [INF] Request finished in 26.003ms 404  (791a596a)
+2020-11-27T07:06:17.3433369+03:00 0HM4IH6RTC949:00000001 [INF] Request starting HTTP/2 GET https://localhost:5001/Home/Index   (ca22a1cb)
+2020-11-27T07:06:17.3507493+03:00 0HM4IH6RTC949:00000001 [INF] Entity Framework Core "3.1.8" initialized '"AuthDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-11-27T07:06:17.3646826+03:00 0HM4IH6RTC949:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0" (0723d8ff)
+2020-11-27T07:06:17.3783646+03:00 0HM4IH6RTC949:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0" (0723d8ff)
+2020-11-27T07:06:17.3928566+03:00 0HM4IH6RTC949:00000001 [INF] Executed DbCommand ("7"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0" (0723d8ff)
+2020-11-27T07:06:17.4049516+03:00 0HM4IH6RTC949:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:06:17.4132929+03:00 0HM4IH6RTC949:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:06:17.4242631+03:00 0HM4IH6RTC949:00000001 [INF] Executed DbCommand ("5"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:06:17.4382799+03:00 0HM4IH6RTC949:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:06:17.4439546+03:00 0HM4IH6RTC949:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:06:17.4525242+03:00 0HM4IH6RTC949:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:06:17.4583415+03:00 0HM4IH6RTC949:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T07:06:17.4652838+03:00 0HM4IH6RTC949:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T07:06:17.4716129+03:00 0HM4IH6RTC949:00000001 [INF] Executing endpoint '"ProductStore.Controllers.HomeController.Index (ProductStore)"' (500cc934)
+2020-11-27T07:06:17.4810784+03:00 0HM4IH6RTC949:00000001 [INF] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index()" on controller "ProductStore.Controllers.HomeController" ("ProductStore"). (122b2fdf)
+2020-11-27T07:06:17.4873660+03:00 0HM4IH6RTC949:00000001 [INF] Executing action method "ProductStore.Controllers.HomeController.Index (ProductStore)" - Validation state: Valid (dad538d7)
+2020-11-27T07:06:17.4950301+03:00 0HM4IH6RTC949:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[ProductId], [p].[AddedDate], [p].[Brand], [p].[Carbohydrates], [p].[CategoryId], [p].[CreatedPlaceCountryId], [p].[EnergyValue], [p].[Fat], [p].[ImageName], [p].[InStock], [p].[IsDeleted], [p].[Price], [p].[PriceForOneKilogram], [p].[ProductDescription], [p].[ProductName], [p].[ProductPicture], [p].[Protein], [p].[Quantity], [p].[Weight]
+FROM [Products] AS [p]
+ORDER BY [p].[AddedDate] DESC" (0723d8ff)
+2020-11-27T07:06:17.5047969+03:00 0HM4IH6RTC949:00000001 [INF] Executed action method "ProductStore.Controllers.HomeController.Index (ProductStore)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 10.4157ms. (50a9e262)
+2020-11-27T07:06:17.5082477+03:00 0HM4IH6RTC949:00000001 [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2020-11-27T07:06:17.5265347+03:00 0HM4IH6RTC949:00000001 [INF] Executed ViewResult - view "Index" executed in 18.5193ms. (f66409e9)
+2020-11-27T07:06:17.5292224+03:00 0HM4IH6RTC949:00000001 [INF] Executed action "ProductStore.Controllers.HomeController.Index (ProductStore)" in 45.2222ms (afa2e885)
+2020-11-27T07:06:17.5318950+03:00 0HM4IH6RTC949:00000001 [INF] Executed endpoint '"ProductStore.Controllers.HomeController.Index (ProductStore)"' (99874f2b)
+2020-11-27T07:06:17.5389141+03:00 0HM4IH6RTC949:00000001 [INF] Request finished in 192.4413ms 200 text/html; charset=utf-8 (791a596a)
+2020-11-27T07:06:17.7259905+03:00 0HM4IH6RTC949:00000003 [INF] Request starting HTTP/2 GET https://localhost:5001/css/font-awesome.css   (ca22a1cb)
+2020-11-27T07:06:17.7455353+03:00 0HM4IH6RTC949:00000003 [INF] Request finished in 8.0914ms 404  (791a596a)
+2020-11-27T11:13:07.2235350+03:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2020-11-27T11:13:07.2462746+03:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2020-11-27T11:13:07.2629796+03:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-11-27T11:13:07.2662345+03:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-11-27T11:13:07.2684578+03:00  [INF] Content root path: "C:\Users\Il\source\repos\ProductStore\ProductStore" (b5d60022)
+2020-11-27T11:13:10.2821631+03:00 0HM4ILH2RDRJM:00000001 [INF] Request starting HTTP/2 GET https://localhost:5001/   (ca22a1cb)
+2020-11-27T11:13:10.7254509+03:00 0HM4ILH2RDRJM:00000001 [INF] Entity Framework Core "3.1.8" initialized '"AuthDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-11-27T11:13:10.7858124+03:00 0HM4ILH2RDRJM:00000001 [INF] Executed DbCommand ("11"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0" (0723d8ff)
+2020-11-27T11:13:10.8565712+03:00 0HM4ILH2RDRJM:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0" (0723d8ff)
+2020-11-27T11:13:10.9145124+03:00 0HM4ILH2RDRJM:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0" (0723d8ff)
+2020-11-27T11:13:10.9228709+03:00 0HM4ILH2RDRJM:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:13:10.9385781+03:00 0HM4ILH2RDRJM:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:13:10.9459822+03:00 0HM4ILH2RDRJM:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:13:10.9529978+03:00 0HM4ILH2RDRJM:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:13:10.9587049+03:00 0HM4ILH2RDRJM:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:13:10.9709192+03:00 0HM4ILH2RDRJM:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:13:10.9828204+03:00 0HM4ILH2RDRJM:00000001 [INF] Executed DbCommand ("7"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:13:11.0002943+03:00 0HM4ILH2RDRJM:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:13:11.0287047+03:00 0HM4ILH2RDRJM:00000001 [INF] Executing endpoint '"ProductStore.Controllers.HomeController.Index (ProductStore)"' (500cc934)
+2020-11-27T11:13:11.1544855+03:00 0HM4ILH2RDRJM:00000001 [INF] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index()" on controller "ProductStore.Controllers.HomeController" ("ProductStore"). (122b2fdf)
+2020-11-27T11:13:11.1815622+03:00 0HM4ILH2RDRJM:00000001 [INF] Executing action method "ProductStore.Controllers.HomeController.Index (ProductStore)" - Validation state: Valid (dad538d7)
+2020-11-27T11:13:11.3793293+03:00 0HM4ILH2RDRJM:00000001 [INF] Executed DbCommand ("177"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[ProductId], [p].[AddedDate], [p].[Brand], [p].[Carbohydrates], [p].[CategoryId], [p].[CreatedPlaceCountryId], [p].[EnergyValue], [p].[Fat], [p].[ImageName], [p].[InStock], [p].[IsDeleted], [p].[Price], [p].[PriceForOneKilogram], [p].[ProductDescription], [p].[ProductName], [p].[ProductPicture], [p].[Protein], [p].[Quantity], [p].[Weight]
+FROM [Products] AS [p]
+ORDER BY [p].[AddedDate] DESC" (0723d8ff)
+2020-11-27T11:13:11.5382775+03:00 0HM4ILH2RDRJM:00000001 [INF] Executed action method "ProductStore.Controllers.HomeController.Index (ProductStore)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 335.3767ms. (50a9e262)
+2020-11-27T11:13:11.5757523+03:00 0HM4ILH2RDRJM:00000001 [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2020-11-27T11:13:12.1551762+03:00 0HM4ILH2RDRJM:00000001 [INF] Executed ViewResult - view "Index" executed in 596.305ms. (f66409e9)
+2020-11-27T11:13:12.1614562+03:00 0HM4ILH2RDRJM:00000001 [INF] Executed action "ProductStore.Controllers.HomeController.Index (ProductStore)" in 1001.9295ms (afa2e885)
+2020-11-27T11:13:12.1651904+03:00 0HM4ILH2RDRJM:00000001 [INF] Executed endpoint '"ProductStore.Controllers.HomeController.Index (ProductStore)"' (99874f2b)
+2020-11-27T11:13:12.1828204+03:00 0HM4ILH2RDRJM:00000001 [INF] Request finished in 1907.4142ms 200 text/html; charset=utf-8 (791a596a)
+2020-11-27T11:13:12.8991964+03:00 0HM4ILH2RDRJM:00000003 [INF] Request starting HTTP/2 GET https://localhost:5001/lib/datatables/js/jquery.dataTables.min.js   (ca22a1cb)
+2020-11-27T11:13:13.0076906+03:00 0HM4ILH2RDRJM:00000005 [INF] Request starting HTTP/2 GET https://localhost:5001/lib/datatables/js/dataTables.bootstrap4.min.js   (ca22a1cb)
+2020-11-27T11:13:13.0596937+03:00 0HM4ILH2RDRJM:00000005 [INF] The file "/lib/datatables/js/dataTables.bootstrap4.min.js" was not modified (f1f8d725)
+2020-11-27T11:13:13.0599436+03:00 0HM4ILH2RDRJM:00000003 [INF] The file "/lib/datatables/js/jquery.dataTables.min.js" was not modified (f1f8d725)
+2020-11-27T11:13:13.0674236+03:00 0HM4ILH2RDRJM:00000005 [INF] Request finished in 56.7441ms 304 application/javascript (791a596a)
+2020-11-27T11:13:13.0721414+03:00 0HM4ILH2RDRJM:00000003 [INF] Request finished in 171.68ms 304 application/javascript (791a596a)
+2020-11-27T11:13:13.8107859+03:00 0HM4ILH2RDRJM:00000007 [INF] Request starting HTTP/2 GET https://localhost:5001/css/font-awesome.css   (ca22a1cb)
+2020-11-27T11:13:13.8343270+03:00 0HM4ILH2RDRJM:00000007 [INF] Entity Framework Core "3.1.8" initialized '"AuthDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-11-27T11:13:13.8449379+03:00 0HM4ILH2RDRJM:00000007 [INF] Executed DbCommand ("2"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0" (0723d8ff)
+2020-11-27T11:13:13.8522172+03:00 0HM4ILH2RDRJM:00000007 [INF] Executed DbCommand ("1"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0" (0723d8ff)
+2020-11-27T11:13:13.8579895+03:00 0HM4ILH2RDRJM:00000007 [INF] Executed DbCommand ("1"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0" (0723d8ff)
+2020-11-27T11:13:13.8639549+03:00 0HM4ILH2RDRJM:00000007 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:13:13.8690431+03:00 0HM4ILH2RDRJM:00000007 [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:13:13.8804340+03:00 0HM4ILH2RDRJM:00000007 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:13:13.8854221+03:00 0HM4ILH2RDRJM:00000007 [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:13:13.8901902+03:00 0HM4ILH2RDRJM:00000007 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:13:13.8962387+03:00 0HM4ILH2RDRJM:00000007 [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:13:13.9004083+03:00 0HM4ILH2RDRJM:00000007 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:13:13.9051906+03:00 0HM4ILH2RDRJM:00000007 [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:13:13.9141133+03:00 0HM4ILH2RDRJM:00000007 [INF] Request finished in 103.5426ms 404  (791a596a)
+2020-11-27T11:29:23.2455234+03:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2020-11-27T11:29:23.2702152+03:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2020-11-27T11:29:23.2845652+03:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-11-27T11:29:23.2874518+03:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-11-27T11:29:23.2914065+03:00  [INF] Content root path: "C:\Users\Il\source\repos\ProductStore\ProductStore" (b5d60022)
+2020-11-27T11:29:26.1178617+03:00 0HM4ILQ5OR610:00000001 [INF] Request starting HTTP/2 GET https://localhost:5001/   (ca22a1cb)
+2020-11-27T11:29:26.7512958+03:00 0HM4ILQ5OR610:00000001 [INF] Entity Framework Core "3.1.8" initialized '"AuthDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-11-27T11:29:26.9704954+03:00 0HM4ILQ5OR610:00000001 [INF] Executed DbCommand ("118"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0" (0723d8ff)
+2020-11-27T11:29:27.5118084+03:00 0HM4ILQ5OR610:00000001 [INF] Executed DbCommand ("428"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0" (0723d8ff)
+2020-11-27T11:29:27.6610095+03:00 0HM4ILQ5OR610:00000001 [INF] Executed DbCommand ("16"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0" (0723d8ff)
+2020-11-27T11:29:27.6884123+03:00 0HM4ILQ5OR610:00000001 [INF] Executed DbCommand ("12"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:29:27.7199462+03:00 0HM4ILQ5OR610:00000001 [INF] Executed DbCommand ("12"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:29:27.7290464+03:00 0HM4ILQ5OR610:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:29:27.7377910+03:00 0HM4ILQ5OR610:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:29:27.7432957+03:00 0HM4ILQ5OR610:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:29:27.7498991+03:00 0HM4ILQ5OR610:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:29:27.7553695+03:00 0HM4ILQ5OR610:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:29:27.7662486+03:00 0HM4ILQ5OR610:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:29:27.7858387+03:00 0HM4ILQ5OR610:00000001 [INF] Executing endpoint '"ProductStore.Controllers.HomeController.Index (ProductStore)"' (500cc934)
+2020-11-27T11:29:27.9649697+03:00 0HM4ILQ5OR610:00000001 [INF] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index()" on controller "ProductStore.Controllers.HomeController" ("ProductStore"). (122b2fdf)
+2020-11-27T11:29:28.0054905+03:00 0HM4ILQ5OR610:00000001 [INF] Executing action method "ProductStore.Controllers.HomeController.Index (ProductStore)" - Validation state: Valid (dad538d7)
+2020-11-27T11:29:28.2123241+03:00 0HM4ILQ5OR610:00000001 [INF] Executed DbCommand ("132"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[ProductId], [p].[AddedDate], [p].[Brand], [p].[Carbohydrates], [p].[CategoryId], [p].[CreatedPlaceCountryId], [p].[EnergyValue], [p].[Fat], [p].[ImageName], [p].[InStock], [p].[IsDeleted], [p].[Price], [p].[PriceForOneKilogram], [p].[ProductDescription], [p].[ProductName], [p].[ProductPicture], [p].[Protein], [p].[Quantity], [p].[Weight]
+FROM [Products] AS [p]
+ORDER BY [p].[AddedDate] DESC" (0723d8ff)
+2020-11-27T11:29:28.3138850+03:00 0HM4ILQ5OR610:00000001 [INF] Executed action method "ProductStore.Controllers.HomeController.Index (ProductStore)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 292.4101ms. (50a9e262)
+2020-11-27T11:29:28.3758652+03:00 0HM4ILQ5OR610:00000001 [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2020-11-27T11:29:29.0036637+03:00 0HM4ILQ5OR610:00000001 [INF] Executed ViewResult - view "Index" executed in 672.9227ms. (f66409e9)
+2020-11-27T11:29:29.0133246+03:00 0HM4ILQ5OR610:00000001 [INF] Executed action "ProductStore.Controllers.HomeController.Index (ProductStore)" in 1043.8516ms (afa2e885)
+2020-11-27T11:29:29.0179910+03:00 0HM4ILQ5OR610:00000001 [INF] Executed endpoint '"ProductStore.Controllers.HomeController.Index (ProductStore)"' (99874f2b)
+2020-11-27T11:29:29.6719676+03:00 0HM4ILQ5OR610:00000001 [INF] Request finished in 2995.7493ms 200 text/html; charset=utf-8 (791a596a)
+2020-11-27T11:29:29.6777025+03:00 0HM4ILQ5OR610:00000003 [INF] Request starting HTTP/2 GET https://localhost:5001/css/Registration-Form-with-Photo.css   (ca22a1cb)
+2020-11-27T11:29:29.6929947+03:00 0HM4ILQ5OR610:00000005 [INF] Request starting HTTP/2 GET https://localhost:5001/css/font-awesome.css   (ca22a1cb)
+2020-11-27T11:29:29.7666007+03:00 0HM4ILQ5OR610:00000003 [INF] The file "/css/Registration-Form-with-Photo.css" was not modified (f1f8d725)
+2020-11-27T11:29:29.7690312+03:00 0HM4ILQ5OR610:00000005 [INF] Entity Framework Core "3.1.8" initialized '"AuthDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-11-27T11:29:29.7766331+03:00 0HM4ILQ5OR610:00000003 [INF] Request finished in 125.2413ms 304 text/css (791a596a)
+2020-11-27T11:29:29.7942144+03:00 0HM4ILQ5OR610:00000005 [INF] Executed DbCommand ("13"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0" (0723d8ff)
+2020-11-27T11:29:29.8054318+03:00 0HM4ILQ5OR610:00000005 [INF] Executed DbCommand ("3"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0" (0723d8ff)
+2020-11-27T11:29:29.8153195+03:00 0HM4ILQ5OR610:00000005 [INF] Executed DbCommand ("5"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0" (0723d8ff)
+2020-11-27T11:29:29.8261164+03:00 0HM4ILQ5OR610:00000005 [INF] Executed DbCommand ("5"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:29:29.8449052+03:00 0HM4ILQ5OR610:00000005 [INF] Executed DbCommand ("13"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:29:29.8558012+03:00 0HM4ILQ5OR610:00000005 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:29:29.8657523+03:00 0HM4ILQ5OR610:00000005 [INF] Executed DbCommand ("3"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:29:29.8793093+03:00 0HM4ILQ5OR610:00000005 [INF] Executed DbCommand ("5"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:29:29.8930679+03:00 0HM4ILQ5OR610:00000005 [INF] Executed DbCommand ("3"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:29:29.9060544+03:00 0HM4ILQ5OR610:00000005 [INF] Executed DbCommand ("4"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:29:29.9164504+03:00 0HM4ILQ5OR610:00000005 [INF] Executed DbCommand ("4"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:29:29.9791349+03:00 0HM4ILQ5OR610:00000005 [INF] Request finished in 248.2231ms 404  (791a596a)
+2020-11-27T11:55:08.1160228+03:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2020-11-27T11:55:08.1248562+03:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2020-11-27T11:55:08.2324137+03:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-11-27T11:55:08.2463478+03:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-11-27T11:55:08.2525821+03:00  [INF] Content root path: "C:\Users\Il\source\repos\ProductStore\ProductStore" (b5d60022)
+2020-11-27T11:55:11.1533152+03:00 0HM4IM8I2PKB0:00000001 [INF] Request starting HTTP/2 GET https://localhost:5001/   (ca22a1cb)
+2020-11-27T11:55:12.1241765+03:00 0HM4IM8I2PKB0:00000001 [INF] Entity Framework Core "3.1.8" initialized '"AuthDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-11-27T11:55:12.2458748+03:00 0HM4IM8I2PKB0:00000001 [INF] Executed DbCommand ("27"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0" (0723d8ff)
+2020-11-27T11:55:12.4969479+03:00 0HM4IM8I2PKB0:00000001 [INF] Executed DbCommand ("89"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0" (0723d8ff)
+2020-11-27T11:55:12.6523943+03:00 0HM4IM8I2PKB0:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0" (0723d8ff)
+2020-11-27T11:55:12.8358684+03:00 0HM4IM8I2PKB0:00000001 [INF] Executed DbCommand ("16"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:12.9167391+03:00 0HM4IM8I2PKB0:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:55:12.9250868+03:00 0HM4IM8I2PKB0:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:12.9318725+03:00 0HM4IM8I2PKB0:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:55:12.9369951+03:00 0HM4IM8I2PKB0:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:12.9890108+03:00 0HM4IM8I2PKB0:00000001 [INF] Executed DbCommand ("42"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:55:12.9962244+03:00 0HM4IM8I2PKB0:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:13.0141349+03:00 0HM4IM8I2PKB0:00000001 [INF] Executed DbCommand ("6"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:55:13.0369105+03:00 0HM4IM8I2PKB0:00000001 [INF] Executing endpoint '"ProductStore.Controllers.HomeController.Index (ProductStore)"' (500cc934)
+2020-11-27T11:55:13.3169913+03:00 0HM4IM8I2PKB0:00000001 [INF] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index()" on controller "ProductStore.Controllers.HomeController" ("ProductStore"). (122b2fdf)
+2020-11-27T11:55:13.3927675+03:00 0HM4IM8I2PKB0:00000001 [INF] Executing action method "ProductStore.Controllers.HomeController.Index (ProductStore)" - Validation state: Valid (dad538d7)
+2020-11-27T11:55:13.5996439+03:00 0HM4IM8I2PKB0:00000001 [INF] Executed DbCommand ("162"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[ProductId], [p].[AddedDate], [p].[Brand], [p].[Carbohydrates], [p].[CategoryId], [p].[CreatedPlaceCountryId], [p].[EnergyValue], [p].[Fat], [p].[ImageName], [p].[InStock], [p].[IsDeleted], [p].[Price], [p].[PriceForOneKilogram], [p].[ProductDescription], [p].[ProductName], [p].[ProductPicture], [p].[Protein], [p].[Quantity], [p].[Weight]
+FROM [Products] AS [p]
+ORDER BY [p].[AddedDate] DESC" (0723d8ff)
+2020-11-27T11:55:13.7645879+03:00 0HM4IM8I2PKB0:00000001 [INF] Executed action method "ProductStore.Controllers.HomeController.Index (ProductStore)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 323.1886ms. (50a9e262)
+2020-11-27T11:55:13.9694921+03:00 0HM4IM8I2PKB0:00000001 [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2020-11-27T11:55:17.2509078+03:00 0HM4IM8I2PKB0:00000001 [INF] Executed ViewResult - view "Index" executed in 3462.4082ms. (f66409e9)
+2020-11-27T11:55:17.2587749+03:00 0HM4IM8I2PKB0:00000001 [INF] Executed action "ProductStore.Controllers.HomeController.Index (ProductStore)" in 3935.4018ms (afa2e885)
+2020-11-27T11:55:17.2673831+03:00 0HM4IM8I2PKB0:00000001 [INF] Executed endpoint '"ProductStore.Controllers.HomeController.Index (ProductStore)"' (99874f2b)
+2020-11-27T11:55:17.3165215+03:00 0HM4IM8I2PKB0:00000001 [INF] Request finished in 6236.1428ms 200 text/html; charset=utf-8 (791a596a)
+2020-11-27T11:55:18.0567872+03:00 0HM4IM8I2PKB0:00000003 [INF] Request starting HTTP/2 GET https://localhost:5001/css/font-awesome.css   (ca22a1cb)
+2020-11-27T11:55:18.1499445+03:00 0HM4IM8I2PKB0:00000003 [INF] Entity Framework Core "3.1.8" initialized '"AuthDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-11-27T11:55:18.1705213+03:00 0HM4IM8I2PKB0:00000003 [INF] Executed DbCommand ("11"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0" (0723d8ff)
+2020-11-27T11:55:18.1797828+03:00 0HM4IM8I2PKB0:00000003 [INF] Executed DbCommand ("2"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0" (0723d8ff)
+2020-11-27T11:55:18.1898428+03:00 0HM4IM8I2PKB0:00000003 [INF] Executed DbCommand ("3"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0" (0723d8ff)
+2020-11-27T11:55:18.2007253+03:00 0HM4IM8I2PKB0:00000003 [INF] Executed DbCommand ("4"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:18.2092871+03:00 0HM4IM8I2PKB0:00000003 [INF] Executed DbCommand ("3"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:55:18.2164338+03:00 0HM4IM8I2PKB0:00000003 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:18.2236052+03:00 0HM4IM8I2PKB0:00000003 [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:55:18.2301277+03:00 0HM4IM8I2PKB0:00000003 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:18.2370572+03:00 0HM4IM8I2PKB0:00000003 [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:55:18.2442928+03:00 0HM4IM8I2PKB0:00000003 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:18.2508358+03:00 0HM4IM8I2PKB0:00000003 [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:55:18.2602945+03:00 0HM4IM8I2PKB0:00000003 [INF] Request finished in 201.7273ms 404  (791a596a)
+2020-11-27T11:55:49.2248210+03:00 0HM4IM8I2PKB0:00000005 [INF] Request starting HTTP/2 GET https://localhost:5001/Admin   (ca22a1cb)
+2020-11-27T11:55:49.3017774+03:00 0HM4IM8I2PKB0:00000005 [INF] Entity Framework Core "3.1.8" initialized '"AuthDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-11-27T11:55:49.3148044+03:00 0HM4IM8I2PKB0:00000005 [INF] Executed DbCommand ("6"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0" (0723d8ff)
+2020-11-27T11:55:49.3236323+03:00 0HM4IM8I2PKB0:00000005 [INF] Executed DbCommand ("2"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0" (0723d8ff)
+2020-11-27T11:55:49.3306764+03:00 0HM4IM8I2PKB0:00000005 [INF] Executed DbCommand ("1"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0" (0723d8ff)
+2020-11-27T11:55:49.3366561+03:00 0HM4IM8I2PKB0:00000005 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:49.3448005+03:00 0HM4IM8I2PKB0:00000005 [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:55:49.3502415+03:00 0HM4IM8I2PKB0:00000005 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:49.3578810+03:00 0HM4IM8I2PKB0:00000005 [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:55:49.3707753+03:00 0HM4IM8I2PKB0:00000005 [INF] Executed DbCommand ("4"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:49.3820566+03:00 0HM4IM8I2PKB0:00000005 [INF] Executed DbCommand ("6"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:55:49.3867894+03:00 0HM4IM8I2PKB0:00000005 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:49.3946333+03:00 0HM4IM8I2PKB0:00000005 [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:55:49.4135824+03:00 0HM4IM8I2PKB0:00000005 [INF] Authorization was successful. (0d575a54)
+2020-11-27T11:55:49.4164510+03:00 0HM4IM8I2PKB0:00000005 [INF] Executing endpoint '"ProductStore.Controllers.AdminController.Index (ProductStore)"' (500cc934)
+2020-11-27T11:55:49.4221709+03:00 0HM4IM8I2PKB0:00000005 [INF] Route matched with "{action = \"Index\", controller = \"Admin\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "ProductStore.Controllers.AdminController" ("ProductStore"). (122b2fdf)
+2020-11-27T11:55:49.4305993+03:00 0HM4IM8I2PKB0:00000005 [INF] Executing action method "ProductStore.Controllers.AdminController.Index (ProductStore)" - Validation state: Valid (dad538d7)
+2020-11-27T11:55:49.4342646+03:00 0HM4IM8I2PKB0:00000005 [INF] Executed action method "ProductStore.Controllers.AdminController.Index (ProductStore)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.6146ms. (50a9e262)
+2020-11-27T11:55:49.4514601+03:00 0HM4IM8I2PKB0:00000005 [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2020-11-27T11:55:49.6883812+03:00 0HM4IM8I2PKB0:00000005 [INF] Executed DbCommand ("90"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit]
+FROM [AspNetUsers] AS [a]" (0723d8ff)
+2020-11-27T11:55:49.9671576+03:00 0HM4IM8I2PKB0:00000005 [INF] Executed DbCommand ("12"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[ProductId], [p].[AddedDate], [p].[Brand], [p].[Carbohydrates], [p].[CategoryId], [p].[CreatedPlaceCountryId], [p].[EnergyValue], [p].[Fat], [p].[ImageName], [p].[InStock], [p].[IsDeleted], [p].[Price], [p].[PriceForOneKilogram], [p].[ProductDescription], [p].[ProductName], [p].[ProductPicture], [p].[Protein], [p].[Quantity], [p].[Weight]
+FROM [Products] AS [p]" (0723d8ff)
+2020-11-27T11:55:50.3434885+03:00 0HM4IM8I2PKB0:00000005 [INF] Executed DbCommand ("127"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[CategoryId], [c].[AddedDate], [c].[CategoryDescription], [c].[CategoryName], [c].[CategoryPicture], [c].[ImageName], [c].[IsDeleted]
+FROM [Category] AS [c]" (0723d8ff)
+2020-11-27T11:55:50.5830280+03:00 0HM4IM8I2PKB0:00000005 [INF] Executed ViewResult - view "Index" executed in 1144.7548ms. (f66409e9)
+2020-11-27T11:55:50.5906090+03:00 0HM4IM8I2PKB0:00000005 [INF] Executed action "ProductStore.Controllers.AdminController.Index (ProductStore)" in 1165.2149ms (afa2e885)
+2020-11-27T11:55:50.5979153+03:00 0HM4IM8I2PKB0:00000005 [INF] Executed endpoint '"ProductStore.Controllers.AdminController.Index (ProductStore)"' (99874f2b)
+2020-11-27T11:55:50.6100950+03:00 0HM4IM8I2PKB0:00000005 [INF] Request finished in 1379.7959ms 200 text/html; charset=utf-8 (791a596a)
+2020-11-27T11:55:51.0538352+03:00 0HM4IM8I2PKB0:00000007 [INF] Request starting HTTP/2 GET https://localhost:5001/files/watermellon.jpg   (ca22a1cb)
+2020-11-27T11:55:51.0570051+03:00 0HM4IM8I2PKB0:00000009 [INF] Request starting HTTP/2 GET https://localhost:5001/files/fresh-fruits.jpeg   (ca22a1cb)
+2020-11-27T11:55:51.0982764+03:00 0HM4IM8I2PKB0:0000000B [INF] Request starting HTTP/2 GET https://localhost:5001/files/vegetables.jpg   (ca22a1cb)
+2020-11-27T11:55:51.1998836+03:00 0HM4IM8I2PKB0:00000007 [INF] The file "/files/watermellon.jpg" was not modified (f1f8d725)
+2020-11-27T11:55:51.2000469+03:00 0HM4IM8I2PKB0:00000009 [INF] The file "/files/fresh-fruits.jpeg" was not modified (f1f8d725)
+2020-11-27T11:55:51.2016872+03:00 0HM4IM8I2PKB0:0000000B [INF] The file "/files/vegetables.jpg" was not modified (f1f8d725)
+2020-11-27T11:55:51.2095772+03:00 0HM4IM8I2PKB0:0000000B [INF] Request finished in 108.0192ms 304 image/jpeg (791a596a)
+2020-11-27T11:55:51.2157349+03:00 0HM4IM8I2PKB0:00000007 [INF] Request finished in 158.5993ms 304 image/jpeg (791a596a)
+2020-11-27T11:55:51.2183831+03:00 0HM4IM8I2PKB0:00000009 [INF] Request finished in 152.5041ms 304 image/jpeg (791a596a)
+2020-11-27T11:55:51.2209726+03:00 0HM4IM8I2PKB0:0000000D [INF] Request starting HTTP/2 GET https://localhost:5001/files/toys.jpg   (ca22a1cb)
+2020-11-27T11:55:51.2238484+03:00 0HM4IM8I2PKB0:0000000F [INF] Request starting HTTP/2 GET https://localhost:5001/files/Bakery-Products.jpg   (ca22a1cb)
+2020-11-27T11:55:51.2286009+03:00 0HM4IM8I2PKB0:00000011 [INF] Request starting HTTP/2 GET https://localhost:5001/files/Berries.jpg   (ca22a1cb)
+2020-11-27T11:55:51.2318939+03:00 0HM4IM8I2PKB0:0000000F [INF] The file "/files/Bakery-Products.jpg" was not modified (f1f8d725)
+2020-11-27T11:55:51.2351589+03:00 0HM4IM8I2PKB0:00000011 [INF] The file "/files/Berries.jpg" was not modified (f1f8d725)
+2020-11-27T11:55:51.2382285+03:00 0HM4IM8I2PKB0:0000000F [INF] Request finished in 15.3268ms 304 image/jpeg (791a596a)
+2020-11-27T11:55:51.2423416+03:00 0HM4IM8I2PKB0:00000011 [INF] Request finished in 16.8661ms 304 image/jpeg (791a596a)
+2020-11-27T11:55:51.2470713+03:00 0HM4IM8I2PKB0:0000000D [INF] The file "/files/toys.jpg" was not modified (f1f8d725)
+2020-11-27T11:55:51.2561970+03:00 0HM4IM8I2PKB0:00000013 [INF] Request starting HTTP/2 GET https://localhost:5001/css/font-awesome.css   (ca22a1cb)
+2020-11-27T11:55:51.2706386+03:00 0HM4IM8I2PKB0:0000000D [INF] Request finished in 34.8581ms 304 image/jpeg (791a596a)
+2020-11-27T11:55:51.2732374+03:00 0HM4IM8I2PKB0:00000013 [INF] Entity Framework Core "3.1.8" initialized '"AuthDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-11-27T11:55:51.2896814+03:00 0HM4IM8I2PKB0:00000013 [INF] Executed DbCommand ("8"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0" (0723d8ff)
+2020-11-27T11:55:51.2995045+03:00 0HM4IM8I2PKB0:00000013 [INF] Executed DbCommand ("2"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0" (0723d8ff)
+2020-11-27T11:55:51.3066633+03:00 0HM4IM8I2PKB0:00000013 [INF] Executed DbCommand ("3"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0" (0723d8ff)
+2020-11-27T11:55:51.3172263+03:00 0HM4IM8I2PKB0:00000013 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:51.3273330+03:00 0HM4IM8I2PKB0:00000013 [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:55:51.3360618+03:00 0HM4IM8I2PKB0:00000013 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:51.3445213+03:00 0HM4IM8I2PKB0:00000013 [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:55:51.3492622+03:00 0HM4IM8I2PKB0:00000013 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:51.3564675+03:00 0HM4IM8I2PKB0:00000013 [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:55:51.3701934+03:00 0HM4IM8I2PKB0:00000013 [INF] Executed DbCommand ("9"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:51.3811829+03:00 0HM4IM8I2PKB0:00000013 [INF] Executed DbCommand ("6"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:55:51.3907823+03:00 0HM4IM8I2PKB0:00000013 [INF] Request finished in 143.9119ms 404  (791a596a)
+2020-11-27T11:55:54.2727736+03:00 0HM4IM8I2PKB0:00000015 [INF] Request starting HTTP/2 GET https://localhost:5001/Admin/User/Details/1cd35f07-e594-4158-bee4-207349b1764e   (ca22a1cb)
+2020-11-27T11:55:54.2891623+03:00 0HM4IM8I2PKB0:00000015 [INF] Entity Framework Core "3.1.8" initialized '"AuthDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-11-27T11:55:54.3002340+03:00 0HM4IM8I2PKB0:00000015 [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0" (0723d8ff)
+2020-11-27T11:55:54.3128108+03:00 0HM4IM8I2PKB0:00000015 [INF] Executed DbCommand ("3"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0" (0723d8ff)
+2020-11-27T11:55:54.3200720+03:00 0HM4IM8I2PKB0:00000015 [INF] Executed DbCommand ("3"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0" (0723d8ff)
+2020-11-27T11:55:54.3286531+03:00 0HM4IM8I2PKB0:00000015 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:54.3361060+03:00 0HM4IM8I2PKB0:00000015 [INF] Executed DbCommand ("4"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:55:54.3403129+03:00 0HM4IM8I2PKB0:00000015 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:54.3526022+03:00 0HM4IM8I2PKB0:00000015 [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:55:54.3668991+03:00 0HM4IM8I2PKB0:00000015 [INF] Executed DbCommand ("10"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:54.3757181+03:00 0HM4IM8I2PKB0:00000015 [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:55:54.3819616+03:00 0HM4IM8I2PKB0:00000015 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:54.3890350+03:00 0HM4IM8I2PKB0:00000015 [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:55:54.3981715+03:00 0HM4IM8I2PKB0:00000015 [INF] Authorization was successful. (0d575a54)
+2020-11-27T11:55:54.4020523+03:00 0HM4IM8I2PKB0:00000015 [INF] Executing endpoint '"ProductStore.Controllers.UsersController.Details (ProductStore)"' (500cc934)
+2020-11-27T11:55:54.4220295+03:00 0HM4IM8I2PKB0:00000015 [INF] Route matched with "{action = \"Details\", controller = \"Users\", page = \"\", area = \"\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Details(System.String)" on controller "ProductStore.Controllers.UsersController" ("ProductStore"). (122b2fdf)
+2020-11-27T11:55:54.5125109+03:00 0HM4IM8I2PKB0:00000015 [INF] Executing action method "ProductStore.Controllers.UsersController.Details (ProductStore)" - Validation state: Valid (dad538d7)
+2020-11-27T11:55:54.8927379+03:00 0HM4IM8I2PKB0:00000015 [INF] Executed DbCommand ("10"ms) [Parameters=["@__id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__id_0" (0723d8ff)
+2020-11-27T11:55:56.2641338+03:00 0HM4IM8I2PKB0:00000015 [INF] Executed DbCommand ("1,220"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[CommentId], [c].[CommentBody], [c].[CommentProductProductId], [c].[CommentTitle], [c].[CommentUserId], [c].[PostDate], [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit], [p].[ProductId], [p].[AddedDate], [p].[Brand], [p].[Carbohydrates], [p].[CategoryId], [p].[CreatedPlaceCountryId], [p].[EnergyValue], [p].[Fat], [p].[ImageName], [p].[InStock], [p].[IsDeleted], [p].[Price], [p].[PriceForOneKilogram], [p].[ProductDescription], [p].[ProductName], [p].[ProductPicture], [p].[Protein], [p].[Quantity], [p].[Weight]
+FROM [Comment] AS [c]
+INNER JOIN [AspNetUsers] AS [a] ON [c].[CommentUserId] = [a].[Id]
+INNER JOIN [Products] AS [p] ON [c].[CommentProductProductId] = [p].[ProductId]" (0723d8ff)
+2020-11-27T11:55:58.0258891+03:00 0HM4IM8I2PKB0:00000015 [INF] Executed DbCommand ("122"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [m].[MarkId], [m].[ProductId], [m].[TotalMark], [m].[UserId], [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit], [p].[ProductId], [p].[AddedDate], [p].[Brand], [p].[Carbohydrates], [p].[CategoryId], [p].[CreatedPlaceCountryId], [p].[EnergyValue], [p].[Fat], [p].[ImageName], [p].[InStock], [p].[IsDeleted], [p].[Price], [p].[PriceForOneKilogram], [p].[ProductDescription], [p].[ProductName], [p].[ProductPicture], [p].[Protein], [p].[Quantity], [p].[Weight]
+FROM [Mark] AS [m]
+LEFT JOIN [AspNetUsers] AS [a] ON [m].[UserId] = [a].[Id]
+LEFT JOIN [Products] AS [p] ON [m].[ProductId] = [p].[ProductId]" (0723d8ff)
+2020-11-27T11:55:58.4002847+03:00 0HM4IM8I2PKB0:00000015 [INF] Executed DbCommand ("194"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [o].[OrderId], [o].[Addres], [o].[AmountPaid], [o].[City], [o].[Country], [o].[CustomerId], [o].[FormedDate], [o].[PaymentType], [o].[State], [o].[ZipCode], [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit]
+FROM [Order] AS [o]
+LEFT JOIN [AspNetUsers] AS [a] ON [o].[CustomerId] = [a].[Id]" (0723d8ff)
+2020-11-27T11:55:58.6353801+03:00 0HM4IM8I2PKB0:00000015 [INF] Executed action method "ProductStore.Controllers.UsersController.Details (ProductStore)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 4113.4223ms. (50a9e262)
+2020-11-27T11:55:58.6446276+03:00 0HM4IM8I2PKB0:00000015 [INF] Executing ViewResult, running view "Details". (c83d0e25)
+2020-11-27T11:55:58.9910277+03:00 0HM4IM8I2PKB0:00000015 [INF] Executed ViewResult - view "Details" executed in 351.5296ms. (f66409e9)
+2020-11-27T11:55:58.9955017+03:00 0HM4IM8I2PKB0:00000015 [INF] Executed action "ProductStore.Controllers.UsersController.Details (ProductStore)" in 4568.0411ms (afa2e885)
+2020-11-27T11:55:58.9996277+03:00 0HM4IM8I2PKB0:00000015 [INF] Executed endpoint '"ProductStore.Controllers.UsersController.Details (ProductStore)"' (99874f2b)
+2020-11-27T11:55:59.0107886+03:00 0HM4IM8I2PKB0:00000015 [INF] Request finished in 4732.6097ms 200 text/html; charset=utf-8 (791a596a)
+2020-11-27T11:55:59.4873179+03:00 0HM4IM8I2PKB0:00000017 [INF] Request starting HTTP/2 GET https://localhost:5001/files/BasicUserPhoto.png   (ca22a1cb)
+2020-11-27T11:55:59.5264143+03:00 0HM4IM8I2PKB0:00000019 [INF] Request starting HTTP/2 GET https://localhost:5001/css/font-awesome.css   (ca22a1cb)
+2020-11-27T11:55:59.5443806+03:00 0HM4IM8I2PKB0:00000019 [INF] Entity Framework Core "3.1.8" initialized '"AuthDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-11-27T11:55:59.6970438+03:00 0HM4IM8I2PKB0:00000017 [INF] Sending file. Request path: '"/files/BasicUserPhoto.png"'. Physical path: '"C:\Users\Il\source\repos\ProductStore\ProductStore\wwwroot\files\BasicUserPhoto.png"' (27b0a520)
+2020-11-27T11:55:59.7007374+03:00 0HM4IM8I2PKB0:00000019 [INF] Executed DbCommand ("130"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0" (0723d8ff)
+2020-11-27T11:55:59.7613584+03:00 0HM4IM8I2PKB0:00000017 [INF] Request finished in 230.196ms 200 image/png (791a596a)
+2020-11-27T11:55:59.7824621+03:00 0HM4IM8I2PKB0:00000019 [INF] Executed DbCommand ("72"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0" (0723d8ff)
+2020-11-27T11:55:59.8242306+03:00 0HM4IM8I2PKB0:00000019 [INF] Executed DbCommand ("16"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0" (0723d8ff)
+2020-11-27T11:55:59.8386242+03:00 0HM4IM8I2PKB0:00000019 [INF] Executed DbCommand ("5"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:59.8677817+03:00 0HM4IM8I2PKB0:00000019 [INF] Executed DbCommand ("13"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:55:59.8796080+03:00 0HM4IM8I2PKB0:00000019 [INF] Executed DbCommand ("8"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:59.8979367+03:00 0HM4IM8I2PKB0:00000019 [INF] Executed DbCommand ("4"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:55:59.9041472+03:00 0HM4IM8I2PKB0:00000019 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:59.9111005+03:00 0HM4IM8I2PKB0:00000019 [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:55:59.9204628+03:00 0HM4IM8I2PKB0:00000019 [INF] Executed DbCommand ("5"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:55:59.9297682+03:00 0HM4IM8I2PKB0:00000019 [INF] Executed DbCommand ("3"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:56:00.0800435+03:00 0HM4IM8I2PKB0:00000019 [INF] Request finished in 410.7409ms 404  (791a596a)
+2020-11-27T11:56:07.0522940+03:00 0HM4IM8I2PKB0:0000001B [INF] Request starting HTTP/2 GET https://localhost:5001/Admin/Index   (ca22a1cb)
+2020-11-27T11:56:07.0798803+03:00 0HM4IM8I2PKB0:0000001B [INF] Entity Framework Core "3.1.8" initialized '"AuthDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-11-27T11:56:07.0967817+03:00 0HM4IM8I2PKB0:0000001B [INF] Executed DbCommand ("7"ms) [Parameters=["@__p_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0" (0723d8ff)
+2020-11-27T11:56:07.1107154+03:00 0HM4IM8I2PKB0:0000001B [INF] Executed DbCommand ("2"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0" (0723d8ff)
+2020-11-27T11:56:07.1207288+03:00 0HM4IM8I2PKB0:0000001B [INF] Executed DbCommand ("2"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0" (0723d8ff)
+2020-11-27T11:56:07.1333788+03:00 0HM4IM8I2PKB0:0000001B [INF] Executed DbCommand ("5"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:56:07.1447025+03:00 0HM4IM8I2PKB0:0000001B [INF] Executed DbCommand ("7"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:56:07.1519786+03:00 0HM4IM8I2PKB0:0000001B [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:56:07.1628359+03:00 0HM4IM8I2PKB0:0000001B [INF] Executed DbCommand ("6"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:56:07.1680494+03:00 0HM4IM8I2PKB0:0000001B [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:56:07.1820146+03:00 0HM4IM8I2PKB0:0000001B [INF] Executed DbCommand ("1"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:56:07.1878820+03:00 0HM4IM8I2PKB0:0000001B [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-11-27T11:56:07.1975995+03:00 0HM4IM8I2PKB0:0000001B [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-11-27T11:56:07.2080101+03:00 0HM4IM8I2PKB0:0000001B [INF] Authorization was successful. (0d575a54)
+2020-11-27T11:56:07.2124357+03:00 0HM4IM8I2PKB0:0000001B [INF] Executing endpoint '"ProductStore.Controllers.AdminController.Index (ProductStore)"' (500cc934)
+2020-11-27T11:56:07.2169396+03:00 0HM4IM8I2PKB0:0000001B [INF] Route matched with "{action = \"Index\", controller = \"Admin\", page = \"\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "ProductStore.Controllers.AdminController" ("ProductStore"). (122b2fdf)
+2020-11-27T11:56:07.2261770+03:00 0HM4IM8I2PKB0:0000001B [INF] Executing action method "ProductStore.Controllers.AdminController.Index (ProductStore)" - Validation state: Valid (dad538d7)
+2020-11-27T11:56:07.2292396+03:00 0HM4IM8I2PKB0:0000001B [INF] Executed action method "ProductStore.Controllers.AdminController.Index (ProductStore)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.1045ms. (50a9e262)
+2020-11-27T11:56:07.2327503+03:00 0HM4IM8I2PKB0:0000001B [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2020-11-27T11:56:07.2479429+03:00 0HM4IM8I2PKB0:0000001B [INF] Executed DbCommand ("9"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[AccessFailedCount], [a].[City], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[ImageUrl], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[Number], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[UsernameChangeLimit]
+FROM [AspNetUsers] AS [a]" (0723d8ff)
+2020-11-27T11:56:07.3108665+03:00 0HM4IM8I2PKB0:0000001B [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[ProductId], [p].[AddedDate], [p].[Brand], [p].[Carbohydrates], [p].[CategoryId], [p].[CreatedPlaceCountryId], [p].[EnergyValue], [p].[Fat], [p].[ImageName], [p].[InStock], [p].[IsDeleted], [p].[Price], [p].[PriceForOneKilogram], [p].[ProductDescription], [p].[ProductName], [p].[ProductPicture], [p].[Protein], [p].[Quantity], [p].[Weight]
+FROM [Products] AS [p]" (0723d8ff)
+2020-11-27T11:56:07.3461894+03:00 0HM4IM8I2PKB0:0000001B [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[CategoryId], [c].[AddedDate], [c].[CategoryDescription], [c].[CategoryName], [c].[CategoryPicture], [c].[ImageName], [c].[IsDeleted]
+FROM [Category] AS [c]" (0723d8ff)
+2020-11-27T11:56:07.4000011+03:00 0HM4IM8I2PKB0:0000001B [INF] Executed ViewResult - view "Index" executed in 154.452ms. (f66409e9)
+2020-11-27T11:56:07.4079843+03:00 0HM4IM8I2PKB0:0000001B [INF] Executed action "ProductStore.Controllers.AdminController.Index (ProductStore)" in 183.2035ms (afa2e885)
+2020-11-27T11:56:07.4128583+03:00 0HM4IM8I2PKB0:0000001B [INF] Executed endpoint '"ProductStore.Controllers.AdminController.Index (ProductStore)"' (99874f2b)
+2020-11-27T11:56:07.4185264+03:00 0HM4IM8I2PKB0:0000001B [INF] Request finished in 368.8367ms 200 text/html; charset=utf-8 (791a596a)
+2020-11-27T11:56:07.7122758+03:00 0HM4IM8I2PKB0:0000001D [INF] Request starting HTTP/2 GET https://localhost:5001/css/font-awesome.css   (ca22a1cb)
+2020-11-27T11:56:07.7781862+03:00 0HM4IM8I2PKB0:0000001D [INF] Request finished in 14.1791ms 404  (791a596a)

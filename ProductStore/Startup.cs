@@ -103,12 +103,12 @@ namespace ProductStore
             app.UseStaticFiles();
             app.UseRouting();
 
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-                     Path.Combine(env.ContentRootPath, "Templates")),
-                RequestPath = "/StaticFiles"
-            });
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    FileProvider = new PhysicalFileProvider(
+            //         Path.Combine(env.ContentRootPath, "Templates")),
+            //    RequestPath = "/StaticFiles"
+            //});
 
             app.UseAuthentication();
             app.UseAuthorization();
