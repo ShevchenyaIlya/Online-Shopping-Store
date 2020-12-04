@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Этот файл используется процессом публикации или упаковки вашего веб-проекта. Можно настроить поведение этого процесса,
+изменив этот файл MSBuild. Подробности см. на странице https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA5pNZ5wj7ZUC0VwH84Ybc3AAAAAACAAAAAAAQZgAAAAEAACAAAADk6LZ78cfCWwOU44sJh2fItwYGrzbsdnXcQtN6eTohFAAAAAAOgAAAAAIAACAAAAAey/dkc3rO8VzjnVB+Gevk+5gPReby4t0q/lbFQdUW04AAAACWpNBvrQx/hW8unT+aA3NTXtbK/yI8e69Z4xv4mZSA3EK89T5XSoNplsAOA6kSI2UQtzWbaFQjrN4CrU0fQqydyXZ2v8RvcHREiCr7ncQ+QCvuldmIthtt8DwFBQKtfFfmWrazsEgtGpuMYvU8JCJtBzNkH45u1wTEu0zdjSzQqkAAAAB7Yd+uBz4goFkhPGCyYzB4WQDn2+7j+TZ23P2A0Fn97ELYl+rh5yi/qlpk3eOkZVRgBJZkNiYbDZfPLOc7O2Vt</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="AuthDbContextConnection">
+      <Value>Data Source=tcp:onlineproductstoredbserver.database.windows.net,1433%3bInitial Catalog=ProductStore_db%3bUser Id=ShevchenyaIlya%40onlineproductstoredbserver%3bPassword=Sheva07012001</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="ProductStore.Data.AuthDbContext">
+      <Value>Data Source=tcp:onlineproductstoredbserver.database.windows.net,1433%3bInitial Catalog=ProductStore_db%3bUser Id=ShevchenyaIlya%40onlineproductstoredbserver%3bPassword=Sheva07012001</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>
