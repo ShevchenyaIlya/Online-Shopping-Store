@@ -165,7 +165,8 @@
                                                 </p>
                                                 <input id="commentTitle" name="commentTitle" class="form-control" style="width:100%" type="text" />
                                                 <textarea id="commentBody" name="commentBody" style="width:100%" class="form-control" for type="text"></textarea>
-                                                <input id="postDate" name="postDate" class="form-control" style="width:100%" value="@DateTime.Now.ToString()" type="text" hidden />
+                                                @*<input id="postDate" name="postDate" class="form-control" style="width:100%" value="@DateTime.UtcNow.ToString()" type="text" hidden />*@
+                                                
                                                 <input id="username" name="username" class="form-control" style="width:100%" value="@user.UserName" type="text" hidden />
                                                 <input id="image" name="image" class="form-control" style="width:100%" value="@user.ProfilePicture" type="text" hidden />
                                                 <input id="productName" name="productName" class="form-control" style="width:100%" value="@Model.ProductName" type="text" hidden />
@@ -199,6 +200,12 @@
                 url: "/Home/OnGetAllCommentAsync",
                 success: function (response) {
                     $("#commentlist").html(response);
+                    const items = document.getElementsByClassName("utc-date");
+                    for (let i = 0; i < items.length; i++) {
+                        let date = new Date(items[i].innerHTML);
+                        let newDate = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth() + 1, date.getUTCDate(), date.getHours(), date.getMinutes(), date.getSeconds()));
+                        items[i].innerHTML = newDate.getFullYear() + "-" + (newDate.getMonth()) + "-" + newDate.getDate() + " " + newDate.getHours() + ":" + newDate.getMinutes() + ":" + newDate.getSeconds();
+                    }
                 },
                 data: { productName: prod}
             });
