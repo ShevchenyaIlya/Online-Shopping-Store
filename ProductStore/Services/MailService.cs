@@ -19,12 +19,11 @@ namespace ProductStore.Services
         {
             _mailSettings = mailSettings.Value;
         }
-
         public async Task SendEmailAsync(MailRequest mailRequest)
         {
             var email = new MimeMessage();
-            email.From.Add(MailboxAddress.Parse(_mailSettings.Mail));
-            email.To.Add(MailboxAddress.Parse(mailRequest.ToEmail));
+            email.From.Add(new MailboxAddress("Product Store Administration", _mailSettings.Mail));
+            email.To.Add(new MailboxAddress("", mailRequest.ToEmail));
             email.Subject = mailRequest.Subject;
             var builder = new BodyBuilder();
             if (mailRequest.Attachments != null)
@@ -45,11 +44,14 @@ namespace ProductStore.Services
             }
             builder.HtmlBody = mailRequest.Body;
             email.Body = builder.ToMessageBody();
-            using var smtp = new SmtpClient();
-            smtp.Connect(_mailSettings.Host, _mailSettings.Port, false);
-            smtp.Authenticate(_mailSettings.Mail, _mailSettings.Password);
-            await smtp.SendAsync(email);
-            smtp.Disconnect(true);
+
+            using (var smtp = new SmtpClient())
+            {
+                await smtp.ConnectAsync(_mailSettings.Host, _mailSettings.Port, false);
+                await smtp.AuthenticateAsync(_mailSettings.Mail, _mailSettings.Password);
+                await smtp.SendAsync(email);
+                await smtp.DisconnectAsync(true);
+            }
         }
 
         public async Task SendWelcomeEmailAsync(WelcomeRequest request)
@@ -60,17 +62,19 @@ namespace ProductStore.Services
             str.Close();
             MailText = MailText.Replace("[username]", request.UserName).Replace("[email]", request.ToEmail);
             var email = new MimeMessage();
-            email.Sender = MailboxAddress.Parse(_mailSettings.Mail);
-            email.To.Add(MailboxAddress.Parse(request.ToEmail));
+            email.From.Add(new MailboxAddress("Product Store Administration", _mailSettings.Mail));
+            email.To.Add(new MailboxAddress("", request.ToEmail));
             email.Subject = $"Welcome {request.UserName}";
             var builder = new BodyBuilder();
             builder.HtmlBody = MailText;
             email.Body = builder.ToMessageBody();
-            using var smtp = new SmtpClient();
-            smtp.Connect(_mailSettings.Host, _mailSettings.Port, false);
-            smtp.Authenticate(_mailSettings.Mail, _mailSettings.Password);
-            await smtp.SendAsync(email);
-            smtp.Disconnect(true);
+            using (var smtp = new SmtpClient())
+            {
+                await smtp.ConnectAsync(_mailSettings.Host, _mailSettings.Port, false);
+                await smtp.AuthenticateAsync(_mailSettings.Mail, _mailSettings.Password);
+                await smtp.SendAsync(email);
+                await smtp.DisconnectAsync(true);
+            }
         }
 
         public async Task SendVerifiedEmailAsync(WelcomeRequest request, string token, bool flag)
@@ -90,17 +94,19 @@ namespace ProductStore.Services
             str.Close();
             MailText = MailText.Replace("[token]", token).Replace("[username]", request.UserName);
             var email = new MimeMessage();
-            email.Sender = MailboxAddress.Parse(_mailSettings.Mail);
-            email.To.Add(MailboxAddress.Parse(request.ToEmail));
+            email.From.Add(new MailboxAddress("Product Store Administration", _mailSettings.Mail));
+            email.To.Add(new MailboxAddress("", request.ToEmail));
             email.Subject = $"Welcome {request.UserName}";
             var builder = new BodyBuilder();
             builder.HtmlBody = MailText;
             email.Body = builder.ToMessageBody();
-            using var smtp = new SmtpClient();
-            smtp.Connect(_mailSettings.Host, _mailSettings.Port, false);
-            smtp.Authenticate(_mailSettings.Mail, _mailSettings.Password);
-            await smtp.SendAsync(email);
-            smtp.Disconnect(true);
+            using (var smtp = new SmtpClient())
+            {
+                await smtp.ConnectAsync(_mailSettings.Host, _mailSettings.Port, false);
+                await smtp.AuthenticateAsync(_mailSettings.Mail, _mailSettings.Password);
+                await smtp.SendAsync(email);
+                await smtp.DisconnectAsync(true);
+            }
         }
 
     }
