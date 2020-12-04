@@ -22,6 +22,7 @@ using ProductStore.Areas.Identity.Data;
 using ProductStore.Constrain;
 using ProductStore.Data;
 using ProductStore.Hubs;
+using ProductStore.Repositories;
 using ProductStore.Services;
 using ProductStore.Settings;
 using Serilog;
@@ -46,6 +47,15 @@ namespace ProductStore
             services.AddSingleton<ImageService>();
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
             services.AddTransient<Services.IMailService, Services.MailService>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<ISaleRepository, SaleRepository>();
+            services.AddTransient<IMarkRepository, MarkRepository>();
+            services.AddTransient<ICountryRepository, CountryRepository>();
+            services.AddTransient<ICommentRepository, CommentRepository>();
+            services.AddTransient<IProductBasketRepository, ProductBasketRepository>();
             services.AddLocalization(options => options.ResourcesPath = "Resources");
             services.AddMvc()
                 .AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix)
@@ -86,7 +96,7 @@ namespace ProductStore
         {
             var path = Directory.GetCurrentDirectory();
             loggerFactory.AddFile($"{path}/Logs/mylog-All.txt", minimumLevel: LogLevel.Trace);
-            loggerFactory.AddFile($"{path}/Logs/mylog-Error.txt", minimumLevel: LogLevel.Information);
+            loggerFactory.AddFile($"{path}/Logs/mylog-Error.txt", minimumLevel: LogLevel.Error);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
