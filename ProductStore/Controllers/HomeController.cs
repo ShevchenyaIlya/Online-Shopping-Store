@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using ProductStore.Areas.Identity.Data;
 using ProductStore.Data;
 using ProductStore.Models;
+using ProductStore.Repositories;
 using ProductStore.VIewModels;
 
 namespace ProductStore.Controllers
@@ -23,12 +24,28 @@ namespace ProductStore.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private AuthDbContext _context;
+        private readonly IProductRepository _productRepository;
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly IMarkRepository _markRepository;
+        private readonly ICommentRepository _commentRepository;
+        private readonly IOrderRepository _orderRepository;
+        private readonly ISaleRepository _saleRepository;
+        private readonly IProductBasketRepository _productBasketRepository;
 
-        public HomeController(AuthDbContext context, ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IProductRepository productRepository, ICategoryRepository categoryRepository,
+            IUserRepository userRepository, IMarkRepository markRepository, ICommentRepository commentRepository, IOrderRepository orderRepository,
+            ISaleRepository saleRepository, IProductBasketRepository productBasketRepository)
         {
             _logger = logger;
-            _context = context;
+            _productRepository = productRepository;
+            _categoryRepository = categoryRepository;
+            _userRepository = userRepository;
+            _markRepository = markRepository;
+            _commentRepository = commentRepository;
+            _orderRepository = orderRepository;
+            _saleRepository = saleRepository;
+            _productBasketRepository = productBasketRepository;
         }
 
         [AllowAnonymous]
@@ -45,8 +62,8 @@ namespace ProductStore.Controllers
             //_logger.LogCritical("This is our first logged message Critical");
 
 
-            var products = await _context.Products.OrderByDescending(m => m.AddedDate).ToListAsync();
-            ViewData["categories"] = _context.Category;
+            var products = await _productRepository.GetProductsDescendant();
+            ViewData["categories"] = await _categoryRepository.GetCategories();
             return View(products);
         }
 
@@ -54,14 +71,14 @@ namespace ProductStore.Controllers
         [Route("Image")]
         public async Task<IActionResult> Image()
         {
-            var value = await _context.Products.ToListAsync();
+            List<Product> value = (List<Product>)await _productRepository.GetProducts();
             ViewBag.image = value[0].ProductPicture;
-            return View(_context.Products.ToList());
+            return View(value);
         }
 
         [Authorize]
         [Route("About")]
-        public async Task<IActionResult> About()
+        public IActionResult About()
         {
             ViewBag.Message = "Your application description page.";
             return View();
@@ -70,7 +87,7 @@ namespace ProductStore.Controllers
         [Route("AddToProductBasketCookie/{value}")]
         public async Task<IActionResult> AddToProductBasketCookie(string value)
         {
-            var product = await _context.Products.Include(m => m.Category).Include(m => m.CreatedPlace).FirstOrDefaultAsync(mbox => mbox.ProductName == value);
+            var product = await _productRepository.GetProductByName(value);
             CookieOptions option = new CookieOptions();
             option.Expires = DateTime.Now.AddMinutes(30);
             if (Request.Cookies["ProductBasket1"] == null)
@@ -93,10 +110,10 @@ namespace ProductStore.Controllers
                 foreach (var value in objCartListStringSplit)
                 {
                     string[] result = value.Split("?");
-                    var productList = (Product) _context.Products.FirstOrDefault((mbox => mbox.ProductId == long.Parse(result[1])));
+                    var productList = (Product) await  _productRepository.GetProductByID(long.Parse(result[1]));
                     products.Add(productList);
                 }
-                products.Remove(await _context.Products.FirstOrDefaultAsync(mbox => mbox.ProductName == product));
+                products.Remove(await _productRepository.GetProductByName(product));
                 Response.Cookies.Delete("ProductBasket1");
                 CookieOptions option = new CookieOptions();
                 option.Expires = DateTime.Now.AddMinutes(30);
@@ -123,8 +140,9 @@ namespace ProductStore.Controllers
                 foreach (var value in objCartListStringSplit)
                 {
                     string[] result = value.Split("?");
-                    var productList = (Product)_context.Products.Include(m => m.Category).Include(m => m.CreatedPlace).FirstOrDefault((mbox => mbox.ProductId == long.Parse(result[1])));
-                    products.Add(productList);
+                    var productList = (Product) await _productRepository.GetProductByID(long.Parse(result[1]));
+                    if (productList.InStock)
+                        products.Add(productList);
                 }
                 return View(products);
             }
@@ -137,9 +155,7 @@ namespace ProductStore.Controllers
         [Route("OnGetAllCommentAsync")]
         public async Task<IActionResult> OnGetAllCommentAsync(string productName)
         {
-            Comments = await _context.Comment
-                .Include(m => m.CommentUser).Include(n => n.CommentProduct)
-                .Where(m => m.CommentProduct.ProductName == productName).OrderByDescending(m => m.PostDate).ToListAsync();
+            Comments = (List<Comment>)await _commentRepository.GetProductsWhereName(productName);
 
             return PartialView("_DisplayComments", Comments);
         }
@@ -147,12 +163,13 @@ namespace ProductStore.Controllers
         [Route("OnUpdateRating")]
         public async Task<IActionResult> OnUpdateRating(string productName, string userId, string value)
         {
-            var product = await _context.Products.FirstOrDefaultAsync(mbox => mbox.ProductName == productName);
+            var product = await _productRepository.GetProductByName(productName);
 
             if (userId != null)
             {
-                var user = await _context.Users.FirstOrDefaultAsync(mbox => mbox.Id == userId);
-                var findMark = await _context.Mark.Include(m => m.User).Include(m => m.Product).FirstOrDefaultAsync(mbox => mbox.User == user && mbox.Product == product);
+                //var user = await _context.Users.FirstOrDefaultAsync(mbox => mbox.Id == userId);
+                var user = await _userRepository.GetUserById(userId);
+                var findMark = await _markRepository.GetMarkByUserAndProduct(user, product);
 
                 if (findMark == null)
                 {
@@ -162,11 +179,10 @@ namespace ProductStore.Controllers
                         Product = product,
                         TotalMark = Int64.Parse(value)
                     };
-                    _context.Add(mark);
-                    await _context.SaveChangesAsync();
+                    _markRepository.InsertMark(mark);
                 }
             }
-            var rating = await _context.Mark.Where(m => m.Product.ProductId == product.ProductId).ToListAsync();
+            var rating = await _markRepository.GetMarkWhereId(product.ProductId);
             double ratingValue = 0;
             foreach (var variable in rating)
             {
@@ -201,7 +217,7 @@ namespace ProductStore.Controllers
 
             if (commentTitle == null || commentBody == null)
             {
-                var product = await _context.Products.FirstOrDefaultAsync(mbox => mbox.ProductName == productName);
+                var product = await _productRepository.GetProductByName(productName);
                 return RedirectToAction(nameof(ProductCard), new { id = product.ProductId });
             }
 
@@ -209,11 +225,10 @@ namespace ProductStore.Controllers
             dataComment.CommentTitle = commentTitle;
             dataComment.CommentBody = commentBody;
             dataComment.PostDate = DateTime.UtcNow;
-            dataComment.CommentUser = await _context.Users.FirstOrDefaultAsync(m => m.UserName == User.Identity.Name);
-            dataComment.CommentProduct = await _context.Products.FirstOrDefaultAsync(mbox => mbox.ProductName == productName);
+            dataComment.CommentUser = await _userRepository.GetUserByName(User.Identity.Name);
+            dataComment.CommentProduct = await _productRepository.GetProductByName(productName);
 
-            _context.Add(dataComment);
-            await _context.SaveChangesAsync();
+            _commentRepository.InsertComment(dataComment);
 
             return RedirectToAction(nameof(ProductCard), new { id = dataComment.CommentProduct.ProductId });
         }
@@ -227,11 +242,10 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products.Include(n => n.Category)
-                .FirstOrDefaultAsync(m => m.ProductId == id);
+            var product = await _productRepository.GetProductByID(id);
 
             ViewBag.Product = product;
-            var sales = await _context.Sale.Include(m => m.Product).ToListAsync();
+            var sales = await _saleRepository.GetSales();
             Sale productSale = null;
             foreach(var sale in sales)
             {
@@ -243,8 +257,7 @@ namespace ProductStore.Controllers
             }
             ViewBag.Sale = productSale;
 
-            var comments = await _context.Comment.Include(m => m.CommentUser).Include(n => n.CommentProduct)
-                .Where(mbox => mbox.CommentProduct.ProductId == product.ProductId).OrderByDescending(m => m.PostDate).Take(5).ToListAsync();
+            var comments = await _commentRepository.GetProductsLimit(product.ProductId, 5);
             ViewBag.Comments = comments;
 
             if (product == null)
@@ -252,7 +265,7 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
-            var rating = await _context.Mark.Where(m => m.Product.ProductId == product.ProductId).ToListAsync();
+            var rating = await _markRepository.GetMarkWhereId(product.ProductId);
             double ratingValue = 0;
             foreach (var value in rating)
             {
@@ -286,10 +299,10 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            var category = await _categoryRepository.GetCategorytByID(id);
 
-            var products = await _context.Products.Where(m => m.Category.CategoryId == category.CategoryId).ToListAsync();
+            var products = await _productRepository.GetProductsWhereId(category.CategoryId);
+
             ViewBag.Products = products;
             if (category == null)
             {
@@ -303,7 +316,7 @@ namespace ProductStore.Controllers
         [Route("Products")]
         public async Task<IActionResult> Products()
         {
-            var products = await _context.Products.ToListAsync<Product>();
+            var products = await _productRepository.GetProducts();
             return View(products);
         }
 
@@ -311,7 +324,7 @@ namespace ProductStore.Controllers
         [Route("Sales")]
         public async Task<IActionResult> Sales()
         {
-            var sales = await _context.Sale.Include(m => m.Product).ToListAsync<Sale>();
+            var sales = await _saleRepository.GetSales();
             return View(sales);
         }
 
@@ -320,7 +333,7 @@ namespace ProductStore.Controllers
         [Route("Category")]
         public async Task<IActionResult> Category()
         {
-            var categories = await _context.Category.ToListAsync<Category>();
+            var categories = await _categoryRepository.GetCategories();
             return View(categories);
         }
 
@@ -328,7 +341,7 @@ namespace ProductStore.Controllers
         [Route("CategoryItems/{id:int?}")]
         public async Task<IActionResult> CategoryItems(int? id)
         {
-            var products = await _context.Products.ToListAsync<Product>();
+            var products = await _productRepository.GetProducts();
             List<Product> categoryProducts = new List<Product>();
             foreach (var product in products)
             {
@@ -348,21 +361,17 @@ namespace ProductStore.Controllers
         [Route("FindProduct")]
         public async Task<IActionResult> FindProduct(string searching)
         {
-            var products = from product in _context.Products.Include(m => m.CreatedPlace)
-                           select product;
-            ViewBag.Categories = await _context.Category.ToListAsync();
-
-            return View(products.ToList());
+            ViewBag.Categories = await _categoryRepository.GetCategories();
+            return View(await _productRepository.GetProducts());
         }
 
         [AllowAnonymous]
         [Route("SearchProduct")]
         public async Task<IActionResult> SearchProduct(string searching)
         {
-            var products = from product in _context.Products.Include(m => m.CreatedPlace)
-                           select product;
+            var products = await _productRepository.GetProducts();
 
-            ViewBag.Categories = await _context.Category.ToListAsync();
+            ViewBag.Categories = await _categoryRepository.GetCategories();
             if (!String.IsNullOrEmpty(searching))
             {
                 products = products.Where(product => product.ProductName.Contains(searching) || product.CreatedPlace.CountryName.Contains(searching));
@@ -374,10 +383,9 @@ namespace ProductStore.Controllers
         [Route("FindProductByCategory")]
         public async Task<IActionResult> FindProductByCategory(string category)
         {
-            var products = from product in _context.Products.Include(m => m.CreatedPlace).Include(m => m.Category)
-                           select product;
+            var products = await _productRepository.GetProducts();
 
-            ViewBag.Categories = await _context.Category.ToListAsync();
+            ViewBag.Categories = await _categoryRepository.GetCategories();
             products = products.Where(product => product.Category.CategoryName.Contains(category));
             return PartialView("_DisplayProductPartial", products.ToList());
         }
@@ -406,7 +414,7 @@ namespace ProductStore.Controllers
         [Route("CreateOrder")]
         public async Task<IActionResult> CreateOrder([Bind("OrderId,Addres,City,State,Country,ZipCode,AmountPaid,PaymentType,FormedDate")] Order order)
         {
-            ApplicationUser temporalUser = _context.Users.Where(value => value.UserName == User.Identity.Name).First();
+            ApplicationUser temporalUser = await _userRepository.GetUserByName(User.Identity.Name);
             if (temporalUser != null)
             {
                 order.Customer = temporalUser;
@@ -422,7 +430,7 @@ namespace ProductStore.Controllers
             foreach (var value in objCartListStringSplit)
             {
                 string[] result = value.Split("?");
-                var productList = (Product) _context.Products.Include(m => m.Category).Include(m => m.CreatedPlace).FirstOrDefault(mbox => mbox.ProductId == long.Parse(result[1]));
+                var productList = (Product)await _productRepository.GetProductByID(long.Parse(result[1]));
                 if (productList.InStock)
                     products.Add(productList);
             }
@@ -437,8 +445,7 @@ namespace ProductStore.Controllers
             order.AmountPaid = amountPaid;
             if (ModelState.IsValid)
             {
-                _context.Add(order);
-                await _context.SaveChangesAsync();
+                _orderRepository.InsertOrder(order);
             }
             foreach(var product in products)
             {
@@ -448,9 +455,9 @@ namespace ProductStore.Controllers
                     Products = product,
                     Order = order,
                 };
-                _context.Add(productBasket);
+                _productBasketRepository.AddBasketToTransaction(productBasket);
             }
-            await _context.SaveChangesAsync();
+            _productBasketRepository.Save();
             Response.Cookies.Delete("ProductBasket1");
             return RedirectToAction(nameof(Products));
         }

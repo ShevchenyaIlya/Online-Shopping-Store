@@ -11,6 +11,7 @@ using ProductStore.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using ProductStore.Services;
+using ProductStore.Repositories;
 
 namespace ProductStore.Controllers
 {
@@ -19,15 +20,20 @@ namespace ProductStore.Controllers
     [Route("Admin/Product")]
     public class ProductsController : Controller
     {
-        private readonly AuthDbContext _context;
+        private readonly IProductRepository _productRepository;
+        private readonly ICountryRepository _countryRepository;
+        private readonly ICategoryRepository _categoryRepository;
         private readonly ImageService _imageService;
 
         [TempData]
         public string StatusMessage { get; set; }
 
-        public ProductsController(AuthDbContext context, ImageService imageService)
+        public ProductsController(ImageService imageService, IProductRepository productRepository,
+            ICategoryRepository categoryRepository, ICountryRepository countryRepository)
         {
-            _context = context;
+            _productRepository = productRepository;
+            _countryRepository = countryRepository;
+            _categoryRepository = categoryRepository;
             _imageService = imageService;
         }
 
@@ -37,7 +43,7 @@ namespace ProductStore.Controllers
         public async Task<IActionResult> Index()
         {
             ViewBag.StatusMessage = StatusMessage;
-            return View(await _context.Products.ToListAsync());
+            return View(await _productRepository.GetProducts());
         }
 
         // GET: Products/Details/5
@@ -49,8 +55,7 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products.Include(n => n.Category).Include(c => c.CreatedPlace)
-                .FirstOrDefaultAsync(m => m.ProductId == id);
+            var product = await _productRepository.GetProductByID(id);
             if (product == null)
             {
                 return NotFound();
@@ -62,17 +67,17 @@ namespace ProductStore.Controllers
 
         // GET: Products/Create
         [Route("Create")]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             List<SelectListItem> categories = new List<SelectListItem>();
-            foreach (var category in _context.Category)
+            foreach (var category in await _categoryRepository.GetCategories())
             {
                 categories.Add(new SelectListItem() { Value = category.CategoryName, Text = category.CategoryName });
             }
             ViewBag.Category = categories;
 
             List<SelectListItem> countries = new List<SelectListItem>();
-            foreach (var country in _context.Country)
+            foreach (var country in await _countryRepository.GetCountries())
             {
                 countries.Add(new SelectListItem() { Value = country.CountryName, Text = country.CountryName });
             }
@@ -91,14 +96,14 @@ namespace ProductStore.Controllers
         public async Task<IActionResult> Create([Bind("ProductId,ProductName,ProductDescription,Brand,PriceForOneKilogram,Price,Weight,Protein,Fat,Carbohydrates,EnergyValue,IsDeleted,InStock,Quantity,ImageUrl,AddedDate,CreatedPlace,Category")] Product product, string createdPlace, string category)
         {
             List<SelectListItem> categories = new List<SelectListItem>();
-            foreach (var value in _context.Category)
+            foreach (var value in await _categoryRepository.GetCategories())
             {
                 categories.Add(new SelectListItem() { Value = value.CategoryName, Text = value.CategoryName });
             }
             ViewBag.Category = categories;
 
             List<SelectListItem> countries = new List<SelectListItem>();
-            foreach (var country in _context.Country)
+            foreach (var country in await _countryRepository.GetCountries())
             {
                 countries.Add(new SelectListItem() { Value = country.CountryName, Text = country.CountryName });
             }
@@ -106,19 +111,19 @@ namespace ProductStore.Controllers
 
             if (ModelState.IsValid)
             {
-                if (_context.Category == null)
+                if (category == null)
                 {
                     StatusMessage = "Error. Category doesn't choosen.";
                     return RedirectToAction();
                 }
-                Category temporalCategory = _context.Category.Where(value => value.CategoryName == category).First();
+                Category temporalCategory = await _categoryRepository.FindFirsByCategoryName(category);
 
-                if (_context.Country == null)
+                if (createdPlace == null)
                 {
                     StatusMessage = "Error. Coountry doesn't choosen.";
                     return RedirectToAction();
                 }
-                Country temporalCountry = _context.Country.Where(value => value.CountryName == createdPlace).First();
+                Country temporalCountry = await _countryRepository.FindFirsByCountryName(createdPlace);
 
                 if (temporalCategory != null && temporalCountry != null)
                 {
@@ -142,8 +147,7 @@ namespace ProductStore.Controllers
                     StatusMessage = "Error. Image doesn't choosen.";
                     return RedirectToAction();
                 }
-                _context.Add(product);
-                await _context.SaveChangesAsync();
+                _productRepository.InsertProduct(product);
                 StatusMessage = "Product has been added";
                 return RedirectToAction(nameof(Index));
             }
@@ -160,21 +164,21 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products.FindAsync(id);
+            var product = await _productRepository.GetProductByID(id);
             if (product == null)
             {
                 return NotFound();
             }
 
             List<SelectListItem> categories = new List<SelectListItem>();
-            foreach (var category in _context.Category)
+            foreach (var category in await _categoryRepository.GetCategories())
             {
                 categories.Add(new SelectListItem() { Value = category.CategoryName, Text = category.CategoryName });
             }
             ViewBag.Category = categories;
 
             List<SelectListItem> countries = new List<SelectListItem>();
-            foreach (var country in _context.Country)
+            foreach (var country in await _countryRepository.GetCountries())
             {
                 countries.Add(new SelectListItem() { Value = country.CountryName, Text = country.CountryName });
             }
@@ -198,14 +202,14 @@ namespace ProductStore.Controllers
             }
 
             List<SelectListItem> categories = new List<SelectListItem>();
-            foreach (var value in _context.Category)
+            foreach (var value in await _categoryRepository.GetCategories())
             {
                 categories.Add(new SelectListItem() { Value = value.CategoryName, Text = value.CategoryName });
             }
             ViewBag.Category = categories;
 
             List<SelectListItem> countries = new List<SelectListItem>();
-            foreach (var country in _context.Country)
+            foreach (var country in await _countryRepository.GetCountries())
             {
                 countries.Add(new SelectListItem() { Value = country.CountryName, Text = country.CountryName });
             }
@@ -213,8 +217,8 @@ namespace ProductStore.Controllers
 
             if (ModelState.IsValid)
             {
-                Category temporalCategory = _context.Category.Where(value => value.CategoryName == category).First();
-                Country temporalCountry = _context.Country.Where(value => value.CountryName == createdPlace).First();
+                Category temporalCategory = await _categoryRepository.FindFirsByCategoryName(category);
+                Country temporalCountry = await _countryRepository.FindFirsByCountryName(createdPlace);
                 if (temporalCategory != null && temporalCountry != null)
                 {
                     product.Category = temporalCategory;
@@ -241,8 +245,7 @@ namespace ProductStore.Controllers
 
                 try
                 {
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
+                    _productRepository.UpdateProduct(product);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -271,8 +274,7 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products.Include(n => n.Category).Include(c => c.CreatedPlace)
-                .FirstOrDefaultAsync(m => m.ProductId == id);
+            var product = await _productRepository.GetProductByID(id);
             if (product == null)
             {
                 return NotFound();
@@ -285,18 +287,16 @@ namespace ProductStore.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Route("Delete/{id:long:min(1)}")]
-        public async Task<IActionResult> DeleteConfirmed(long id)
+        public IActionResult DeleteConfirmed(long id)
         {
-            var product = await _context.Products.FindAsync(id);
-            _context.Products.Remove(product);
-            await _context.SaveChangesAsync();
+            _productRepository.DeleteProduct(id);
             StatusMessage = "Product deleted successfully!";
             return RedirectToAction(nameof(Index));
         }
 
         private bool ProductExists(long id)
         {
-            return _context.Products.Any(e => e.ProductId == id);
+            return _productRepository.ProductExist(id);
         }
     }
 }

@@ -11,6 +11,7 @@ using ProductStore.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using ProductStore.Services;
+using ProductStore.Repositories;
 
 namespace ProductStore.Controllers
 {
@@ -19,15 +20,15 @@ namespace ProductStore.Controllers
     [Route("Admin/Country")]
     public class CountriesController : Controller
     {
-        private readonly AuthDbContext _context;
+        private readonly ICountryRepository _countryRepository;
         private readonly ImageService _imageService;
 
         [TempData]
         public string StatusMessage { get; set; }
 
-        public CountriesController(AuthDbContext context, ImageService imageService)
+        public CountriesController(ICountryRepository countryRepository, ImageService imageService)
         {
-            _context = context;
+            _countryRepository = countryRepository;
             _imageService = imageService;
         }
 
@@ -37,7 +38,7 @@ namespace ProductStore.Controllers
         public async Task<IActionResult> Index()
         {
             ViewBag.StatusMessage = StatusMessage;
-            return View(await _context.Country.ToListAsync());
+            return View(await _countryRepository.GetCountries());
         }
 
         // GET: Countries/Details/5
@@ -49,8 +50,7 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
-            var country = await _context.Country
-                .FirstOrDefaultAsync(m => m.CountryId == id);
+            var country = await _countryRepository.GetCountrytByID(id);
             if (country == null)
             {
                 return NotFound();
@@ -68,9 +68,9 @@ namespace ProductStore.Controllers
             return View();
         }
 
-        // POST: Countries/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //POST: Countries/Create
+        //To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        //more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("Create")]
@@ -90,8 +90,7 @@ namespace ProductStore.Controllers
                     return RedirectToAction();
                 }
 
-                _context.Add(country);
-                await _context.SaveChangesAsync();
+                _countryRepository.InsertCountry(country);
                 StatusMessage = "Country has been created";
                 return RedirectToAction(nameof(Index));
             }
@@ -108,7 +107,7 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
-            var country = await _context.Country.FindAsync(id);
+            var country = await _countryRepository.GetCountrytByID(id);
             if (country == null)
             {
                 return NotFound();
@@ -147,8 +146,7 @@ namespace ProductStore.Controllers
 
                 try
                 {
-                    _context.Update(country);
-                    await _context.SaveChangesAsync();
+                    _countryRepository.UpdateCountry(country);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -177,8 +175,7 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
-            var country = await _context.Country
-                .FirstOrDefaultAsync(m => m.CountryId == id);
+            var country = await _countryRepository.GetCountrytByID(id);
             if (country == null)
             {
                 return NotFound();
@@ -192,18 +189,16 @@ namespace ProductStore.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Route("Delete/{id:int:min(1)}")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var country = await _context.Country.FindAsync(id);
-            _context.Country.Remove(country);
-            await _context.SaveChangesAsync();
+            _countryRepository.DeleteCountry(id);
             StatusMessage = "Product has been deleted";
             return RedirectToAction(nameof(Index));
         }
 
         private bool CountryExists(int id)
         {
-            return _context.Country.Any(e => e.CountryId == id);
+            return _countryRepository.CountryExist(id);
         }
     }
 }

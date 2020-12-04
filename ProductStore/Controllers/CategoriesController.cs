@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProductStore.Data;
 using ProductStore.Models;
+using ProductStore.Repositories;
 using ProductStore.Services;
 
 namespace ProductStore.Controllers
@@ -18,15 +19,15 @@ namespace ProductStore.Controllers
     [Route("Admin/Categories")]
     public class CategoriesController : Controller
     {
-        private readonly AuthDbContext _context;
+        private readonly ICategoryRepository _categoryRepository;
         private readonly ImageService _imageService;
 
         [TempData]
         public string StatusMessage { get; set; }
 
-        public CategoriesController(AuthDbContext context, ImageService imageService)
+        public CategoriesController(ICategoryRepository categoryRepository, ImageService imageService)
         {
-            _context = context;
+            _categoryRepository = categoryRepository;
             _imageService = imageService;
         }
 
@@ -36,7 +37,7 @@ namespace ProductStore.Controllers
         public async Task<IActionResult> Index()
         {
             ViewBag.StatusMessage = StatusMessage;
-            return View(await _context.Category.ToListAsync());
+            return View(await _categoryRepository.GetCategories());
         }
 
         // GET: Categories/Details/5
@@ -48,8 +49,7 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            var category = await _categoryRepository.GetCategorytByID(id);
             if (category == null)
             {
                 return NotFound();
@@ -89,8 +89,7 @@ namespace ProductStore.Controllers
                     StatusMessage = "Error. Image doesn't choosen.";
                     return RedirectToAction();
                 }
-                _context.Add(category);
-                await _context.SaveChangesAsync();
+                _categoryRepository.InsertCategory(category);
                 StatusMessage = "Category has been created";
                 return RedirectToAction(nameof(Index));
             }
@@ -107,7 +106,7 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category.FindAsync(id);
+            var category = await _categoryRepository.GetCategorytByID(id);
             if (category == null)
             {
                 return NotFound();
@@ -146,8 +145,7 @@ namespace ProductStore.Controllers
 
                 try
                 {
-                    _context.Update(category);
-                    await _context.SaveChangesAsync();
+                    _categoryRepository.UpdateCategory(category);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -176,8 +174,7 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            var category = await _categoryRepository.GetCategorytByID(id);
             if (category == null)
             {
                 return NotFound();
@@ -191,18 +188,16 @@ namespace ProductStore.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Route("Delete/{id:custom}")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var category = await _context.Category.FindAsync(id);
-            _context.Category.Remove(category);
-            await _context.SaveChangesAsync();
+            _categoryRepository.RemoveCategory(id);
             StatusMessage = "Category has been deleted";
             return RedirectToAction(nameof(Index));
         }
 
         private bool CategoryExists(int id)
         {
-            return _context.Category.Any(e => e.CategoryId == id);
+            return _categoryRepository.CategoryExist(id);
         }
     }
 }

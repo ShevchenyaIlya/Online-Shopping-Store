@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProductStore.Data;
 using ProductStore.Models;
+using ProductStore.Repositories;
 
 namespace ProductStore.Controllers
 {
@@ -15,14 +16,20 @@ namespace ProductStore.Controllers
     [Route("Admin/User")]
     public class UsersController : Controller
     {
-        private readonly AuthDbContext _context;
+        private readonly IUserRepository _userRepository;
+        private readonly ICommentRepository _commentRepository;
+        private readonly IOrderRepository _orderRepository;
+        private readonly IMarkRepository _markRepository;
 
         [TempData]
         public string StatusMessage { get; set; }
 
-        public UsersController(AuthDbContext context)
+        public UsersController(IUserRepository userRepository, ICommentRepository commentRepository, IOrderRepository orderRepository, IMarkRepository markRepository)
         {
-            _context = context;
+            _userRepository = userRepository;
+            _commentRepository = commentRepository;
+            _orderRepository = orderRepository;
+            _markRepository = markRepository;
         }
 
         [Route("Index")]
@@ -30,7 +37,7 @@ namespace ProductStore.Controllers
         public async Task<IActionResult> Index()
         {
             ViewBag.StatusMessage = StatusMessage;
-            return View(await _context.Users.ToListAsync());
+            return View(await _userRepository.GetUsers());
         }
 
         // GET: Categories/Details/5
@@ -42,15 +49,14 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
-            var user = await _context.Users
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var user = await _userRepository.GetUserById(id);
             if (user == null)
             {
                 return NotFound();
             }
 
             List<Comment> comments = new List<Comment>();
-            foreach (var comm in _context.Comment.Include(m => m.CommentUser).Include(m => m.CommentProduct))
+            foreach (var comm in await _commentRepository.GetComments())
             {
                 if (comm.CommentUser.Id == user.Id)
                 {
@@ -60,7 +66,7 @@ namespace ProductStore.Controllers
             ViewBag.UserComments = comments;
 
             List<Mark> marks = new List<Mark>();
-            foreach (var mark in _context.Mark.Include(m => m.User).Include(m => m.Product))
+            foreach (var mark in await _markRepository.GetMarks())
             {
                 if (mark.User.Id == user.Id)
                 {
@@ -70,7 +76,7 @@ namespace ProductStore.Controllers
             ViewBag.UserMarks = marks;
 
             List<Order> orders = new List<Order>();
-            foreach (var order in _context.Order.Include(m => m.Customer))
+            foreach (var order in await _orderRepository.GetOrders())
             {
                 if (order.Customer.Id == user.Id)
                 {
@@ -92,8 +98,7 @@ namespace ProductStore.Controllers
                 return NotFound();
             }
 
-            var user = await _context.Users
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var user = await _userRepository.GetUserById(id);
             if (user == null)
             {
                 return NotFound();
@@ -107,18 +112,11 @@ namespace ProductStore.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Route("Delete/{id:length(10, 40)}")]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public IActionResult DeleteConfirmed(string id)
         {
-            var user = await _context.Users.FindAsync(id);
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
+            _userRepository.RemoveUser(id);
             StatusMessage = "User has been deleted";
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool UserExists(int id)
-        {
-            return _context.Category.Any(e => e.CategoryId == id);
         }
     }
 }
